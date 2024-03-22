@@ -37,7 +37,7 @@ export class NouvelleCategoryComponent implements OnInit {
    * Method pour retourner vers la pagr categories
    */
   cancel(): void {
-    this.router.navigate(['categories']);
+    this.router.navigate(['dashboard/categories']);
   }
 
   /**
@@ -48,11 +48,11 @@ export class NouvelleCategoryComponent implements OnInit {
     this.categorie.idEntreprise = this.utilisateurService.getConnectedUser().entreprise.id;
     this.categorieService.ajouterCategorie(this.categorie).subscribe((data)=>{
        console.log(data);
-       this.router.navigate(['categories']);
+       this.router.navigate(['dashboard/categories']);
    },
      err =>{
      this.errorsMsg = err.error.errors;
-     this.router.navigate(['nouvellecategorie']);
+     this.router.navigate(['dashboard/nouvellecategorie']);
      }
 
    );

@@ -30,7 +30,7 @@ export class ArticleComponent implements OnInit {
 
 
   nouvelArticle(): void {
-    this.router.navigate(['nouvelarticle']);
+    this.router.navigate(['dashboard/nouvelarticle']);
   }
 
   cancel(): void {

@@ -150,6 +150,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    */
   ajouterLigneCommande() {
     if (this.origin === 'client') {
+      // @ts-ignore
       const ligneComdAlreadyExixts = this.lignesCommande.includes(lig =>  lig.article?.codeArticle === this.searchedArticle.codeArticle );
       if (ligneComdAlreadyExixts) {
         this.lignesCommande.forEach(lig => {
@@ -177,6 +178,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       this.findAllArticle();
 
     } else if (this.origin === 'fournisseur') {
+      // @ts-ignore
       const ligneComdAlreadyExixts = this.lignesCommande.includes(lig =>
         lig.article?.codeArticle === this.searchedArticle.codeArticle
       )

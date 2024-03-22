@@ -1,0 +1,17 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav"  *ngFor="let menu of menuProperties">
+    <li class="nav-item">
+      <a class="nav-link collapsed" [attr.data-bs-target]="'#'+menu.souTitre" data-bs-toggle="collapse" href="#">
+        <i class="{{menu.icon}}"></i><span>{{menu.titre}}</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul [attr.id]="menu.souTitre" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li *ngFor="let sousMenu of menu.sousMenu">
+          <a href="javascript:void(0);" (click)="navigate( 'dashboard/'+sousMenu.url)" >
+            <i class="bi bi-circle"></i><span>{{sousMenu.titre}}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside><!-- End Sidebar-->

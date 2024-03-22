@@ -36,7 +36,7 @@ export class ClientComponent implements OnInit {
   }
 
   nouveauClient(): void {
-    this.router.navigate(['nouveauclient']);
+    this.router.navigate(['dashboard/nouveauclient']);
   }
 
 

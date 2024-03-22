@@ -1,27 +1,56 @@
-<div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Liste des articles</h1>
-    </div>
-    <div class="col-md-4 text-right">
-      <app-boutton-action
-        (clickEvent)="nouvelArticle()"
-      ></app-boutton-action>
-    </div>
-     <div class=" alert alert-danger" *ngIf="errorsMsg">{{errorsMsg}}</div>
+<div class="pagetitle">
+  <h1>Articles</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item">Dashboard</li>
+      <li class="breadcrumb-item active">Articles</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+  <div class="row">
+
+    <!-- Top Selling -->
+    <div class="col-12">
+      <div class="card top-selling overflow-auto">
+        <app-boutton-action
+          (clickEvent)="nouvelArticle()"
+        ></app-boutton-action>
+        <div class=" alert alert-danger" *ngIf="errorsMsg">{{ errorsMsg }}</div>
+        <div class="card-body pb-0">
+          <h5 class="card-title">Listes des articles</h5>
+          <table class="table table-borderless">
+            <thead>
+            <tr>
+              <th scope="col" >Aperçu</th>
+              <th scope="col">Référence</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Prix Ht</th>
+              <th scope="col">Prix Ttc</th>
+              <th scope="col">Categorie</th>
+              <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let article of liste">
+
+              <app-detail-article
+                [article]="article"
+                (suppressionResult)="handleSuppression($event)"
+              ></app-detail-article>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div><!-- End Top Selling -->
   </div>
-  <div class="col m-3">
-    <app-detail-article
-      *ngFor="let article of liste"
-      [article]="article"
-      (suppressionResult)="handleSuppression($event)"
-    >
-    </app-detail-article>
-  </div>
-  <div class="row mb-3" >
+  <div class="row mb-3">
     <div class=" col-md-12 text-center">
       <app-pagination></app-pagination>
     </div>
   </div>
-
-</div>
+</section>

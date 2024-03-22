@@ -39,7 +39,7 @@ export class ChangerMotDePasseComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['profil']);
+    this.router.navigate(['dashboard/profil']);
   }
 
   chagerMotDePasseUtilisateur() {

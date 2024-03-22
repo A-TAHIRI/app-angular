@@ -37,7 +37,7 @@ export class CategoriesComponent implements OnInit {
    * ajouter une categorie à bdd
    */
   nouvelleCategory(): void {
-    this.router.navigate(['nouvellecategorie']);
+    this.router.navigate(['dashboard/nouvellecategorie']);
   }
 
   /**
@@ -58,7 +58,7 @@ export class CategoriesComponent implements OnInit {
    * @param id
    */
   modifierCategoie(id : number | undefined ):void{
-    this.router.navigate(['nouvellecategorie', id])
+    this.router.navigate(['dashboard/nouvellecategorie', id])
 
   }
 

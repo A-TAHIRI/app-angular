@@ -1,83 +1,52 @@
 
-<div class="row mb-1 mr-0 custom-border">
-    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " >
-      <img [src]="imgUrl" width="100px" height="100px" alt="article">
+<tr>
+  <td  ><img [src]="imgUrl" width="50px" height="50px" alt="article"></td>
+  <td  >{{ article.codeArticle }}</td>
+  <td  class="text-primary fw-bold">{{ article.designation }}</td>
+  <td  class="fw-bold" >{{ article.prixUnitaireHt }}€</td>
+  <td   class="fw-bold" >{{ article.prixUnitaireTtc }} €</td>
+  <td  >{{ article.categorie?.designation }}</td>
+  <td  >
+    <div class="action">
+      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+        <li class="dropdown-header text-start">
+          <h6>Actions</h6>
+        </li>
+        <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifierArticle( article.id)">
+          <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+               data-bs-target="#modalDeleteArticle" (click)="selectArticlePourSupprimer(article.id)">
+          <i class="bi bi-trash3"></i>Supprimer</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
+      </ul>
     </div>
+  </td>
+</tr>
 
-  <!--  Details article-->
-    <div class="col-md-5 custom-border-right mb-1 mt-1 "  >
-      <div class="col">
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-11">{{article.codeArticle}}</div>
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-11">{{article.designation}}</div>
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-          <div class="col-md-11">{{article.prixUnitaireHt}}€</div>
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-          <div class="col-md-11">{{article.prixUnitaireTtc}} €</div>
-        </div>
-      </div>
-    </div>
 
-  <!--  details categorie-->
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-2">
-          <i class="fas fa-flag-checkered blue-color"></i>
-        </div>
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-12">{{article.categorie?.code}}</div>
-            <div class="col-md-12">{{article.categorie?.designation}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-  <!--  boutons action-->
-    <div class="col-md-3 mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-4">
-          <button type="button" class="btn btn-link" (click)="modifierArticle( article.id)">
-            <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
-          </button>
-        </div>
-        <div class="col-md-4">
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modalDeleteArticle"  (click)="selectArticlePourSupprimer(article.id)">
-            <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
-          </button>
-        </div>
-        <div class="col-md-4">
-          <button type="button" class="btn btn-link ">
-            <i class="far fa-list-alt"></i>&nbsp;<br> Details
-          </button>
-        </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalDeleteArticle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div>
-    <!-- Modal -->
-  <div class="modal fade" id="modalDeleteArticle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Etes vous-sur de vouloir supprimer cet article?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="annulerSuppressionArticle()"> <i class="fas fa-ban"></i> Annuler</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="confirmerEtSupprimerArticle()"> <i class="fas fa-trash-alt"></i> Supprimer</button>
-        </div>
+      <div class="modal-body">
+        Etes vous-sur de vouloir supprimer cet article?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="annulerSuppressionArticle()"><i
+          class="fas fa-ban"></i> Annuler
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerArticle()"><i
+          class="fas fa-trash-alt"></i> Supprimer
+        </button>
       </div>
     </div>
   </div>
-  </div>
+</div>
 

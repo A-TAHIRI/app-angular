@@ -29,7 +29,7 @@ export class DetailUtilisateurComponent  implements OnInit {
    * @param id
    */
   modifierUtilisateur(id: number | undefined) {
-    this.router.navigate(['nouvelutilisateur', id])
+    this.router.navigate(['dashboard/nouvelutilisateur', id])
 
   }
 }

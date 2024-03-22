@@ -12,6 +12,7 @@ export class DetailArticleComponent  implements OnInit {
 
   articleDeletById?= -1;
   imgUrl : string | ArrayBuffer ='assets/img/produit.png';
+  @Input() thScopes!: string[];
 
 @Output()
 suppressionResult = new EventEmitter();
@@ -39,7 +40,7 @@ suppressionResult = new EventEmitter();
    * @param id
    */
   modifierArticle(id: number | undefined) {
-    this.router.navigate(['nouvelarticle', id])
+    this.router.navigate(['dashboard/nouvelarticle', id])
   }
 
 

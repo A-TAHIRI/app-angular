@@ -30,6 +30,9 @@ export class InscriptionComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['']);
   }
+  connecter():void{
+    this.router.navigate(['login']);
+  }
 
   /**
    * inscription de l'entrepise
@@ -42,7 +45,7 @@ export class InscriptionComponent implements OnInit {
       },
       (error) => {
         this.errorsMsg = error.error.errors;
-      this.router.navigate(['inscription']);
+      this.router.navigate(['inscrire']);
       }
     );
   }
@@ -59,7 +62,7 @@ export class InscriptionComponent implements OnInit {
     this.getUserByEmail(authRequestDto.email);
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
-      this.router.navigate(['changermotdepasse']);
+      this.router.navigate(['dashboard/changermotdepasse']);
     });
   }
 

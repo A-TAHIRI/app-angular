@@ -1,26 +1,85 @@
-<div class="container my-container">
-    <div class="card justify-content-md-center">
-      <div class="card-header text-center">
-        <h3>Se connecter</h3>
-      </div>
-      <div class="card-body">
-        <div class="alert alert-danger"  *ngIf="errorMessage" >
+
+<!-- header -->
+<app-header-home></app-header-home>
+<!-- /header -->
+<!-- Content -->
+<section class="container-fluid my-fluid">
+<div class="container-xxl  my-container  " data-aos="zoom-out">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card my-card ">
+        <div class="card-body">
+          <!-- Logo -->
+          <div class="app-brand justify-content-center  mt-5 mb-5">
+            <a href="/" class="app-brand-link gap-2 d-flex justify-content-center align-content-center">
+                  <span class="app-brand-logo demo pb-2">
+                    <img src="assets/img/img/logogs.png" width="70" >
+                  </span>
+              <h1 class="app-brand-text demo text-body fw-bolder">GESTOSTOCK</h1>
+            </a>
+          </div>
+          <!-- /Logo -->
+          <h4 class="mb-2">Bienvenue chez Gestostock! 👋</h4>
+          <p class="mb-4">Veuillez vous connecter à votre compte et commencer l'aventure</p>
+          <div class="alert alert-danger justify-content-center"  *ngIf="errorMessage" >
             {{errorMessage}}
-        </div>
-        <div class="mb-3">
-          <input type="email" class="form-control" placeholder="E-mail"  [(ngModel)] ="authRequestDto.email"  name="email">
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" placeholder="Mot de passe"  [(ngModel)] ="authRequestDto.mdp"  name="mdp">
-        </div>
-        <div class="mb-3 d-flex justify-content-between">
-          <a [routerLink]="['/inscrire']" class="btn btn-link">S'inscrire</a>
-          <button type="submit" class="btn btn-primary"  (click)="login()">
-            <i class="fas fa-check"></i>&nbsp;Se connecter
-          </button>
+          </div>
+
+          <form id="formAuthentication" class="mb-3"  method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email </label>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                [(ngModel)] ="authRequestDto.email"
+                placeholder="Entrer votre email"
+                autofocus
+                style="box-shadow: none; "
+              />
+            </div>
+            <div class="mb-3 form-password-toggle">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">Password</label>
+                <a href="auth-forgot-password-basic.html">
+                  <small>Mot de passe oublié?</small>
+                </a>
+              </div>
+              <div class="input-group input-group-merge">
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  name="mdp"
+                  [(ngModel)] ="authRequestDto.mdp"
+                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                  aria-describedby="password"
+                 style="box-shadow: none; "
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button class="btn btn-primary d-grid w-100" type="submit"  (click)="login()">Se connecter</button>
+            </div>
+          </form>
+
+          <p class="text-center mb-5">
+            <span>Nouveau sur notre plateforme ?</span>
+            <a  href="/inscrire">
+              <span>Créer un compte</span>
+            </a>
+          </p>
         </div>
       </div>
+      <!-- /Register -->
     </div>
   </div>
-  
-  
+</div>
+</section>
+<!-- / Content -->
+<!-- footer -->
+<app-footer></app-footer>
+<!-- /footer -->

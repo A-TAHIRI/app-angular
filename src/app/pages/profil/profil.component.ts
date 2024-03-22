@@ -30,7 +30,7 @@ export class ProfilComponent implements OnInit {
    * Method pour chager le mot de passe
    */
   modifierMotDePasse(): void {
-    this.router.navigate(['changermotdepasse']);
+    this.router.navigate(['dashboard/changermotdepasse']);
   }
 
   /**
@@ -42,7 +42,7 @@ export class ProfilComponent implements OnInit {
     this.router.navigate(['login']);
   }
   modifierUser( id ?: number){
-    this.router.navigate(['nouvelutilisateur' , id] )
+    this.router.navigate(['dashboard/nouvelutilisateur' , id] )
   }
 
   /**
@@ -50,6 +50,6 @@ export class ProfilComponent implements OnInit {
    * @param id
    */
   modifierUtilisateur(id: number | undefined) {
-    this.router.navigate(['nouvelutilisateur' , id])
+    this.router.navigate(['dashboard/nouvelutilisateur' , id])
   }
 }

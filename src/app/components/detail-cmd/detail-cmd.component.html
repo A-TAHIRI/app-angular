@@ -1,44 +1,64 @@
-<div class="row mb-1 mr-0 custom-border">
-    <!--  Details article-->
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row text-center">
-        <div class="col-md-11">
-          {{ligneCommande.article?.codeArticle}}
-        </div>
-      </div>
-    </div>
+<section class="section dashboard">
+  <div class="row">
 
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          {{ligneCommande.article?.designation}}
-        </div>
-      </div>
-    </div>
+    <!-- Top Selling -->
+    <div class="col-12">
+      <div class="card top-selling overflow-auto">
+        <div class="card-body pb-0">
+          <h5 class="card-title">Détail de la commade</h5>
 
-    <div class="col-md-2 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          {{ligneCommande.quantite}}
-        </div>
-      </div>
-    </div>
+          <div class="row mb-1 mr-0 custom-border">
+            <!--  Details article-->
+            <div class="col-md-3 custom-border-right mb-1 mt-1 ">
+              <div class="row text-center">
+                <div class="col-md-11">
+                  {{ligneCommande.article?.codeArticle}}
+                </div>
+              </div>
+            </div>
 
-    <div class="col-md-2 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          {{ origin==='client'?  ligneCommande.prixUnitaire : '' }}
-          {{origin=== 'fournisseur' ? ligneCommande.prixUnitaireHt: ''}}
-        </div>
-      </div>
-    </div>
+            <div class="col-md-3 custom-border-right mb-1 mt-1 ">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  {{ligneCommande.article?.designation}}
+                </div>
+              </div>
+            </div>
 
-    <div class="col-md-2 mb-1 mt-1">
-      <div class="row">
-        <div class="col-md-12 text-center">
-      {{ origin==='client' ?  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') :
-          (ligneCommande.prixUnitaireHt && ligneCommande.quantite ? +ligneCommande.prixUnitaireHt * +ligneCommande.quantite :'')}}
+            <div class="col-md-2 custom-border-right mb-1 mt-1 ">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  {{ligneCommande.quantite}}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2 custom-border-right mb-1 mt-1 ">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  {{ origin==='client'?  ligneCommande.prixUnitaire : '' }}
+                  {{origin=== 'fournisseur' ? ligneCommande.prixUnitaireHt: ''}}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2 mb-1 mt-1">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  {{ origin==='client' ?  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') :
+                  (ligneCommande.prixUnitaireHt && ligneCommande.quantite ? +ligneCommande.prixUnitaireHt * +ligneCommande.quantite :'')}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
-    </div>
+    </div><!-- End Top Selling -->
   </div>
+
+</section>
+
+
+

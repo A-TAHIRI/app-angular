@@ -32,7 +32,7 @@ export class FournisseurComponent implements OnInit {
   }
 
   nouveauFournisseur(): void {
-    this.router.navigate(['nouveaufournisseur']);
+    this.router.navigate(['dashboard/nouveaufournisseur']);
   }
 
   handleSuppression(event: any) {

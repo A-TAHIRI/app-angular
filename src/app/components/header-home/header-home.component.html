@@ -1,0 +1,45 @@
+<header id="header" class="header2 d-flex align-items-center fixed-top">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+    <a href="index.html" class="logo d-flex align-items-center">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1 class="d-flex align-content-center align-items-center"> <img src="assets/img/img/logogs.png" width="60px" class="pb-1"> GESTOSTOCK </h1>
+    </a>
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list" ></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"  ></i>
+    <nav id="navbar2" class="navbar2">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a  href="/contact" >Contact</a></li>
+        <li *ngIf="isConnected == false"><a href="/login">Login</a></li>
+        <li class="dropdown" *ngIf="isConnected==true" ><a href="javascript:void(0);"><span> <img [src]="imgUrl" width="40" height="40" alt="Profile" class=" rounded-circle"></span></a>
+          <ul>
+            <li class="dropdown-header text-center">
+              <h6>{{connectedUser.nom }}</h6>
+              <span>{{connectedUser.role}}</span>
+            </li>
+            <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0);" [routerLink]="['/dashboard/profil']">
+              <i class="bi bi-person"></i>
+              <span>My Profile</span>
+            </a>
+            </li>
+            <li><a class="dropdown-item d-flex align-items-center" href="/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a></li>
+
+            <li><a class="dropdown-item d-flex align-items-center"  href="/" (click)="deconexion()">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Log Out</span>
+            </a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->

@@ -68,9 +68,9 @@ export class NouveauCltFrsComponent  implements OnInit {
 
   cancelClick(): void {
     if (this.origin === 'client') {
-      this.router.navigate(['clients']);
+      this.router.navigate(['dashboard/clients']);
     } else if (this.origin === 'fournisseur') {
-      this.router.navigate(['fournisseurs']);
+      this.router.navigate(['dashboard/fournisseurs']);
     }
   }
 
@@ -99,7 +99,7 @@ export class NouveauCltFrsComponent  implements OnInit {
     if (this.origin === 'client') {
       this.clientService.add(this.mapToClient()).subscribe(data=>{
         this.clientfournisseur= data;
-        this.router.navigate(['clients']);
+        this.router.navigate(['dashboard/clients']);
       },error => {
         this.errorsMsg=error.error.errors;
       })
@@ -108,7 +108,7 @@ export class NouveauCltFrsComponent  implements OnInit {
 
       this.fourniseurService.add(this.mapToFournisseur()).subscribe(data=>{
         this.clientfournisseur= data;
-        this.router.navigate(['fournisseurs']);
+        this.router.navigate(['dashboard/fournisseurs']);
       },error => {
         this.errorsMsg=error.error.errors;
       });

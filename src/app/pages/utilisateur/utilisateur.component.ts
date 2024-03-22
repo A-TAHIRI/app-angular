@@ -28,7 +28,7 @@ export class UtilisateurComponent implements OnInit {
    * naviger vers la page nouvelUtilisateur
    */
   nouvelUtilisateur(): void {
-    this.router.navigate(['nouvelutilisateur']);
+    this.router.navigate(['dashboard/nouvelutilisateur']);
   }
 
   /**

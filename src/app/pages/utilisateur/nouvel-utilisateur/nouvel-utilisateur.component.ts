@@ -43,7 +43,7 @@ export class NouvelUtilisateurComponent implements OnInit {
    * Method pour retourner à la pages utilisateurs
    */
   cancel(): void {
-    this.router.navigate(['utilisateurs']);
+    this.router.navigate(['dashboard/utilisateurs']);
   }
 
   /**
@@ -53,7 +53,7 @@ export class NouvelUtilisateurComponent implements OnInit {
       this.utilisateur.adresse = this.adresse;
       this.utilisateur.entreprise = this.utilisateurService.getConnectedUser().entreprise;
       this.utilisateurService.add(this.utilisateur).subscribe((data) => {
-          this.router.navigate(['utilisateurs']);
+          this.router.navigate(['dashboard/utilisateurs']);
         }, (err) => {
           this.errorsMsg = err.error.errors;
         }

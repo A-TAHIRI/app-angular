@@ -35,9 +35,9 @@ export class CmdCltFrsComponent  implements OnInit {
    */
   nouvelleCommande():void{
     if (this.origin === 'client') {
-      this.router.navigate(['nouvellecommandeclt']);
+      this.router.navigate(['dashboard/nouvellecommandeclt']);
     } else if (this.origin === 'fournisseur') {
-      this.router.navigate(['nouvellecommandefrs']);
+      this.router.navigate(['dashboard/nouvellecommandefrs']);
     }
   }
 

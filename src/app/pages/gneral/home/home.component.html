@@ -1,0 +1,605 @@
+<!-- ======= Header ======= -->
+<app-header-home></app-header-home>
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center " style="min-height: 100vh">
+  <div class="container">
+    <div class="row gy-4 d-flex justify-content-between">
+      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <h2 data-aos="fade-up">GestoStock : La clé pour une gestion de stock efficace et transparente</h2>
+        <p data-aos="fade-up" data-aos-delay="100"> Bienvenue sur GestoStock, votre solution complète de gestion de
+          stock. Que vous soyez une petite entreprise, un commerce de détail ou une grande entreprise, notre plateforme
+          intuitive vous
+          permet de gérer votre inventaire de manière efficace, sécurisée et organisée.</p>
+      </div>
+      <div class="col-lg-5 order-1 order-lg-2 hero-img " data-aos="zoom-out">
+        <img src="assets/img/img/image-07.png" class="img-fluid mb-3 mb-lg-0" alt="">
+      </div>
+    </div>
+    <div data-aos="zoom-out" class="text-center"><a class="btn btn-primary" href="/login"><h3> &nbsp; <i
+      class="bi bi-arrow-right-circle"></i>&nbsp; Démarer ! &nbsp;</h3></a></div>
+  </div>
+</section><!-- End Hero Section -->
+
+<main id="body">
+
+  <!-- ======= Featured Services Section ======= -->
+  <section id="featured-services" class="featured-services">
+    <div class="container">
+
+      <div class="row gy-4">
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-cart-flatbed"></i></div>
+          <div>
+            <h4 class="title">Lorem Ipsum</h4>
+            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+              occaecati cupiditate non provident</p>
+            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
+              class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
+          <div>
+            <h4 class="title">Dolor Sitema</h4>
+            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat tarad limino ata</p>
+            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
+              class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div>
+            <h4 class="title">Sed ut perspiciatis</h4>
+            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur</p>
+            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
+              class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+      </div>
+
+    </div>
+  </section><!-- End Featured Services Section -->
+
+  <!-- ======= About Us Section ======= -->
+  <section id="about" class="about pt-0">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row gy-4">
+        <div class="col-lg-6 position-relative align-self-start order-lg-last order-first ">
+          <img src="assets/img/img/image-08.webp" class="img-fluid" alt="">
+          <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+        </div>
+        <div class="col-lg-6 content order-last  order-lg-first">
+          <h3>À Propos</h3>
+          <p>
+            Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia
+            molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis
+            veritatis asperiores placeat.
+          </p>
+          <ul>
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bi bi-diagram-3"></i>
+              <div>
+                <h5>Ullamco laboris nisi ut aliquip consequat</h5>
+                <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+              </div>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-fullscreen-exit"></i>
+              <div>
+                <h5>Magnam soluta odio exercitationem reprehenderi</h5>
+                <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+              </div>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-broadcast"></i>
+              <div>
+                <h5>Voluptatem et qui exercitationem</h5>
+                <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="service" class="services pt-0">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>Nos Services</h2>
+
+      </div>
+
+        <div class="row gy-4 ">
+          <ng-container *ngFor="let service of mesServices; ">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="service.dely">
+            <div class="card">
+              <div class="card-img">
+                <img src="{{service.image}}" alt="" class="img-fluid" style=" height: 280px">
+              </div>
+              <h3><a href="service-details.html" class="stretched-link">{{ service.titre }} </a></h3>
+              <p> {{ service.miniDescription }}</p>
+            </div>
+          </div><!-- End Card Item -->
+          </ng-container>
+        </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+  <!-- ======= Call To Action Section ======= -->
+  <section id="call-to-action" class="call-to-action section contact">
+    <div class="container" data-aos="zoom-out">
+      <div class="section-header">
+        <h2>CONTACTEZ-NOUS </h2>
+
+      </div>
+      <div class="row gy-4">
+
+        <div class="col-xl-6">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div style="background: rgba(256,256,256,0.1)" class="info-box card">
+                <i class="bi bi-geo-alt"></i>
+                <h3>Address</h3>
+                <p>A108 Adam Street,<br>New York, NY 535022</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div style="background: rgba(256,256,256,0.1)" class="info-box card">
+                <i class="bi bi-telephone"></i>
+                <h3>Call Us</h3>
+                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div style="background: rgba(256,256,256,0.1)" class="info-box card">
+                <i class="bi bi-envelope"></i>
+                <h3>Email Us</h3>
+                <p>info@example.com<br>contact@example.com</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div style="background: rgba(256,256,256,0.1)" class="info-box card">
+                <i class="bi bi-clock"></i>
+                <h3>Open Hours</h3>
+                <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-6">
+          <div class="card p-4" style="background: rgba(256,256,256,0)">
+            <form action="" method="post" class="php-email-form" style="background: rgba(256,256,256,0);">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Votre Nom" required>
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Votre Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Objet" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit"><i class="bi bi-send"></i> &nbsp;Envoyer&nbsp;</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Call To Action Section -->
+
+  <!-- ======= Features Section ======= -->
+  <section id="features" class="features">
+    <div class="container">
+
+      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
+
+        <div class="col-md-5">
+          <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7">
+          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+          <p class="fst-italic">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua.
+          </p>
+          <ul>
+            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            <li><i class="bi bi-check"></i> Ullam est qui quos consequatur eos accusamus.</li>
+          </ul>
+        </div>
+      </div><!-- Features Item -->
+
+      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
+        <div class="col-md-5 order-1 order-md-2">
+          <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7 order-2 order-md-1">
+          <h3>Corporis temporibus maiores provident</h3>
+          <p class="fst-italic">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua.
+          </p>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </p>
+        </div>
+      </div><!-- Features Item -->
+
+      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
+        <div class="col-md-5">
+          <img src="assets/img/features-3.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7">
+          <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
+          <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia
+            voluptatem hic voluptas dolor doloremque.</p>
+          <ul>
+            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+            <li><i class="bi bi-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
+          </ul>
+        </div>
+      </div><!-- Features Item -->
+
+      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
+        <div class="col-md-5 order-1 order-md-2">
+          <img src="assets/img/features-4.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7 order-2 order-md-1">
+          <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
+          <p class="fst-italic">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua.
+          </p>
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </p>
+        </div>
+      </div><!-- Features Item -->
+
+    </div>
+  </section><!-- End Features Section -->
+
+  <!-- ======= Pricing Section ======= -->
+  <section id="pricing" class="pricing pt-0">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>TARIFS ET ABONNEMENTS</h2>
+
+      </div>
+
+      <div class="row gy-4">
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="pricing-item  position-relative">
+            <h3>Forfait gratuit</h3>
+            <h4><sup>€</sup>0<span> / mois</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Accès gratuit à la plateforme GestoStock</li>
+              <li><i class="bi bi-check"></i> 1 utilisateur autorisé</li>
+              <li><i class="bi bi-check"></i> Stockage limité pour les données d'inventaire</li>
+              <li><i class="bi bi-check"></i> <span>Fonctionnalités de base de gestion des stocks et de génération de rapports</span></li>
+              <li class="na"><i class="bi bi-x"></i> <span>Support client limité par email</span></li>
+            </ul>
+            <div class="store-overlay">
+              <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2">Abonnez-vous !  <i
+                class="bi bi-arrow-right ms-2"></i></a>
+
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="pricing-item featured position-relative">
+            <h3>Forfait Standard</h3>
+            <h4><sup>€</sup>50<span> / mois</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Accès complet à toutes les fonctionnalités de GestoStock</li>
+              <li><i class="bi bi-check"></i> 5 utilisateurs autorisés</li>
+              <li><i class="bi bi-check"></i> Stockage étendu pour les données d'inventaire</li>
+              <li><i class="bi bi-check"></i> Fonctionnalités avancées telles que le suivi des mouvements, les analyses approfondies, etc</li>
+              <li><i class="bi bi-check"></i> Support client prioritaire par email</li>
+            </ul>
+            <div class="store-overlay">
+              <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2">Abonnez-vous !  <i
+                class="bi bi-arrow-right ms-2"></i></a>
+
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="pricing-item position-relative">
+            <h3>Developer Plan</h3>
+            <h4><sup>€</sup>100<span> / mois</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Accès complet à toutes les fonctionnalités de GestoStock</li>
+              <li><i class="bi bi-check"></i> Nombre illimité d'utilisateurs autorisés</li>
+              <li><i class="bi bi-check"></i> Stockage illimité pour les données d'inventaire</li>
+              <li><i class="bi bi-check"></i> Fonctionnalités avancées personnalisables et intégrations tierces</li>
+              <li><i class="bi bi-check"></i> Support client dédié avec assistance téléphonique et sessions de formation personnalisées</li>
+            </ul>
+            <div class="store-overlay">
+              <a href="" class="btn btn-primary rounded-pill py-2 px-4 m-2">Abonnez-vous !  <i
+                class="bi bi-arrow-right ms-2"></i></a>
+
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+
+      </div>
+
+    </div>
+  </section><!-- End Pricing Section -->
+
+  <!-- ======= Testimonials Section ======= -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+
+      <div class="slides-1 swiper" data-aos="fade-up">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="assets/img/img/ph8.jpg" class="testimonial-img" alt="">
+              <h3>Leroy Thomas</h3>
+              <h4>Responsable des ventes</h4>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                Gestostock a considérablement amélioré notre efficacité opérationnelle en nous permettant de suivre nos
+                niveaux de stock en temps réel. En tant que responsable de la logistique, je ne saurais trop recommander
+                cette solution.
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="assets/img/img/ph1.jpg" class="testimonial-img" alt="" height="105">
+              <h3>Dupont Sophie</h3>
+              <h4>Ingénieure en informatique</h4>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                Gestostock a révolutionné la façon dont nous gérons notre inventaire au quotidien. Son interface
+                intuitive et ses fonctionnalités avancées en font un outil indispensable pour toute entreprise.
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="assets/img/img/ph6.jpg" class="testimonial-img" alt="">
+              <h3>Martin David</h3>
+              <h4>Comptable</h4>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                Je suis impressionné par la simplicité d'utilisation de Gestostock. En tant que responsable des achats,
+                cela m'a permis de rationaliser nos processus de gestion des stocks et d'éviter les pénuries imprévues.
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="assets/img/img/ph7.jpg" class="testimonial-img" alt="">
+              <h3> Dubois Camille</h3>
+              <h4>Chef d'entreprise</h4>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                En tant que propriétaire d'une petite entreprise, Gestostock m'a fait économiser un temps précieux en
+                automatisant la gestion de notre inventaire. Je recommande vivement cet outil à tous les entrepreneurs.
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="assets/img/img/ph5.jpg" class="testimonial-img" alt="">
+              <h3>Moreau Laura</h3>
+              <h4>Entrepreneur</h4>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>
+                <i class="bi bi-quote quote-icon-left"></i>
+                Grâce à Gestostock, nous avons pu réduire nos coûts de stockage tout en maintenant des niveaux de stock
+                optimaux. Son intégration transparente avec nos autres systèmes a été un véritable atout pour notre
+                entreprise.
+                <i class="bi bi-quote quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+  </section><!-- End Testimonials Section -->
+
+  <!-- ======= Frequently Asked Questions Section ======= -->
+  <section id="faq" class="faq">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>Questions les Plus Fréquentes</h2>
+
+      </div>
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-10">
+
+          <div class="accordion accordion-flush" id="faqlist">
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq-content-1">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Comment puis-je commencer à utiliser GestoStock ?
+                </button>
+              </h3>
+              <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Pour commencer à utiliser GestoStock, il vous suffit de vous inscrire sur notre site web et de créer
+                  un compte. Une fois connecté, vous pourrez commencer à ajouter vos produits, gérer votre inventaire et
+                  profiter de toutes les fonctionnalités de notre plateforme.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq-content-2">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  GestoStock est-il adapté à ma petite entreprise ?
+                </button>
+              </h3>
+              <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Absolument ! GestoStock est conçu pour répondre aux besoins des petites entreprises, des commerces de
+                  détail et des grandes entreprises. Notre plateforme est flexible et évolutive, ce qui signifie que
+                  vous pouvez l'adapter à la taille et aux besoins spécifiques de votre entreprise.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq-content-3">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Est-ce que GestoStock offre un support client ?
+                </button>
+              </h3>
+              <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Oui, nous proposons un support client dédié pour répondre à toutes vos questions et vous aider en cas
+                  de problème. Notre équipe est disponible par e-mail, chat en direct et téléphone pour vous fournir une
+                  assistance rapide et efficace.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq-content-4">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Puis-je accéder à mes données depuis n'importe où ?
+                </button>
+              </h3>
+              <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Oui, avec GestoStock, vous pouvez accéder à votre inventaire et gérer vos stocks depuis n'importe quel
+                  appareil avec une connexion Internet. Que vous soyez au bureau, à la maison ou en déplacement, vous
+                  avez toujours accès à vos données en temps réel.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq-content-5">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  GestoStock propose-t-il des essais gratuits ?
+                </button>
+              </h3>
+              <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Oui, nous proposons une période d'essai gratuite pour que vous puissiez découvrir toutes les
+                  fonctionnalités de GestoStock sans aucun engagement. Inscrivez-vous dès aujourd'hui pour commencer
+                  votre essai gratuit et voir par vous-même comment GestoStock peut vous aider à optimiser la gestion de
+                  votre inventaire.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Frequently Asked Questions Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+
+<app-footer></app-footer>
+
+<!-- End Footer -->
+
+
+
