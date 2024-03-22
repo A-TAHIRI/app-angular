@@ -1,0 +1,47 @@
+<div class="row m-3">
+    <div class="card col-md-4 text-center mr-3">
+      <div class="col">
+        <div class="mb-3 mt-3">
+          <img [src]="imgUrl" class="rounded-circle" width="200px" height="200px"/>
+        </div>
+        <div class="mb-3">
+          <h2>{{utilisateur.nom}}&nbsp;{{utilisateur.prenom}}</h2>
+          <small class="form-text text-muted">{{utilisateur.adresse?.adresse1}}&nbsp;{{utilisateur.adresse?.ville}}&nbsp;{{utilisateur.adresse?.pays}}</small>
+        </div>
+        <div class="col mb-3 p-0">
+          <button type="button" class="btn btn-primary mr-3" (click)="modifierUtilisateur(utilisateur.id)" ><i class="fas fa-pencil-alt"></i>&nbsp;Modifier le
+            profil</button>
+          <button type="button" class="btn btn-warning" (click)="modifierMotDePasse()"><i class="fas fa-lock"></i>&nbsp;Changer le mot de passe</button>
+          <button type="button" class="btn-secondary" (click)="deconexion()">Déconnéxion</button>
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-7">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th scope="row">Nom complet</th>
+          <td>{{utilisateur.nom}}&nbsp;{{utilisateur.prenom}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{utilisateur.email}}</td>
+        </tr>
+        <tr>
+          <th scope="row">telephone</th>
+          <td>{{utilisateur.numTel}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Adresse</th>
+          <td>{{utilisateur.adresse?.adresse1}}&nbsp;{{utilisateur.adresse?.ville}}&nbsp;{{utilisateur.adresse?.pays}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Entreprise</th>
+          <td>{{utilisateur.entreprise?.nom}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+

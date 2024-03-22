@@ -1,0 +1,80 @@
+<div class="col mb-3">
+    <div class="col-md-12 mb-3">
+      <img src="assets/product.png" class="rounded-circle" width="200px" height="200px" />
+    </div>
+    <hr>
+    <div class="col-md-12">
+      <div class="col-md-12 mb-3">
+        <h2><i class="fas fa-info-circle blue-color"></i>&nbsp;Information de l'utilisateur</h2>
+      </div>
+      <div class="alert alert-danger" *ngIf="errorsMsg.length > 0">
+        <div *ngFor="let msg of errorsMsg">
+          <span >{{msg}}</span>
+        </div>
+      </div>
+      <div class="col-md-12 " >
+        <form>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="utilisateur.nom" name="nom" >
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Adresse 1" [(ngModel)]="adresse.adresse1" name="adresse1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="utilisateur.prenom" name="prenom">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Adresse 2" [(ngModel)]="adresse.adresse2" name="adresse2">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="utilisateur.email" name="email">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="adresse.ville" name="ville">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="date" class="form-control" placeholder="Dete de naissance" [(ngModel)]="utilisateur.dateDeNaissance" name="dateDeNaissance">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Code postal" [(ngModel)]="adresse.codePostale" name="codePostale">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Telephone" [(ngModel)]="utilisateur.numTel" name="numTel">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Pays" [(ngModel)]="adresse.pays" name="pays">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="utilisateur.mdp" name="mdp">
+            </div>
+            <div class="col">
+              <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
+              <input type="hidden" name="photo"  [(ngModel)]="utilisateur.photo" [value]="pathFile">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-12 text-right">
+      <button class="btn btn-danger mr-3" (click)="cancel()">
+        <i class="fas fa-ban"></i>&nbsp;
+        Annuler
+      </button>
+      <button class="btn btn-primary"  (click)="ajouter()">
+        <i class="fas fa-save"></i>&nbsp;
+        Enregitrer
+      </button>
+    </div>
+
+  </div>

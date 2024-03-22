@@ -1,0 +1,40 @@
+<div class="col mb-3">
+    <div class="col-md-12">
+      <div class="col-md-12 mb-3 mt-3">
+        <h2>Nouvelle categorie</h2>
+      </div>
+      <div class="col-md-12">
+
+        </div>
+        <form>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Code category" name="code" [(ngModel)]="categorie.code" >
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Description" name="designation" [(ngModel)]="categorie.designation">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="file"  name="image"  class="file-upload" (change)="onFileSelected($event)">
+              <input type="hidden" name="image"  [(ngModel)]="categorie.image" [value]="pathFile">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-12 text-right">
+      <button class="btn btn-danger mr-3" (click)="cancel()">
+        <i class="fas fa-ban"></i>&nbsp;
+        Annuler
+      </button>
+      <button class="btn btn-primary" (click)="save()" >
+        <i class="fas fa-save"></i>&nbsp;
+        Enregitrer
+      </button>
+    </div>
+
+

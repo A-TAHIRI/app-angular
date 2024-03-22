@@ -1,0 +1,64 @@
+{
+"mesServices":
+ [
+
+{
+"id" : "1",
+"titre":"Gestion de Stock Centralisée",
+"image":"assets/img/img/centraliser.jpg",
+"dely":"100",
+"miniDescription":
+"GestoStock simplifie la gestion de votre stock en centralisant toutes vos opérations dans un seul endroit. Obtenez une vision globale de votre inventaire, peu importe sa localisation. Suivez les mouvements de stock, ajustez les niveaux et planifiez les réapprovisionnements avec aisance.",
+"description":"GestoStock vous permet de centraliser la gestion de votre stock en un seul endroit, vous offrant une visibilité complète sur l'ensemble de votre inventaire, quel que soit l'endroit où il est stocké. Vous pouvez suivre les mouvements de stock, gérer les niveaux de stock et optimiser les réapprovisionnements avec facilité."
+
+},
+{
+"id":"2",
+"titre":"Suivi des Produits",
+"image":"assets/img/img/suivi.png",
+"dely":"200",
+"miniDescription":"GestoStock vous permet de surveiller chaque article de votre inventaire avec une précision remarquable. Enregistrez les données essentielles telles que les fournisseurs, les codes-barres, les descriptions et les prix pour un suivi exhaustif. Cette approche détaillée simplifie la gestion de vos stocks, vous offrant un contrôle total sur chaque produit.",
+"description":"Avec GestoStock, vous pouvez suivre chaque produit de votre inventaire de manière précise. Vous pouvez enregistrer les détails des produits, y compris les informations sur les fournisseurs, les codes-barres, les descriptions et les prix, ce qui vous permet de garder une trace de chaque article et de faciliter la gestion des stocks."
+
+},
+{
+"id":"3",
+"titre":"Gestion des Commandes et des Livraisons",
+"image":"assets/img/img/commande.png",
+"dely":"300",
+"miniDescription":
+"GestoStock simplifie la gestion des commandes et des livraisons. Suivez les commandes clients, gérez les retours, générez des bons de livraison et optimisez les processus de réception des marchandises. Cette solution vous aide à maintenir un flux de travail efficace et à répondre aux demandes des clients avec précision.",
+"description":"Simplifiez le processus de gestion des commandes et des livraisons avec GestoStock. Vous pouvez suivre les commandes clients, gérer les retours, générer des bons de livraison et optimiser les processus de réception des marchandises, vous aidant ainsi à maintenir un flux de travail efficace et à satisfaire les demandes des clients."
+
+},
+{
+"id":"4",
+"titre":"Rapports et Analyses",
+"image":"assets/img/img/analytics-vs-reporting.jpg",
+"dely":"400",
+"miniDescription":"GestoStock propose des outils avancés de génération de rapports et d'analyses pour évaluer les performances de votre inventaire. Obtenez des informations précieuses sur les niveaux de stock, les mouvements, les tendances de vente et les prévisions de réapprovisionnement. Ces rapports vous aident à prendre des décisions éclairées et à optimiser votre gestion des stocks.",
+"description":"GestoStock offre des fonctionnalités de génération de rapports et d'analyses avancées qui vous permettent d'obtenir des informations précieuses sur les performances de votre inventaire. Vous pouvez générer des rapports sur les niveaux de stock, les mouvements de stock, les tendances de vente, les prévisions de réapprovisionnement, etc., pour prendre des décisions éclairées et optimiser votre gestion des stocks."
+
+},
+{
+"id":"5",
+"titre":"Gestion des Employés",
+"image":"assets/img/img/personnes-dans-la-main_1.jpg",
+"dely":"500",
+"miniDescription":
+"GestoStock offre une gestion complète des employés, simplifiant les processus RH. Créez et gérez les profils, suivez les données personnelles, les rôles et les autorisations, ainsi que les horaires et congés. Générez des rapports sur la présence, les performances et les données RH pour une gestion efficace du personnel. Optimisez la planification des effectifs, améliorez la productivité et favorisez la communication transparente au sein de votre entreprise.",
+"description":"GestoStock propose un service complet de gestion des employés de l'entreprise, vous permettant de gérer facilement tous les aspects liés à vos ressources humaines. Vous pouvez créer et gérer les profils des employés, suivre les informations personnelles, les rôles et les autorisations, ainsi que gérer les horaires de travail et les congés. De plus, vous pouvez générer des rapports sur la présence, les performances et les données relatives aux ressources humaines pour une gestion efficace de votre personnel. Ce service vous aide à optimiser la planification des effectifs, à améliorer la productivité et à garantir une communication transparente au sein de votre entreprise."
+
+},
+{
+"id":"6",
+"titre":"Notifications et Alertes",
+"image":"assets/img/img/alert.jpg",
+"dely":"600",
+"miniDescription":"Restez toujours informé avec les notifications et alertes de GestoStock. Recevez des alertes sur les niveaux de stock bas, les commandes en attente, les livraisons retardées, et plus encore. Réagissez rapidement aux changements et anticipez les problèmes potentiels pour maintenir une gestion efficace de vos stocks.",
+"description":"Restez informé en tout temps grâce aux notifications et alertes de GestoStock. Recevez des notifications sur les niveaux de stock bas, les commandes en attente, les livraisons en retard, etc., vous permettant de réagir rapidement aux changements et de prévenir les problèmes potentiels avant qu'ils ne surviennent."
+
+}
+
+]
+}
