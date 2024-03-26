@@ -31,11 +31,10 @@ export class LoginComponent implements OnInit {
   login(){
     this.utilisateurService.auth(this.authRequestDto).subscribe(
       (data) => {
-       console.log(data)
        // Stockage du jeton d'accès dans le stockage local (localStorage)
         localStorage.setItem('accessToken' , JSON.stringify(data.token));
        this.getUserByEmail();
-       this.router.navigate(['']);
+       this.router.navigate(['/dashboard']);
       },
       (error) => {
         this.errorMessage = 'Email ou mot de passe invalide';
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
    */
   getUserByEmail():void{
     this.utilisateurService.getUtilisateurByEmail(this.authRequestDto.email).subscribe((user)=>{
-      console.log(user)
       this.utilisateurService.setConnectedUser(user);
     });
   }

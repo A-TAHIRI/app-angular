@@ -1,0 +1,63 @@
+
+<!-- header -->
+<app-header-home></app-header-home>
+<!-- /header -->
+<!-- Content -->
+<section class="container-fluid my-fluid">
+  <div class="container-xxl  my-container  " data-aos="zoom-out">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register -->
+        <div class="card my-card ">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center  mt-5 mb-5">
+              <a href="/" class="app-brand-link gap-2 d-flex justify-content-center align-content-center">
+                  <span class="app-brand-logo demo pb-2">
+                    <img src="assets/img/img/logogs.png" width="70" >
+                  </span>
+                <h1 class="app-brand-text demo text-body fw-bolder">GESTOSTOCK</h1>
+              </a>
+            </div>
+            <!-- /Logo -->
+            <h4 class="mb-2">Mot de passe oublié? 👋</h4>
+            <p class="mb-4">Entrez votre email et nous vous enverrons des instructions pour réinitialiser votre mot de passe</p>
+
+
+            <form id="formAuthentication" class="mb-3"  method="POST">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Entrer votre email"
+                  autofocus
+                  style="box-shadow: none; "
+                />
+              </div>
+
+
+              <div class="mb-3">
+                <button class="btn btn-primary d-grid w-100" type="submit"  >Envoyer le lien de réinitialisation</button>
+              </div>
+            </form>
+
+            <p class="text-center mb-5">
+
+              <a  href="/login">
+                <span>Back to login</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <!-- /Register -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Content -->
+<!-- footer -->
+<app-footer></app-footer>
+<!-- /footer -->

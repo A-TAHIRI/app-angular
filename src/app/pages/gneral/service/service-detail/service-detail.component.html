@@ -1,0 +1,56 @@
+<!-- header -->
+<app-header-home></app-header-home>
+<!-- /header -->
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+  <div class="page-header d-flex align-items-center" style="background-image: url('assets/img/img/image11.png');">
+    <div class="container position-relative">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>Service Details</h2>
+          <p>{{service.titreDetail}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li>{{service.titre}} Details</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Breadcrumbs -->
+
+<!-- ======= Service Details Section ======= -->
+<section id="service-details" class="service-details">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+
+        <div class="services-list" *ngFor=" let caracteristique of service.caracteristique; let i = index" >
+          <a   [href]="'service-details/'+service.id+'/caracteristique/'+service.detailCaracteristique[i].id" [class.active]="i === elementActif" (click)="onClick(i)" >{{caracteristique}}</a>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <img src="{{service.image}}" alt="" class="img-fluid services-img">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+</section><!-- End Service Details Section -->
+
+
+
+<!-- footer -->
+<app-footer></app-footer>
+<!-- /footer -->

@@ -47,6 +47,12 @@ import {ChangerMotDePasseComponent} from "./pages/profil/changer-mot-de-passe/ch
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import {ServiceComponent} from "./pages/gneral/service/service.component";
+import { ServiceDetailComponent } from './pages/gneral/service/service-detail/service-detail.component';
+import { CaracteridtiqueDetailsComponent } from './components/caracteridtique-details/caracteridtique-details.component';
+
+import { RGPDComponent } from './pages/gneral/rgpd/rgpd.component';
+import { CGUComponent } from './pages/gneral/cgu/cgu.component';
+import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-passe-oublie.component';
 
 
 
@@ -94,7 +100,12 @@ import {ServiceComponent} from "./pages/gneral/service/service.component";
     ChangerMotDePasseComponent,
     FooterComponent,
     HeaderHomeComponent,
-    ServiceComponent
+    ServiceComponent,
+    ServiceDetailComponent,
+    CaracteridtiqueDetailsComponent,
+    RGPDComponent,
+    CGUComponent,
+    MotPasseOublieComponent
 
 
 

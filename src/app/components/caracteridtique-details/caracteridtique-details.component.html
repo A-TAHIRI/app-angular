@@ -1,0 +1,14 @@
+<div *ngIf="details">
+
+<h3>{{details.titre}}</h3>
+<p>
+  {{details.introduction}}
+</p>
+<ul *ngFor="let prinicipe of details.principe">
+  <li><i class="bi bi-check-circle"></i> <span>{{prinicipe}}</span></li>
+</ul>
+<p>
+  {{details.resum}}
+</p>
+</div>
+

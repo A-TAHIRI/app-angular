@@ -30,9 +30,6 @@ export class InscriptionComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['']);
   }
-  connecter():void{
-    this.router.navigate(['login']);
-  }
 
   /**
    * inscription de l'entrepise

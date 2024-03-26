@@ -1,4 +1,4 @@
-<header id="header" class="header2 d-flex align-items-center fixed-top">
+<header id="header-home" class="header2 d-flex align-items-center fixed-top">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
     <a href="index.html" class="logo d-flex align-items-center">
@@ -17,7 +17,7 @@
         <li><a  href="/contact" >Contact</a></li>
         <li *ngIf="isConnected == false"><a href="/login">Login</a></li>
         <li class="dropdown" *ngIf="isConnected==true" ><a href="javascript:void(0);"><span> <img [src]="imgUrl" width="40" height="40" alt="Profile" class=" rounded-circle"></span></a>
-          <ul>
+          <ul >
             <li class="dropdown-header text-center">
               <h6>{{connectedUser.nom }}</h6>
               <span>{{connectedUser.role}}</span>

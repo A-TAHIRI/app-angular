@@ -52,9 +52,10 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-
+  details(id :string) {
+    this.router.navigate(['service-details', id])
   }
+}
 
 
 

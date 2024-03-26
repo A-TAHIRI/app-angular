@@ -1,0 +1,60 @@
+.my-container {
+  margin-top: 200px;
+  max-width: 550px;
+}
+.my-fluid{
+  background-image: url("../../../../assets/img/img/image-09.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.my-card{ background-color: rgba(255, 255, 255, 0.2);}
+
+
+
+.app-brand {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  line-height: 1;
+  min-height: 1px;
+  align-items: center;
+}
+
+.app-brand-link {
+  display: flex;
+  align-items: center;
+}
+
+.app-brand-logo {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  min-height: 1px;
+}
+.app-brand-logo img,
+.app-brand-logo svg {
+  display: block;
+}
+
+.app-brand-text {
+  flex-shrink: 0;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.app-brand-img-collapsed {
+  display: none;
+}
+
+.menu-vertical .app-brand {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.menu-horizontal .app-brand,
+.menu-horizontal .app-brand + .menu-divider {
+  display: none !important;
+}

@@ -17,7 +17,7 @@ export class HeaderHomeComponent implements  OnInit{
               ) {
   }
   ngOnInit(): void {
-    this.connectedUser = this.utilisateurService.getConnectedUser()
+    this.connectedUser = this.utilisateurService.getConnectedUser();
     if (this.connectedUser.photo !== null){
       this.imgUrl= 'http://localhost:8082/file/image/'+this.connectedUser.photo;
     }else{

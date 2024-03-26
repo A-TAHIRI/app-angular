@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MesServicesService} from "../../../services/mesServices/mes-services.service";
 
 
 @Component({
@@ -6,7 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css']
 })
-export class ServiceComponent {
+export class ServiceComponent  implements  OnInit{
+  mesServices:any;
+  constructor(private  service : MesServicesService) {
+  }
+  ngOnInit(): void {
+    this.mesServices= this.service.datas();
+  }
 
 
 

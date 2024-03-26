@@ -26,47 +26,7 @@
 
   <!-- ======= Featured Services Section ======= -->
   <section id="featured-services" class="featured-services">
-    <div class="container">
 
-      <div class="row gy-4">
-
-        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-          <div class="icon flex-shrink-0"><i class="fa-solid fa-cart-flatbed"></i></div>
-          <div>
-            <h4 class="title">Lorem Ipsum</h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-              occaecati cupiditate non provident</p>
-            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
-              class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-        <!-- End Service Item -->
-
-        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
-          <div>
-            <h4 class="title">Dolor Sitema</h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat tarad limino ata</p>
-            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
-              class="bi bi-arrow-right"></i></a>
-          </div>
-        </div><!-- End Service Item -->
-
-        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
-          <div>
-            <h4 class="title">Sed ut perspiciatis</h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur</p>
-            <a href="service-details.html" class="readmore stretched-link"><span>Learn More</span><i
-              class="bi bi-arrow-right"></i></a>
-          </div>
-        </div><!-- End Service Item -->
-
-      </div>
-
-    </div>
   </section><!-- End Featured Services Section -->
 
   <!-- ======= About Us Section ======= -->
@@ -79,32 +39,30 @@
           <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
         </div>
         <div class="col-lg-6 content order-last  order-lg-first">
-          <h3>À Propos</h3>
+          <h3>About</h3>
           <p>
-            Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia
-            molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis
-            veritatis asperiores placeat.
+            Notre mission est d'offrir des outils innovants et faciles à utiliser qui simplifient la gestion des stocks et permettent aux entreprises de mieux contrôler leurs inventaires. Avec notre engagement envers l'innovation technologique, la simplicité d'utilisation et un service client de qualité, nous sommes déterminés à aider nos clients à réussir dans leur activité. Découvrez-en plus sur notre entreprise, notre équipe et notre vision pour l'avenir de la gestion des stocks sur notre site
           </p>
           <ul>
             <li data-aos="fade-up" data-aos-delay="100">
               <i class="bi bi-diagram-3"></i>
               <div>
-                <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+                <h5>Innovation Technologique </h5>
+                <p>GestoStock s'engage à rester à la pointe de l'innovation technologique dans le domaine de la gestion des stocks. Nous développons continuellement de nouvelles fonctionnalités et technologies pour offrir à nos clients les outils les plus avancés et les plus efficaces pour gérer leurs inventaires.</p>
               </div>
             </li>
             <li data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-fullscreen-exit"></i>
               <div>
-                <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+                <h5>Simplicité d'Utilisation</h5>
+                <p>Nous mettons l'accent sur la simplicité et l'accessibilité de notre plateforme. Avec une interface conviviale et des fonctionnalités intuitives, GestoStock rend la gestion des stocks facile et efficace pour les utilisateurs de tous niveaux de compétence.</p>
               </div>
             </li>
             <li data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-broadcast"></i>
               <div>
-                <h5>Voluptatem et qui exercitationem</h5>
-                <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+                <h5>Service Client de Qualité</h5>
+                <p>Chez GestoStock, nous plaçons nos clients au cœur de tout ce que nous faisons. Notre équipe dévouée de service client est là pour offrir un support de qualité, répondre aux questions et fournir une assistance personnalisée à chaque étape du processus.</p>
               </div>
             </li>
           </ul>
@@ -130,7 +88,7 @@
               <div class="card-img">
                 <img src="{{service.image}}" alt="" class="img-fluid" style=" height: 280px">
               </div>
-              <h3><a href="service-details.html" class="stretched-link">{{ service.titre }} </a></h3>
+              <h3><a [href]="'/service-details/'+ service.id+'/caracteristique/'+service.detailCaracteristique[0].id" class="stretched-link">{{ service.titre }} </a></h3>
               <p> {{ service.miniDescription }}</p>
             </div>
           </div><!-- End Card Item -->
@@ -156,28 +114,28 @@
               <div style="background: rgba(256,256,256,0.1)" class="info-box card">
                 <i class="bi bi-geo-alt"></i>
                 <h3>Address</h3>
-                <p>A108 Adam Street,<br>New York, NY 535022</p>
+                <p>102 rue Jean Jack ,<br>Paris, France</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div style="background: rgba(256,256,256,0.1)" class="info-box card">
                 <i class="bi bi-telephone"></i>
-                <h3>Call Us</h3>
-                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                <h3>Phone</h3>
+                <p>+33 567584657<br>+33 767584657</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div style="background: rgba(256,256,256,0.1)" class="info-box card">
                 <i class="bi bi-envelope"></i>
-                <h3>Email Us</h3>
-                <p>info@example.com<br>contact@example.com</p>
+                <h3>Email </h3>
+                <p>info@gestostock.com<br>contact@gestostock.com</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div style="background: rgba(256,256,256,0.1)" class="info-box card">
                 <i class="bi bi-clock"></i>
-                <h3>Open Hours</h3>
-                <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                <h3>Horaires</h3>
+                <p>Lundi - vendredi<br>9:00AM - 05:00PM</p>
               </div>
             </div>
           </div>
@@ -223,87 +181,6 @@
 
     </div>
   </section><!-- End Call To Action Section -->
-
-  <!-- ======= Features Section ======= -->
-  <section id="features" class="features">
-    <div class="container">
-
-      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-
-        <div class="col-md-5">
-          <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7">
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua.
-          </p>
-          <ul>
-            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bi bi-check"></i> Ullam est qui quos consequatur eos accusamus.</li>
-          </ul>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-        <div class="col-md-5 order-1 order-md-2">
-          <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7 order-2 order-md-1">
-          <h3>Corporis temporibus maiores provident</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua.
-          </p>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-        <div class="col-md-5">
-          <img src="assets/img/features-3.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7">
-          <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-          <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia
-            voluptatem hic voluptas dolor doloremque.</p>
-          <ul>
-            <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bi bi-check"></i> Facilis ut et voluptatem aperiam. Autem soluta ad fugiat.</li>
-          </ul>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item" data-aos="fade-up">
-        <div class="col-md-5 order-1 order-md-2">
-          <img src="assets/img/features-4.jpg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7 order-2 order-md-1">
-          <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua.
-          </p>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-        </div>
-      </div><!-- Features Item -->
-
-    </div>
-  </section><!-- End Features Section -->
 
   <!-- ======= Pricing Section ======= -->
   <section id="pricing" class="pricing pt-0">
@@ -356,7 +233,7 @@
 
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
           <div class="pricing-item position-relative">
-            <h3>Developer Plan</h3>
+            <h3>Forfait Premium </h3>
             <h4><sup>€</sup>100<span> / mois</span></h4>
             <ul>
               <li><i class="bi bi-check"></i> Accès complet à toutes les fonctionnalités de GestoStock</li>

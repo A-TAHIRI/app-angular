@@ -25,6 +25,11 @@ import {ProfilComponent} from "./pages/profil/profil.component";
 import {ChangerMotDePasseComponent} from "./pages/profil/changer-mot-de-passe/changer-mot-de-passe.component";
 import {NotFoundComponent} from "./pages/gneral/not-found/not-found.component";
 import {ServiceComponent} from "./pages/gneral/service/service.component";
+import {ServiceDetailComponent} from "./pages/gneral/service/service-detail/service-detail.component";
+import {CaracteridtiqueDetailsComponent} from "./components/caracteridtique-details/caracteridtique-details.component";
+import {RGPDComponent} from "./pages/gneral/rgpd/rgpd.component";
+import {CGUComponent} from "./pages/gneral/cgu/cgu.component";
+import {MotPasseOublieComponent} from "./pages/profil/mot-passe-oublie/mot-passe-oublie.component";
 
 
 const routes: Routes = [
@@ -33,7 +38,17 @@ const routes: Routes = [
   {path: 'inscrire', component: InscriptionComponent},
 {path:'contact',component:ContactComponent},
 {path:'about',component:AboutComponent},
+  {path:'rgpd', component:RGPDComponent},
+  {path:'cgu', component:CGUComponent},
+  {path:'mot-passe-oublie', component : MotPasseOublieComponent},
   {path:'services',component:ServiceComponent},
+  {path:'service-details/:idService',component:ServiceDetailComponent,
+  children:[
+    {path: 'caracteristique/:idCaracteristique' ,component: CaracteridtiqueDetailsComponent},
+
+  ]
+  },
+
 {path:'dashboard',component:DashboardComponent,
   canActivate: [ApplicationGuardService],
 children:[
