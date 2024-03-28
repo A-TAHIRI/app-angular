@@ -11,7 +11,10 @@
   border: 0;
 }
 
-.tbody td {
+.tr {
+  width: 100vh;
+}
+td{
   vertical-align: middle;
   width: 100%;
 }

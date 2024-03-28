@@ -1,4 +1,5 @@
 <!-- ======= Sidebar ======= -->
+<!--
 <aside id="sidebar" class="sidebar" >
   <ul class="sidebar-nav" id="sidebar-nav"  *ngFor="let menu of menuProperties">
     <li class="nav-item">
@@ -14,4 +15,24 @@
       </ul>
     </li>
   </ul>
-</aside><!-- End Sidebar-->
+</aside>
+-->
+<!-- End Sidebar-->
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item" *ngFor="let link of sidebarLinks">
+      <a class="nav-link collapsed" [attr.data-bs-target]="'#'+link.collapse" data-bs-toggle="collapse" href="#">
+        <i class="{{link.icon}}"></i><span>{{ link.label }}</span><i *ngIf="link.children"
+                                                                              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul *ngIf="link.children && link.children.length > 0 && link.expanded" [id]="link.collapse"
+          class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li *ngFor="let child of link.children">
+          <a [routerLink]="[child.route]">
+            <i class="bi bi-circle"></i><span>{{ child.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside>

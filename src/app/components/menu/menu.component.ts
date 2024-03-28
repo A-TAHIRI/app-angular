@@ -8,6 +8,7 @@ import {Menu} from "./menu";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent  implements OnInit{
+
   constructor( private router: Router) {
   }
   ngOnInit(): void {
@@ -129,10 +130,44 @@ export class MenuComponent  implements OnInit{
     this.router.navigate([url]);
   }
 
+  sidebarLinks = [
+    {
+      label: 'Dashboard',  icon: 'bi bi-grid',   collapse: 'dashboard',  expanded: true,
 
-  /*
-  detail(){
-    this.router.navigate(["detail"])
-  }
-*/
+      children: [
+        { label: "Vue D'ensemble", route: '/dashboard' },
+        { label: 'Statistiques', route: '/dashboard/statistiques' },
+      ]
+
+    },
+    {
+      label: 'Articles', icon: 'bi bi-boxes', collapse: 'articles', expanded: true,
+      children: [
+        { label: 'Articles', route: '/dashboard/articles' },
+        { label: 'Mouvements Du Stock', route: '/dashboard/mvtstk' },
+      ]
+    },
+    {
+      label: 'Clients', icon: 'bi bi-people', collapse: 'clients', expanded: true,
+      children: [
+        { label: 'Clients', route: '/dashboard/clients' },
+        { label: 'Commandes clients', route: '/dashboard/commandesclient' },
+      ]
+    },
+    {
+      label: 'Fournisseurs', icon: 'bi bi-truck', collapse: 'fournisseur', expanded: true,
+      children: [
+        { label: 'Fournisseurs', route: '/dashboard/fournisseurs' },
+        { label: 'Commandes fournisseurs', route: '/dashboard/commandesfournisseur' },
+      ]
+    },
+    {
+      label: 'Parametrages', icon: 'bi bi-gear', collapse: 'parametrages', expanded: true,
+      children: [
+        { label: 'Categories', route: '/dashboard/categories' },
+        { label: 'Utilisateurs', route: '/dashboard/utilisateurs' },
+      ]
+    }
+  ];
+
 }

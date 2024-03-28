@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/gneral/home/home.component';
-import { ContactComponent } from './pages/gneral/contact/contact.component';
-import { AboutComponent } from './pages/gneral/about/about.component';
+import { HomeComponent } from './pages/general/home/home.component';
+import { ContactComponent } from './pages/general/contact/contact.component';
+import { AboutComponent } from './pages/general/about/about.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {DetailComponent} from "./components/detail/detail.component";
 import {LoginComponent} from "./pages/login/login.component";
@@ -23,12 +23,12 @@ import {UtilisateurComponent} from "./pages/utilisateur/utilisateur.component";
 import {NouvelUtilisateurComponent} from "./pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component";
 import {ProfilComponent} from "./pages/profil/profil.component";
 import {ChangerMotDePasseComponent} from "./pages/profil/changer-mot-de-passe/changer-mot-de-passe.component";
-import {NotFoundComponent} from "./pages/gneral/not-found/not-found.component";
-import {ServiceComponent} from "./pages/gneral/service/service.component";
-import {ServiceDetailComponent} from "./pages/gneral/service/service-detail/service-detail.component";
+import {NotFoundComponent} from "./pages/general/not-found/not-found.component";
+import {ServiceComponent} from "./pages/general/service/service.component";
+import {ServiceDetailComponent} from "./pages/general/service/service-detail/service-detail.component";
 import {CaracteridtiqueDetailsComponent} from "./components/caracteridtique-details/caracteridtique-details.component";
-import {RGPDComponent} from "./pages/gneral/rgpd/rgpd.component";
-import {CGUComponent} from "./pages/gneral/cgu/cgu.component";
+import {RGPDComponent} from "./pages/general/rgpd/rgpd.component";
+import {CGUComponent} from "./pages/general/cgu/cgu.component";
 import {MotPasseOublieComponent} from "./pages/profil/mot-passe-oublie/mot-passe-oublie.component";
 
 

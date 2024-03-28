@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MesServicesService } from '../../../../services/mesServices/mes-services.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {MesServicesService} from "../../../../services/mesServices/mes-services.service";
 
 @Component({
   selector: 'app-service-detail',
   templateUrl: './service-detail.component.html',
-  styleUrls: ['./service-detail.component.css'],
+  styleUrls: ['./service-detail.component.css']
 })
-export class ServiceDetailComponent implements OnInit {
+export class ServiceDetailComponent implements OnInit{
   service: any;
-  elementActif : number| null = null;
+  isActive =false;
+  elementActif = 0;
   details: any;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,4 +37,5 @@ export class ServiceDetailComponent implements OnInit {
   onClick(index: number) {
     this.elementActif = index;
   }
+
 }

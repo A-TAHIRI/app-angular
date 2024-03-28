@@ -32,7 +32,7 @@
       <div class="col-lg-4">
 
         <div class="services-list" *ngFor=" let caracteristique of service.caracteristique; let i = index" >
-          <a   [href]="'service-details/'+service.id+'/caracteristique/'+service.detailCaracteristique[i].id" [class.active]="i === elementActif" (click)="onClick(i)" >{{caracteristique}}</a>
+          <a   [href]="'service-details/'+service.id+'/caracteristique/'+service.detailCaracteristique[i].id" [class.active]="elementActif" (click)="onClick(i)" >{{caracteristique}}</a>
         </div>
       </div>
 

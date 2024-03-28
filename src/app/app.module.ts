@@ -2,9 +2,9 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/gneral/home/home.component';
-import { ContactComponent } from './pages/gneral/contact/contact.component';
-import { AboutComponent } from './pages/gneral/about/about.component';
+import { HomeComponent } from './pages/general/home/home.component';
+import { ContactComponent } from './pages/general/contact/contact.component';
+import { AboutComponent } from './pages/general/about/about.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MenuComponent } from './components/menu/menu.component';
@@ -41,17 +41,17 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {StatistiquesComponent} from "./pages/statistiques/statistiques.component";
 import {InscriptionComponent} from "./pages/inscription/inscription.component";
 import {LoginComponent} from "./pages/login/login.component";
-import {NotFoundComponent} from "./pages/gneral/not-found/not-found.component";
+import {NotFoundComponent} from "./pages/general/not-found/not-found.component";
 import {MvtstkComponent} from "./pages/mvtstk/mvtstk.component";
 import {ChangerMotDePasseComponent} from "./pages/profil/changer-mot-de-passe/changer-mot-de-passe.component";
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
-import {ServiceComponent} from "./pages/gneral/service/service.component";
-import { ServiceDetailComponent } from './pages/gneral/service/service-detail/service-detail.component';
+import {ServiceComponent} from "./pages/general/service/service.component";
+import { ServiceDetailComponent } from './pages/general/service/service-detail/service-detail.component';
 import { CaracteridtiqueDetailsComponent } from './components/caracteridtique-details/caracteridtique-details.component';
 
-import { RGPDComponent } from './pages/gneral/rgpd/rgpd.component';
-import { CGUComponent } from './pages/gneral/cgu/cgu.component';
+import { RGPDComponent } from './pages/general/rgpd/rgpd.component';
+import { CGUComponent } from './pages/general/cgu/cgu.component';
 import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-passe-oublie.component';
 
 
@@ -64,7 +64,6 @@ import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-pas
     AppComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent,
     DetailComponent,
     NotFoundComponent,
     AboutComponent,
@@ -118,6 +117,7 @@ import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-pas
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule,
+
 
   ],
   providers: [

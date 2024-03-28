@@ -3,7 +3,7 @@
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item">Dashboard</li>
+      <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a> </li>
       <li class="breadcrumb-item active">Articles</li>
     </ol>
   </nav>
@@ -33,13 +33,14 @@
               <th scope="col">Actions</th>
             </tr>
             </thead>
-            <tbody *ngFor="let article of liste">
-
+            <tbody   >
+            <ng-container *ngFor="let article of liste">
               <app-detail-article
                 [article]="article"
                 (suppressionResult)="handleSuppression($event)"
-              ></app-detail-article>
-
+              >
+              </app-detail-article>
+            </ng-container>
             </tbody>
           </table>
 
