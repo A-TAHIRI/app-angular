@@ -7,7 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class DetailCmdCltFrsComponent  implements OnInit{
 
-
+  @Input()
+  i : number=0;
   @Input()
   origin = '';
   @Input()

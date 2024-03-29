@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail-mvt-stk-article.component.css']
 })
 export class DetailMvtStkArticleComponent {
+  i:number=0;
 
 }

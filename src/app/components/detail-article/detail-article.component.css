@@ -1,25 +1,7 @@
-/* Top Selling */
-.dashboard .top-selling {
-  font-size: 14px;
+
+td,th{
+  background: rgba(256,256,256,0);
+  width: 10%;
+  text-align: center;
 }
 
-.dashboard .top-selling .table thead {
-  background: #f6f6fe;
-}
-
-.dashboard .top-selling .table thead th {
-  border: 0;
-}
-
-.tr {
-  width: 100vh;
-}
-td{
-  vertical-align: middle;
-  width: 100%;
-}
-
-.dashboard .top-selling img {
-  border-radius: 5px;
-  max-width: 60px;
-}

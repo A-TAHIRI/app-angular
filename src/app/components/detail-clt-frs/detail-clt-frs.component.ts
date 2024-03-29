@@ -9,7 +9,8 @@ import {FournisseurService} from "../../services/fournisseur/fournisseur.service
   styleUrls: ['./detail-clt-frs.component.css']
 })
 export class DetailCltFrsComponent  implements OnInit{
-
+@Input()
+i:number=0;
   @Input()
   origin = '';
   @Input()

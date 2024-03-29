@@ -9,7 +9,7 @@
   </nav>
 </div><!-- End Page Title -->
 
-<section class="section dashboard">
+<section class="section dashboard" data-aos="fade-down">
   <div class="row">
 
     <!-- Top Selling -->
@@ -24,21 +24,22 @@
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des commandes</h5>
           <div class="col m-3" >
-            <div class="accordion" id="accordionExample" *ngFor="let cmd of listCommande" >
-              <div class="card">
-                <div class="card-body" id="headingOne">
+            <div class="accordion" id="accordionExample" *ngFor="let cmd of listCommande let i =index" >
+
+                <div  id="headingOne">
                   <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse"
                           [attr.data-target]="'#collapseOne'+cmd.id"
                           aria-expanded="true"
-                          aria-controls="collapseOne">
+                          aria-controls="collapseOne" style="width: 100%">
 
                     <app-detail-cmd-clt-frs
                       [commande]="cmd"
+                      [i]="i"
                       [origin]="origin"
 
                     ></app-detail-cmd-clt-frs>
                   </button>
-                </div>
+
                 <!--
                           <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
                                style="max-height: 300px;
@@ -72,7 +73,7 @@
     </div><!-- End Top Selling -->
   </div>
   <div class="row mb-3">
-    <div class=" col-md-12 text-center">
+    <div class=" col-md-12 text-center" data-aos="fade-up">
       <app-pagination></app-pagination>
     </div>
   </div>

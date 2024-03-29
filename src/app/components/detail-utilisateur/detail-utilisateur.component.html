@@ -1,49 +1,28 @@
 <div class="row mb-1 mr-0 custom-border">
-    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " >
-      <img [src]="imgUrl" width="100px" height="100px" alt="user">
-    </div>
 
-    <!--  Details utilisateur-->
-    <div class="col-md-5 custom-border-right mb-1 mt-1 ">
-      <div class="col">
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.nom}}</div>
-
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.prenom}}</div>
-
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.numTel}}</div>
-        </div>
-      </div>
-    </div>
-
-    <!--  details adresse-->
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="col">
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-home blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.adresse?.adresse1}}</div>
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-map-marker-alt blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.adresse?.ville}}</div>
-        </div>
-        <div class="row">
-          <div class="col-md-1"><i class="fas fa-globe-europe blue-color"></i></div>
-          <div class="col-md-10">{{utilisateur.adresse?.pays}}</div>
-        </div>
-      </div>
-    </div>
-
-    <!--  boutons action-->
-    <div class="col-md-3 mb-1 mt-1 ">
-      <div class="row">
+  <table class="table table-borderless">
+    <thead *ngIf="i==0" class="pb-5">
+    <tr data-aos="zoom-in" >
+      <th style="width: 10%; text-align: center;" scope="col" >Profile</th>
+      <th style="width: 10%; text-align: center;" scope="col">Nom</th>
+      <th style="width: 10%; text-align: center;" scope="col">Prenom</th>
+      <th style="width: 10%; text-align: center;" scope="col">Tel</th>
+      <th style="width: 10%; text-align: center;" scope="col">Adresse</th>
+      <th style="width: 10%; text-align: center;" scope="col">Ville</th>
+      <th style="width: 10%; text-align: center;" scope="col">Pays</th>
+      <th style="width: 10%; text-align: center;" scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-aos="zoom-in">
+      <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="profile"></td>
+      <td style="width: 10%; text-align: center;" >{{ utilisateur.nom }}</td>
+      <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{ utilisateur.prenom }}</td>
+      <td style="width: 10%;text-align: center;" class="fw-bold" >{{ utilisateur.numTel }}</td>
+      <td style="width: 10%;text-align: center;"  class="fw-bold" >{{ utilisateur.adresse?.adresse1 }} </td>
+      <td style="width: 10%;text-align: center;" >{{ utilisateur.adresse?.ville}}</td>
+      <td style="width: 10%;text-align: center;" >{{ utilisateur.adresse?.pays }}</td>
+      <td style="width: 10%;text-align: center;" >
         <div class="action">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -53,11 +32,14 @@
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifierUtilisateur(utilisateur.id)">
               <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                   data-bs-target="#modalDeleteArticle" >
+                   data-bs-target="#modalDeleteArticle">
               <i class="bi bi-trash3"></i>Supprimer</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
           </ul>
         </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
-    </div>
-  </div>
+</div>

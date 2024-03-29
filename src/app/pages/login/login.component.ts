@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('accessToken' , JSON.stringify(data.token));
        this.getUserByEmail();
        this.router.navigate(['/dashboard']);
+
       },
       (error) => {
         this.errorMessage = 'Email ou mot de passe invalide';

@@ -9,7 +9,8 @@ import {UtilisateurService} from "../../services/utilisateur/utilisateur.service
   styleUrls: ['./detail-utilisateur.component.css']
 })
 export class DetailUtilisateurComponent  implements OnInit {
-
+@Input()
+i:number=0;
   @Input()
   utilisateur : Utilisateur ={};
   @Input()

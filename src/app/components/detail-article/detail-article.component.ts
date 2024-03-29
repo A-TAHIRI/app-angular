@@ -11,11 +11,13 @@ import { ArticleService } from 'src/app/services/article/article.service';
 export class DetailArticleComponent  implements OnInit {
 
   articleDeletById?= -1;
-  imgUrl : string | ArrayBuffer ='assets/img/produit.png';
+  imgUrl : string | ArrayBuffer ='assets/image/produit.png';
   @Input() thScopes!: string[];
 
 @Output()
 suppressionResult = new EventEmitter();
+@Input()
+i : number=0;
 
   @Input()
   article : Article = {};
