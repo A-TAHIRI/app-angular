@@ -47,6 +47,13 @@ export class UtilisateurComponent implements OnInit {
       this.tousUtilisateurs();
     }else {
       this.errorMsg=event;
+
+
     }
+  }
+
+
+  reload(){
+    window.location.reload();
   }
 }

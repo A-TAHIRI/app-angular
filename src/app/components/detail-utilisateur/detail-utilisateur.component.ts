@@ -20,7 +20,7 @@ i:number=0;
   @Output()
   suppressionResult = new EventEmitter();
 
-  selectedUserIdToDelete?  = -1;
+
   constructor(
     private  router: Router,
     private utilisateurService: UtilisateurService
@@ -39,11 +39,14 @@ i:number=0;
   }
 
   confirmerEtSupprimerUser() {
-    if(this.selectedUserIdToDelete !== -1){
-      this.utilisateurService.delet(this.selectedUserIdToDelete).subscribe((data)=>{
+    if(this.utilisateur.id){
+      this.utilisateurService.delet(this.utilisateur.id).subscribe((data)=>{
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([this.router.url]);
+          });
         this.suppressionResult.emit('success')
       }, error=>{
-        this.suppressionResult.emit(error.error.error)
+        this.suppressionResult.emit(error.error.message)
         }
         )
 
@@ -52,13 +55,6 @@ i:number=0;
 
   }
 
-  annulerSuppressionUser() {
-    this.selectedUserIdToDelete=-1;
 
-  }
 
-  selectUserDelet(id: number | undefined) {
-    this.selectedUserIdToDelete=id;
-
-  }
 }

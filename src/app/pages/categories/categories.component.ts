@@ -89,7 +89,7 @@ export class CategoriesComponent implements OnInit {
       },
         error=>{
     //lobibox.notify("error",{msg:error.error.message,sound:true,icon:false})
-           this.errorsMsg= error.error.error;
+           this.errorsMsg= error.error.message;
         });
     }
 

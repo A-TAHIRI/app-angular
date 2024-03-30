@@ -10,7 +10,6 @@ import { ArticleService } from 'src/app/services/article/article.service';
 })
 export class DetailArticleComponent  implements OnInit {
 
-  articleDeletById?= -1;
   imgUrl : string | ArrayBuffer ='assets/image/produit.png';
   @Input() thScopes!: string[];
 
@@ -48,8 +47,8 @@ i : number=0;
 
 
   confirmerEtSupprimerArticle() {
-    if(this.articleDeletById !== -1){
-      this.articleService.delet(this.articleDeletById).subscribe((data)=>{
+    if(this.article.id){
+      this.articleService.delet(this.article.id).subscribe((data)=>{
        this.suppressionResult.emit('success')
       },
         error=>{
@@ -60,13 +59,7 @@ i : number=0;
   }
 
 
-  selectArticlePourSupprimer(id?: number ) {
-    this.articleDeletById=id;
 
-  }
 
-  annulerSuppressionArticle() {
-    this.articleDeletById=-1;
 
-  }
 }

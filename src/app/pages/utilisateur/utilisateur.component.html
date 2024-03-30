@@ -18,7 +18,10 @@
         <app-boutton-action
           (clickEvent)="nouvelUtilisateur()"
         ></app-boutton-action>
-        <div class=" alert alert-danger" *ngIf="errorMsg">{{ errorMsg }}</div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMsg">
+         {{errorMsg}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="reload()"></button>
+        </div>
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des utilisateurs</h5>
 

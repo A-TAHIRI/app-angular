@@ -28,7 +28,7 @@
           <li ><a class="dropdown-item" href="javascript:void(0)" (click)="modifierArticle( article.id)">
             <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
           <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                 data-bs-target="#modalDeleteArticle" (click)="selectArticlePourSupprimer(article.id)">
+                 [attr.data-bs-target]="'#modalDeleteArticle'+article.id" >
             <i class="bi bi-trash3"></i>Supprimer</a></li>
           <li ><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
         </ul>
@@ -40,7 +40,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalDeleteArticle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'modalDeleteArticle'+article.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +51,7 @@
         Etes vous-sur de vouloir supprimer cet article?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="annulerSuppressionArticle()"><i
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
           class="fas fa-ban"></i> Annuler
         </button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimerArticle()"><i

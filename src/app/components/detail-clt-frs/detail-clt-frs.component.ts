@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import {ClientService} from "../../services/client/client.service";
 import {FournisseurService} from "../../services/fournisseur/fournisseur.service";
 
@@ -18,7 +18,6 @@ i:number=0;
   @Input()
   imgUrl='';
 
-  deletCltFrsById? =-1;
 
 
   @Output()
@@ -26,7 +25,6 @@ i:number=0;
 
   constructor(
     private  router: Router,
-    private  activatedRouter : ActivatedRoute,
     private  clientService : ClientService,
     private  fournisseurService: FournisseurService,
   ) { }
@@ -46,28 +44,21 @@ i:number=0;
     }
   }
 
-  selectCltFrsPourSupprimer(id: any) {
-    this.deletCltFrsById= id;
 
-  }
-
-  annulerSuppression() {
-    this.deletCltFrsById=-1;
-  }
 
   confirmerEtSupprimer() {
-    if(this.deletCltFrsById !== -1){
+    if(this.clientFournisseur.id){
       if (this.origin === 'client') {
-      this.clientService.delet(this.deletCltFrsById).subscribe(res=>{
+      this.clientService.delet(this.clientFournisseur.id).subscribe(res=>{
         this.suppritionResult.emit('success')
       },error => {
-        this.suppritionResult.emit(error.error.error)
+        this.suppritionResult.emit(error.error.message)
       })
       } else if (this.origin === 'fournisseur') {
-        this.fournisseurService.delet(this.deletCltFrsById).subscribe(res=>{
+        this.fournisseurService.delet(this.clientFournisseur.id).subscribe(res=>{
           this.suppritionResult.emit('success')
         },error => {
-          this.suppritionResult.emit(error.error.error)
+          this.suppritionResult.emit(error.error.message)
         })
       }
 

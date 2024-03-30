@@ -34,12 +34,16 @@ export class LoginComponent implements OnInit {
        // Stockage du jeton d'accès dans le stockage local (localStorage)
         localStorage.setItem('accessToken' , JSON.stringify(data.token));
        this.getUserByEmail();
-       this.router.navigate(['/dashboard']);
+       this.router.navigate(['/dashboard']).then(()=>{
+        window.location.reload();
+       });
+
 
       },
       (error) => {
         this.errorMessage = 'Email ou mot de passe invalide';
         this.router.navigate(['login']);
+
       }
     );
   }

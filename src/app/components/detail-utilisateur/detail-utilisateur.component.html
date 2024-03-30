@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr data-aos="zoom-in">
-      <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="profile"></td>
+      <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="profile" class="rounded-circle" width="50" height="50"></td>
       <td style="width: 10%; text-align: center;" >{{ utilisateur.nom }}</td>
       <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{ utilisateur.prenom }}</td>
       <td style="width: 10%;text-align: center;" class="fw-bold" >{{ utilisateur.numTel }}</td>
@@ -31,8 +31,8 @@
             </li>
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifierUtilisateur(utilisateur.id)">
               <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" (click)="selectUserDelet(utilisateur.id)"
-                   data-bs-target="#modalDeleteUser">
+            <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                   [attr.data-bs-target]="'#modalDeleteUser'+utilisateur.id">
               <i class="bi bi-trash3"></i>Supprimer</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
           </ul>
@@ -45,7 +45,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalDeleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'modalDeleteUser'+utilisateur.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -56,7 +56,7 @@
         Etes vous-sur de vouloir supprimer cette categorie?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  (click)="annulerSuppressionUser()"> <i class="fas fa-ban"></i> Annuler</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  > <i class="fas fa-ban"></i> Annuler</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="confirmerEtSupprimerUser()"> <i class="fas fa-trash-alt"></i> Supprimer</button>
       </div>
     </div>
