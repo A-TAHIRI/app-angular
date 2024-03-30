@@ -129,12 +129,10 @@ children:[
   {path:'profil', component: ProfilComponent,
     canActivate: [ApplicationGuardService]
   },
-
+]
+},
   {path:'changermotdepasse' , component: ChangerMotDePasseComponent,
     canActivate: [ApplicationGuardService]},
-]
-
-},
   {path: '**', component: NotFoundComponent},
 ];
 

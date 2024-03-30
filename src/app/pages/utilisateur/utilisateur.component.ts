@@ -42,4 +42,11 @@ export class UtilisateurComponent implements OnInit {
     })
   }
 
+  handleSuppression(event: any) {
+    if( event === 'success'){
+      this.tousUtilisateurs();
+    }else {
+      this.errorMsg=event;
+    }
+  }
 }

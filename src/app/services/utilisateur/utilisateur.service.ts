@@ -125,4 +125,16 @@ update(id : number , utilisateur: Utilisateur){
     return false;
 
   }
+
+  /**
+   * service poiur supprimer utilisateur par son id
+   * @param id
+   */
+  delet(id?: number) {
+    if (id){
+      const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
+      return  this.http.delete(url);
+    }
+    return of();
+  }
 }

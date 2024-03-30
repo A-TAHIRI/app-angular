@@ -55,7 +55,7 @@ export class NouvelArticleComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['articles']);
+    this.router.navigate(['dashboard/articles']);
   }
 
   /**
@@ -65,7 +65,7 @@ export class NouvelArticleComponent implements OnInit {
     this.article.categorie=this.categorie;
     this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise?.id
     this.articleService.add(this.article).subscribe(() => {
-      this.router.navigate(['articles']);
+      this.router.navigate(['dashboard/articles']);
     },
       error => {
       this.errorsMsg=error.error.errors

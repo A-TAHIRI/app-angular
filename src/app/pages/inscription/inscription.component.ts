@@ -59,7 +59,7 @@ export class InscriptionComponent implements OnInit {
     this.getUserByEmail(authRequestDto.email);
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
-      this.router.navigate(['dashboard/changermotdepasse']);
+      this.router.navigate(['changermotdepasse']);
     });
   }
 

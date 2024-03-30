@@ -32,7 +32,7 @@ i : number=0;
     if (this.article.image !== null){
       this.imgUrl= 'http://localhost:8082/file/image/'+this.article.image;
     }else{
-      this.imgUrl= 'assets/img/produit.png';
+      this.imgUrl= 'assets/image/produit.png';
     }
 
   }
@@ -60,7 +60,7 @@ i : number=0;
   }
 
 
-  selectArticlePourSupprimer(id: number | undefined) {
+  selectArticlePourSupprimer(id?: number ) {
     this.articleDeletById=id;
 
   }

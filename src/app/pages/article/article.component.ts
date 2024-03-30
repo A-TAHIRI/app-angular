@@ -19,11 +19,9 @@ export class ArticleComponent implements OnInit {
   constructor(
     private router: Router,
     private articleService: ArticleService
+    ) {};
 
-    ) {  ;
-  };
   ngOnInit(): void {
-    console.log(this.liste);
     this.articles();
   }
 
@@ -34,7 +32,7 @@ export class ArticleComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['articles']);
+    this.router.navigate(['dashboard/articles']);
   }
 
    private articles() {

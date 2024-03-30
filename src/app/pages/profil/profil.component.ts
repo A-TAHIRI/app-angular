@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 import {UtilisateurDto} from "../../dto/utilisateur-dto";
+import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
 
 @Component({
   selector: 'app-profil',
@@ -11,6 +12,9 @@ import {UtilisateurDto} from "../../dto/utilisateur-dto";
 export class ProfilComponent implements OnInit {
   utilisateur: UtilisateurDto={};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
+  changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
+  ancienMotDePasse = '';
+   errorMsg='';
 
   constructor(
     private router: Router,
@@ -18,6 +22,12 @@ export class ProfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    if (localStorage.getItem('origin') && localStorage.getItem('origin')==='inscription') {
+      this.ancienMotDePasse = "som3R@nd0mP@$$word";
+      localStorage.removeItem('origin');
+    }
+
     this.utilisateur = this.utilsateurService.getConnectedUser();
     if (this.utilisateur.photo !== null){
       this.imgUrl= 'http://localhost:8082/file/image/'+this.utilisateur.photo;
@@ -26,21 +36,8 @@ export class ProfilComponent implements OnInit {
     }
   }
 
-  /**
-   * Method pour chager le mot de passe
-   */
-  modifierMotDePasse(): void {
-    this.router.navigate(['dashboard/changermotdepasse']);
-  }
 
-  /**
-   * Method de déconection
-   */
-  deconexion(){
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('connectedUser')
-    this.router.navigate(['login']);
-  }
+
   modifierUser( id ?: number){
     this.router.navigate(['dashboard/nouvelutilisateur' , id] )
   }
@@ -51,5 +48,17 @@ export class ProfilComponent implements OnInit {
    */
   modifierUtilisateur(id: number | undefined) {
     this.router.navigate(['dashboard/nouvelutilisateur' , id])
+  }
+
+
+  chagerMotDePasseUtilisateur() {
+    this.changerMotDePasseUtilisateurDto.id= this.utilsateurService.getConnectedUser().id;
+    this.utilsateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
+      this.utilsateurService.getConnectedUser();
+      this.router.navigate([''])
+    },error => {
+      this.errorMsg=error.error.message;
+    })
+
   }
 }

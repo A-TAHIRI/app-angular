@@ -45,6 +45,7 @@ export class ChangerMotDePasseComponent implements OnInit {
   chagerMotDePasseUtilisateur() {
     this.changerMotDePasseUtilisateurDto.id= this.utilisateurService.getConnectedUser().id;
     this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
+      this.utilisateurService.getConnectedUser();
       this.router.navigate([''])
     },error => {
       this.errorMsg=error.error.message;

@@ -82,8 +82,8 @@ export class CategoriesComponent implements OnInit {
    * confirmer la suppristion d'une categorie
    */
   confirmerEtSupprimerCat(){
+
     if (this.selectedCatIdToDelete !== -1){
-      debugger
       this.categorieService.supprimerCategorie(this.selectedCatIdToDelete).subscribe(res=>{
        this.getAll();
       },

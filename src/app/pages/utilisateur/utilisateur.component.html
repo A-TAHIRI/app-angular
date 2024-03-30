@@ -25,6 +25,7 @@
           <app-detail-utilisateur
             *ngFor=" let user of liste let i =index "
             [utilisateur]="user"
+            (suppressionResult)="handleSuppression($event)"
             [i]="i"
             [imgUrl]="user.photo ?  'http://localhost:8082/file/image/'+this.user.photo : 'assets/image/user.png'"
           >
