@@ -17,6 +17,7 @@ export class CategoriesComponent implements OnInit {
   selectedCatIdToDelete?  = -1;
   basImgUrl : string  ='assets/image/category.jpg';
   imgUrl:string ='http://localhost:8082/file/image/'
+  messageSucces='';
 
   constructor(
     private router: Router,
@@ -85,6 +86,7 @@ export class CategoriesComponent implements OnInit {
 
     if (this.selectedCatIdToDelete !== -1){
       this.categorieService.supprimerCategorie(this.selectedCatIdToDelete).subscribe(res=>{
+          this.messageSucces='La suppression a été effectuée avec succès!';
        this.getAll();
       },
         error=>{
@@ -95,4 +97,7 @@ export class CategoriesComponent implements OnInit {
 
   }
 
+  reload() {
+    window.location.reload();
+  }
 }

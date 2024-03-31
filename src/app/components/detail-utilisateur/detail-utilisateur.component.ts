@@ -41,9 +41,6 @@ i:number=0;
   confirmerEtSupprimerUser() {
     if(this.utilisateur.id){
       this.utilisateurService.delet(this.utilisateur.id).subscribe((data)=>{
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate([this.router.url]);
-          });
         this.suppressionResult.emit('success')
       }, error=>{
         this.suppressionResult.emit(error.error.message)

@@ -12,6 +12,7 @@ export class UtilisateurComponent implements OnInit {
   liste ! : Utilisateur[];
   errorMsg ='';
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
+  messageSucces='';
 
   constructor(
     private router: Router,
@@ -44,6 +45,7 @@ export class UtilisateurComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
+      this.messageSucces='La suppression a été effectuée avec succès!';
       this.tousUtilisateurs();
     }else {
       this.errorMsg=event;

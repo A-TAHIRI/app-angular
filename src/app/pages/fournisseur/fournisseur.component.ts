@@ -11,6 +11,7 @@ import {FournisseurService} from "../../services/fournisseur/fournisseur.service
 export class FournisseurComponent implements OnInit {
    liste:Array<Fournisseur>= [];
    errorsMsg= '';
+  messageSucces='';
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   constructor(
@@ -38,9 +39,13 @@ export class FournisseurComponent implements OnInit {
   handleSuppression(event: any) {
     if( event === 'success'){
       this.fournisseurs();
+      this.messageSucces='La suppression a été effectuée avec succès!'
     }else {
       this.errorsMsg=event;
     }
   }
 
+  reload() {
+    window.location.reload();
+  }
 }

@@ -26,11 +26,11 @@
             <div class="accordion" id="mvtStkDetails">
 
                 <div  id="headingOne">
-                  <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width: 100%">
+                  <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'" aria-expanded="true" aria-controls="collapseOne" style="width: 100%">
                     <app-detail-mvt-stk-article></app-detail-mvt-stk-article>
                   </button>
 
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
+                <div [attr.id]="'collapseOne'" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
           overflow-y: scroll">
                   <div class="card-body">
                     <app-detail-mvt-stk></app-detail-mvt-stk>

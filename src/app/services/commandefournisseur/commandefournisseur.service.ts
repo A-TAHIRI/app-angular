@@ -29,10 +29,10 @@ export class CommandefournisseurService {
     return this.http.get<any>(url)
   }
 
-  findAllLigneCommandesFournisseur(idCommande: number | undefined) {
+  findAllLigneCommandesFournisseur(idCommande?: number):Observable<any[]> {
     if (idCommande){
-      const url =this.baseUrl+`/lignesCommande/{idCommande}`;
-      this.http.get(url);
+      const url =this.baseUrl+`/lignesCommande/${idCommande}`;
+     return this.http.get<any>(url);
     }
     return of();
   }

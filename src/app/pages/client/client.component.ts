@@ -13,6 +13,7 @@ export class ClientComponent implements OnInit {
    errorsMsg ='';
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   client :Client={};
+  messageSucces='';
 
   constructor(
     private router: Router,
@@ -42,9 +43,15 @@ export class ClientComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
+      this.messageSucces='La suppression a été effectuée avec succès!';
       this.clients();
+
     }else {
       this.errorsMsg=event;
     }
+  }
+
+  reload() {
+    window.location.reload();
   }
 }

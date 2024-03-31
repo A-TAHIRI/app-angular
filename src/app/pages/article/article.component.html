@@ -18,7 +18,14 @@
         <app-boutton-action
           (clickEvent)="nouvelArticle()"
         ></app-boutton-action>
-        <div class=" alert alert-danger" *ngIf="errorsMsg">{{ errorsMsg }}</div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorsMsg">
+          {{errorsMsg}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="reload()"></button>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="messageSucces">
+          {{messageSucces}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="reload()"></button>
+        </div>
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des articles</h5>
 

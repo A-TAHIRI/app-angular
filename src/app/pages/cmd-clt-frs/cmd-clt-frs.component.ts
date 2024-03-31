@@ -14,6 +14,7 @@ export class CmdCltFrsComponent  implements OnInit {
   listCommande:Array<any>=[];
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
+  lignesCommandes: Array<any>=[];
 
   constructor(
      private router: Router,
@@ -62,15 +63,18 @@ export class CmdCltFrsComponent  implements OnInit {
   }
 
   findLignesCommande(idCommande?: number): void {
+
     if (this.origin === 'client') {
       this.commandeClientService.findAllLigneCommandesClient(idCommande)
         .subscribe(list => {
+          this.lignesCommandes=list;
           this.mapLignesCommande.set(idCommande, list);
           this.mapPrixTotalCommande.set(idCommande, this.calculerTatalCmd(list));
         });
     } else if (this.origin === 'fournisseur') {
       this.commandeFournisseurService.findAllLigneCommandesFournisseur(idCommande)
         .subscribe(list => {
+          this.lignesCommandes=list;
           this.mapLignesCommande.set(idCommande, list);
           this.mapPrixTotalCommande.set(idCommande, this.calculerTatalCmd(list));
         });
@@ -78,10 +82,11 @@ export class CmdCltFrsComponent  implements OnInit {
   }
 
   calculerTatalCmd(list: Array<any>): number {
+
     let total = 0;
     list.forEach(ligne => {
       if (ligne.prixUnitaire && ligne.quantite) {
-        total += +ligne.quantite * +ligne.prixUnitaire;
+        total = total+((+ligne.quantite) * (+ligne.prixUnitaire));
       }
     });
     return Math.floor(total);
@@ -93,26 +98,5 @@ export class CmdCltFrsComponent  implements OnInit {
 
 
 
-  toggleCollapse(menuId: string): void {
-    const collapseId = 'collapse' + menuId;
-    const collapseElement = document.getElementById(collapseId);
 
-    if (collapseElement) {
-      if (collapseElement.classList.contains('show')) {
-        collapseElement.classList.remove('show');
-      } else {
-        collapseElement.classList.add('show');
-      }
-    }
-  }
-
-
-  isCollapsed(menuId: string) :void{
-    const collapseId = 'collapse' + menuId;
-    const collapseElement = document.getElementById(collapseId);
-
-    // Vérifie si l'élément est actuellement en mode collapsé (c'est-à-dire s'il a la classe 'show')
-    collapseElement && collapseElement.classList.contains('show');
-
-  }
 }

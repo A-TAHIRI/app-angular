@@ -82,10 +82,10 @@
                     </div>
                   </div>
                   <div class="col-md-4 m-lg-2">
-                    <input type="text" class="form-control" placeholder="Quantite" [(ngModel)]="quantite">
+                    <input type="text" class="form-control" name="quantite" placeholder="Quantite" [(ngModel)]="quantite">
                   </div>
                   <div class="col-md-4 m-lg-2">
-                    <input type="text" class="form-control" placeholder="Prix unitaire" [(ngModel)]="searchedArticle.prixUnitaireTtc">
+                    <input type="text" class="form-control" placeholder="Prix Unitaire"  name="prixUnitaireTtc" [(ngModel)]="searchedArticle.prixUnitaireTtc">
                   </div>
                   <div class="col-md-1 m-lg-2">
                     <button type="button" class="btn btn-success" (click)="ajouterLigneCommande()"><i class="bi bi-plus"></i></button>

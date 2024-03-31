@@ -29,10 +29,10 @@ export class CommandeclientService {
     return this.http.get<any>(url)
   }
 
-  findAllLigneCommandesClient(idCommande: number | undefined) {
+  findAllLigneCommandesClient(idCommande?: number):Observable<any[]> {
     if (idCommande){
-      const url =this.baseUrl+`/lignesCommande/{idCommande}`;
-      this.http.get(url);
+      const url =this.baseUrl+`/lignesCommande/${idCommande}`;
+     return this.http.get<any>(url);
     }
     return of();
   }

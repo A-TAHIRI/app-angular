@@ -3,26 +3,26 @@
   <table class="table table-borderless">
     <thead *ngIf="i==0" class="pb-5">
     <tr data-aos="zoom-in" >
-      <th style="width: 10%; text-align: center;" scope="col" >Profile</th>
-      <th style="width: 10%; text-align: center;" scope="col">Nom</th>
-      <th style="width: 10%; text-align: center;" scope="col">Prenom</th>
-      <th style="width: 10%; text-align: center;" scope="col">Tel</th>
-      <th style="width: 10%; text-align: center;" scope="col">Adresse</th>
-      <th style="width: 10%; text-align: center;" scope="col">Ville</th>
-      <th style="width: 10%; text-align: center;" scope="col">Pays</th>
-      <th style="width: 10%; text-align: center; " scope="col">Actions</th>
+      <th scope="col" >Profile</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Tel</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Pays</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody style="position: relative">
     <tr data-aos="zoom-in" >
-      <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl" class="rounded-circle"  width="50px" height="50px"   alt="{{origin}}"></td>
-      <td style="width: 10%; text-align: center;" >{{ clientFournisseur.nom }}</td>
-      <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{ clientFournisseur.prenom }}</td>
-      <td style="width: 10%;text-align: center;" class="fw-bold" >{{ clientFournisseur.numTel }}</td>
-      <td style="width: 10%;text-align: center;"  class="fw-bold" >{{ clientFournisseur.adresse?.adresse1 }} </td>
-      <td style="width: 10%;text-align: center;" >{{ clientFournisseur.adresse?.ville}}</td>
-      <td style="width: 10%;text-align: center;" >{{ clientFournisseur.adresse?.pays }}</td>
-      <td style="width: 10%;text-align: center; background: rgba(256,256,256,0);">
+      <td  ><img [src]="imgUrl" class="rounded-circle"  width="50px" height="50px"   alt="{{origin}}"></td>
+      <td >{{ clientFournisseur.nom }}</td>
+      <td class="text-primary fw-bold">{{ clientFournisseur.prenom }}</td>
+      <td class="fw-bold" >{{ clientFournisseur.numTel }}</td>
+      <td  class="fw-bold" >{{ clientFournisseur.adresse?.adresse1 }} </td>
+      <td >{{ clientFournisseur.adresse?.ville}}</td>
+      <td >{{ clientFournisseur.adresse?.pays }}</td>
+      <td >
         <div class="action">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow " >

@@ -7,10 +7,10 @@ export interface LigneCommandeFournisseurDto {
      creationDate?: number,
      lastModifiedDate?: number,
      quantite?: number,
-     prixUnitaireHt?: number,
+     prixUnitaire?: number,
      tva?: number,
      idEntreprise?: number,
      article?: ArticleDto,
      commandeFournisseur?: CommandeFournisseurDto
- 
+
 }

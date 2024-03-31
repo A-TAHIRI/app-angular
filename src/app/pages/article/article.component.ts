@@ -16,6 +16,7 @@ export class ArticleComponent implements OnInit {
 
  liste !:  Article[];
   errorsMsg='';
+  messageSucces ='';
   constructor(
     private router: Router,
     private articleService: ArticleService
@@ -46,9 +47,14 @@ export class ArticleComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
+      this.messageSucces='La suppression a été effectuée avec succès!';
       this.articles();
     }else {
       this.errorsMsg=event;
     }
+  }
+
+  reload() {
+    window.location.reload();
   }
 }

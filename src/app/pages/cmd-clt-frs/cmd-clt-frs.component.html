@@ -23,12 +23,12 @@
 
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des commandes</h5>
-          <div class="col m-3" >
-            <div class="accordion" id="accordionExample" *ngFor="let cmd of listCommande let i =index" >
-
+          <div class="col m-3"   *ngFor="let cmd of listCommande let i =index">
+            <div class="accordion" [attr.id]="'accordionExample'+cmd.id" >
                 <div  id="headingOne">
                   <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse"
-                          [attr.data-target]="'#collapseOne'+cmd.id"
+                          [attr.data-bs-target]="'#collapseOne'+cmd.id"
+                          (click)="findLignesCommande(cmd.id)"
                           aria-expanded="true"
                           aria-controls="collapseOne" style="width: 100%">
 
@@ -36,18 +36,18 @@
                       [commande]="cmd"
                       [i]="i"
                       [origin]="origin"
-
                     ></app-detail-cmd-clt-frs>
                   </button>
 
-                <!--
-                          <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
+
+                          <div [attr.id]="'collapseOne'+cmd.id" class="collapse" aria-labelledby="headingOne" [attr.data-parent]="'#accordionExample'+cmd.id"
                                style="max-height: 300px;
                           overflow-y: scroll">
                             <div class="card-body">
                               <app-detail-cmd
                                 *ngFor="let ligne of mapLignesCommande.get(cmd.id)"
                                 [ligneCommande]="ligne"
+                                [origin]="origin"
                               ></app-detail-cmd>
                             </div>
                           </div>
@@ -62,7 +62,7 @@
                                 </div>
                               </div>
                             </div>
-                          -->
+
               </div>
             </div>
           </div>

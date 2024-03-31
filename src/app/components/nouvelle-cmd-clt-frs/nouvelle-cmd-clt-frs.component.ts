@@ -100,37 +100,21 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour ajouter une commade client/fournisseur a la bdd
    */
   enregistrerCommande( ) {
+    const commande = this.preparerCommande();
   if (this.origin === 'client'){
-    const commandeClient: CommandeClient ={
-      client: this.selectedClientFournisseur,
-      reference: this.codeCommande,
-      etatCommande:"EN_PREPARATION",
-      dateCommande: new Date(),
-      idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
-      ligneCommandeClients:this.lignesCommande
-    }
-    this.commandeClientService.add(commandeClient).subscribe(cmd=>{
-      this.router.navigate(['commandesclient'])
+    this.commandeClientService.add(commande as CommandeClient).subscribe(cmd=>{
+      this.router.navigate(['dashboard/commandesclient'])
     }, error => {
       this.errorMsg= error.error.errors;
     });
-
   }else if (this.origin ==='fournisseur'){
-    const commadeFournisseur: CommandeFournisseur ={
-      fournisseur: this.selectedClientFournisseur,
-      reference:this.codeCommande,
-      etatCommande:"EN_PREPARATION",
-      dateCommande: new Date(),
-      idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
-      ligneCommandeFournisseurs:this.lignesCommande
-    }
-    this.commandeFournisseurService.add(commadeFournisseur).subscribe(cmd=>{
-      this.router.navigate(['commandesfournisseur']);
+
+    this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd=>{
+      this.router.navigate(['dashboard/commandesfournisseur']);
     },error => {
       this.errorMsg= error.error.errors;
     });
   }
-
 
   }
 
@@ -149,67 +133,63 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour ajouter une ligne de commade a la commande client/fournisseur
    */
   ajouterLigneCommande() {
-    if (this.origin === 'client') {
-      // @ts-ignore
-      const ligneComdAlreadyExixts = this.lignesCommande.includes(lig =>  lig.article?.codeArticle === this.searchedArticle.codeArticle );
-      if (ligneComdAlreadyExixts) {
-        this.lignesCommande.forEach(lig => {
-          if ( lig.article?.codeArticle === this.searchedArticle.codeArticle) {
-            lig.quantite = lig.quantite + +this.quantite;
-          }
-        })
-      } else {
-        const lignCmd: LigneCommandeClient = {
+    this.checkLigneCommande();
+    this.calculerTotalCommande();
+      this.searchedArticle = {};
+      this.quantite = '';
+      this.codeArticle = '';
+      this.articleNotYetSelected = false;
+      this.findAllArticle();
+  }
+
+  /**
+   * Method pour calculer le total de la commade
+   */
+  calculerTotalCommande(): void {
+    this.totalCommande = 0;
+    this.lignesCommande.forEach(ligne => {
+      if (ligne.prixUnitaire && ligne.quantite) {
+        this.totalCommande += +ligne.prixUnitaire * +ligne.quantite;
+      }
+    });
+  }
+
+
+  /**
+   * Method pour verifier l'article si il existe il incremet la quontité sion  il  crée ligne de commade
+   * @private
+   */
+  private checkLigneCommande(): void {
+    const ligneCmdAlreadyExists = this.lignesCommande.find(lig => lig.article?.codeArticle === this.searchedArticle.codeArticle);
+    if (ligneCmdAlreadyExists) {
+      this.lignesCommande.forEach(lig => {
+        if (lig && lig.article?.codeArticle === this.searchedArticle.codeArticle) {
+          // @ts-ignore
+          lig.quantite = lig.quantite + +this.quantite;
+        }
+      });
+    } else {
+      if (this.origin === 'client') {
+
+        const ligneCmd: LigneCommandeClient = {
           article: this.searchedArticle,
           prixUnitaire: this.searchedArticle.prixUnitaireTtc,
           quantite: +this.quantite,
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
-        this.lignesCommande.push(lignCmd);
-      }
-      this.totalCommande = 0;
-      this.lignesCommande.forEach(elem => {
-        this.totalCommande += +elem.prixUnitaire * +elem.quantite;
-      })
-      this.searchedArticle = {};
-      this.quantite = '';
-      this.codeArticle = '';
-      this.articleNotYetSelected = false;
-      this.findAllArticle();
-
-    } else if (this.origin === 'fournisseur') {
-      // @ts-ignore
-      const ligneComdAlreadyExixts = this.lignesCommande.includes(lig =>
-        lig.article?.codeArticle === this.searchedArticle.codeArticle
-      )
-      if (ligneComdAlreadyExixts) {
-        this.lignesCommande.forEach(lig => {
-          if ( lig.article?.codeArticle === this.searchedArticle.codeArticle) {
-            lig.quantite = lig.quantite + +this.quantite;
-          }
-        })
-      } else {
-        const lignCmd: LigneCommandeFournisseur = {
+        this.lignesCommande.push(ligneCmd);
+      } else if (this.origin === 'fournisseur') {
+        const ligneCmd: LigneCommandeFournisseur = {
           article: this.searchedArticle,
-          prixUnitaireHt: this.searchedArticle.prixUnitaireHt,
+          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
           quantite: +this.quantite,
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
-        this.lignesCommande.push(lignCmd);
+        this.lignesCommande.push(ligneCmd);
       }
-      this.totalCommande = 0;
-      this.lignesCommande.forEach(elem => {
-        this.totalCommande += +elem.prixUnitaireHt * +elem.quantite;
-      })
-      this.searchedArticle = {};
-      this.quantite = '';
-      this.codeArticle = '';
-      this.articleNotYetSelected = false;
-      this.findAllArticle();
 
     }
   }
-
   /**
    * Method pour selectioner l'article pour l'ajouter à la ligne de commade client/fournisseur
    * @param article
@@ -218,5 +198,31 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.searchedArticle = article;
     this.codeArticle = article.codeArticle ? article.codeArticle : '';
     this.articleNotYetSelected = true;
+  }
+
+  /**
+   * Method pour preparer les commade
+   * @private
+   */
+  private preparerCommande(): any {
+    if (this.origin === 'client') {
+      return  {
+        client: this.selectedClientFournisseur,
+        reference: this.codeCommande,
+        etatCommande:"EN_PREPARATION",
+        dateCommande: new Date(),
+        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
+        ligneCommandeClients:this.lignesCommande
+      };
+    } else if (this.origin === 'fournisseur') {
+      return  {
+        fournisseur: this.selectedClientFournisseur,
+        reference:this.codeCommande,
+        etatCommande:"EN_PREPARATION",
+        dateCommande: new Date(),
+        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
+        ligneCommandeFournisseurs:this.lignesCommande
+      };
+    }
   }
 }
