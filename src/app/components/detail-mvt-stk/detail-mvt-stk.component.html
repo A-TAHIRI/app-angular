@@ -2,33 +2,32 @@
     <!--  Details article-->
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="row text-center">
-        <div class="col-md-11">12.12.2012</div>
+        <div class="col-md-11">{{mvtstk.dateMvt | date : 'd-MM-yyy'}}</div>
       </div>
     </div>
-  
+
     <!--  details categorie-->
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h5>139</h5>
+          <h5>{{mvtstk.quantite}}</h5>
         </div>
       </div>
     </div>
-  
+
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h5>Sortie</h5>
+          <h5>{{mvtstk.typeMvt}}</h5>
         </div>
       </div>
     </div>
-  
+
     <!--  boutons action-->
     <div class="col-md-3 mb-1 mt-1">
       <div class="row text-center">
-        <h5>COMMANDE_CLIENT</h5>
-  
+        <h5>{{mvtstk.sourceMvt}}</h5>
+
       </div>
     </div>
   </div>
-  

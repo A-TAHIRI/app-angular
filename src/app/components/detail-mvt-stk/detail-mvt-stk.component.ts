@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-detail-mvt-stk',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail-mvt-stk.component.css']
 })
 export class DetailMvtStkComponent {
+
+  @Input()
+  mvtstk:any;
 
 }

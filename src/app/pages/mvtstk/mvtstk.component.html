@@ -22,24 +22,29 @@
         <div class="card-body pb-0">
           <h5 class="card-title">Mouvements du stock</h5>
 
-          <div class="col">
+          <div class="col" *ngFor="let mvtstk of mvtstkGroupByIdArticle let i = index">
             <div class="accordion" id="mvtStkDetails">
 
                 <div  id="headingOne">
-                  <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne'" aria-expanded="true" aria-controls="collapseOne" style="width: 100%">
-                    <app-detail-mvt-stk-article></app-detail-mvt-stk-article>
+                  <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + mvtstk.article?.id" aria-expanded="true" aria-controls="collapseOne" style="width: 100%">
+                    <app-detail-mvt-stk-article
+                      [mvtstk]="mvtstk"
+                          [i]="i"
+                       (click)="mvtstksByArticle(mvtstk.article?.id)"
+                    >
+
+                    </app-detail-mvt-stk-article>
                   </button>
 
-                <div [attr.id]="'collapseOne'" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
+                <div [attr.id]="'collapseOne'+mvtstk.article?.id" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
           overflow-y: scroll">
                   <div class="card-body">
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
-                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk *ngFor=" let mvtstk of mvtstksByidArticle"
+                    [mvtstk]="mvtstk"
+                    >
+
+                    </app-detail-mvt-stk>
+
                   </div>
                 </div>
               </div>

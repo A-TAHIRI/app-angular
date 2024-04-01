@@ -42,6 +42,9 @@ export class CmdCltFrsComponent  implements OnInit {
     }
   }
 
+  /**
+   * Method qui récupére les comandes client/fournisseur
+   */
   commandesClientFournisseur(){
     if (this.origin === 'fournisseur'){
     this.commandeFournisseurService.getAll().subscribe(cmd=>{
@@ -56,12 +59,19 @@ export class CmdCltFrsComponent  implements OnInit {
     }
   }
 
+  /**
+   * Method qui parcourire les cmd pour les récupiré et calculer le total
+   */
   findAllLignesCommande(): void {
     this.listCommande.forEach(cmd => {
       this.findLignesCommande(cmd.id);
     });
   }
 
+  /**
+   * Method pour recupiré les ligne de commande par id de la commade
+   * @param idCommande
+   */
   findLignesCommande(idCommande?: number): void {
 
     if (this.origin === 'client') {
@@ -81,6 +91,10 @@ export class CmdCltFrsComponent  implements OnInit {
     }
   }
 
+  /**
+   * Method qui parcouri les lingne de commade pour calculer le total
+   * @param list
+   */
   calculerTatalCmd(list: Array<any>): number {
 
     let total = 0;
@@ -92,6 +106,10 @@ export class CmdCltFrsComponent  implements OnInit {
     return Math.floor(total);
   }
 
+  /**
+   * Method qui reourne le total de la commade par son id
+   * @param id
+   */
   calculerTotalCommande(id?: number): number {
     return this.mapPrixTotalCommande.get(id);
   }

@@ -48,7 +48,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.activatedRoute.data.subscribe(data => {
       this.origin = data['origin'];
     });
@@ -179,6 +178,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         }
         this.lignesCommande.push(ligneCmd);
       } else if (this.origin === 'fournisseur') {
+
         const ligneCmd: LigneCommandeFournisseur = {
           article: this.searchedArticle,
           prixUnitaire: this.searchedArticle.prixUnitaireTtc,
