@@ -10,4 +10,7 @@ export class DetailMvtStkComponent {
   @Input()
   mvtstk:any;
 
+  @Input()
+  i:number=0;
+
 }

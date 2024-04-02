@@ -1,7 +1,8 @@
 <div class="row mb-1 mr-0 custom-border">
+  <div class="alert alert-danger" *ngIf="stock<10">Attention : Le stock de produit N° Référence:&nbsp; <span style="color: #0d6efd">{{mvtstk.article.codeArticle }}&nbsp; </span>est au minimum ! Veuillez passer une commande.</div>
 
   <table class="table table-borderless">
-    <thead *ngIf="i==0">
+    <thead *ngIf="i==0" >
     <tr data-aos="zoom-in">
       <th style="width: 10%; text-align: center;" scope="col" >Aperçu</th>
       <th style="width: 10%; text-align: center;" scope="col">Référence</th>
@@ -16,13 +17,15 @@
     <tbody>
     <tr data-aos="zoom-in">
       <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="stock"></td>
-      <td style="width: 10%; text-align: center;" >{{mvtstk.article.codeArticle}}</td>
-      <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{mvtstk.article.designation}}</td>
-      <td style="width: 10%;text-align: center;" class="fw-bold" >{{mvtstk.article.prixUnitaireHt}}</td>
-      <td style="width: 10%;text-align: center;"  class="fw-bold" > {{mvtstk.article.prixUnitaireTtc}}</td>
-      <td style="width: 10%;text-align: center;" >{{mvtstk.article.categorie.designation}}</td>
-      <td style="width: 10%;text-align: center;" >{{ stock }}</td>
-      <td style="width: 10%;text-align: center;" >
+      <td style="width: 10%; text-align: center;"   class="fw-bold text-primary "  >{{mvtstk.article.codeArticle}}</td>
+      <td style="width: 10%;text-align: center;" class=" fw-bold text-primary  ">{{mvtstk.article.designation}}</td>
+      <td style="width: 10%;text-align: center;" class="fw-bold text-primary " >{{mvtstk.article.prixUnitaireHt}}</td>
+      <td style="width: 10%;text-align: center;"  class="fw-bold text-primary " > {{mvtstk.article.prixUnitaireTtc}}</td>
+      <td style="width: 10%;text-align: center;"   class="fw-bold text-primary " >{{mvtstk.article.categorie.designation}}</td>
+      <td style="width: 10%;text-align: center;"   class="fw-bold  "  [ngClass]="{'text-danger':stock<10, 'text-success':stock>10}" >{{ stock }}<br>
+      <span  *ngIf="stock<10" style="color: red">Le stock est faible !</span>
+      </td>
+      <td style="width: 10%;text-align: center; " class="fw-bold text-primary ">
         <div class="action">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

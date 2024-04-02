@@ -1,64 +1,25 @@
-<section class="section dashboard">
-  <div class="row">
 
-    <!-- Top Selling -->
-    <div class="col-12">
-      <div class="card top-selling overflow-auto">
-        <div class="card-body pb-0">
-          <h5 class="card-title">Détail de la commade</h5>
+    <table class="table table-borderless">
+      <thead *ngIf="i==0"  class="table-secondary mb-5">
+      <tr data-aos="zoom-in">
+        <th    class="fw-bold"  scope="col" >Référence</th>
+        <th   class="fw-bold"  scope="col">Designation</th>
+        <th   class="fw-bold" scope="col">Qantité</th>
+        <th   class="fw-bold"  scope="col">prixUnitaire</th>
+        <th   class="fw-bold"  scope="col">Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-aos="zoom-in"   >
+        <td  >{{ligneCommande.article?.codeArticle}}</td>
+        <td  > {{ligneCommande.article?.designation}}</td>
+        <td  > {{ligneCommande.quantite}}</td>
+        <td > {{   ligneCommande.prixUnitaire  }} &nbsp; €</td>
+        <td > {{  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') }}&nbsp;€</td>
 
-          <div class="row mb-1 mr-0 custom-border">
-            <!--  Details article-->
-            <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-              <div class="row text-center">
-                <div class="col-md-11">
-                  {{ligneCommande.article?.codeArticle}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  {{ligneCommande.article?.designation}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-2 custom-border-right mb-1 mt-1 ">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  {{ligneCommande.quantite}}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-2 custom-border-right mb-1 mt-1 ">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  {{   ligneCommande.prixUnitaire  }}
-
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-2 mb-1 mt-1">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  {{  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') }}
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div><!-- End Top Selling -->
-  </div>
-
-</section>
+      </tr>
+      </tbody>
+    </table>
 
 
 

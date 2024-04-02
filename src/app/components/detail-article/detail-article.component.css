@@ -1,7 +1,13 @@
 
-td,th{
+td{
   background: rgba(256,256,256,0);
   width: 10%;
   text-align: center;
 }
 
+th{
+  background: #0e1d34;
+  color: #FFFFFF;
+  width: 10%;
+  text-align: center;
+}

@@ -25,13 +25,13 @@ export class DetailCmdCltFrsComponent  implements OnInit{
   }
 
   extractClientFournisseur(): void {
-    if (this.origin === 'client') {
-      this.cltFrs = this.commande?.client;
-    } else if (this.origin === 'fournisseur') {
+
+    if (this.origin === 'fournisseur') {
       this.cltFrs = this.commande?.fournisseur;
+    } else if (this.origin === 'client') {
+      this.cltFrs = this.commande?.client;
     }
   }
-
   modifierClick() {
 
   }

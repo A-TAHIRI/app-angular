@@ -1,33 +1,22 @@
-<div class="row mb-1 mr-0 custom-border">
-    <!--  Details article-->
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row text-center">
-        <div class="col-md-11">{{mvtstk.dateMvt | date : 'd-MM-yyy'}}</div>
-      </div>
-    </div>
+<div class=" container">
+  <table class="table table-borderless">
+    <thead *ngIf="i==0"  class="table-secondary mb-5">
+    <tr data-aos="zoom-in">
+      <th    class="fw-bold"  scope="col" >Date</th>
+      <th   class="fw-bold"  scope="col">Quantité</th>
+      <th   class="fw-bold" scope="col">Type</th>
+      <th   class="fw-bold"  scope="col">Source</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-aos="zoom-in"  >
+      <td  >{{mvtstk.dateMvt | date : 'd-MM-yyy'}}</td>
+      <td  >{{mvtstk.quantite}}</td>
+      <td  [ngClass]="{'table-danger': mvtstk.typeMvt == 'SORTIE', 'table-success': mvtstk.typeMvt == 'ENTREE'}" >{{mvtstk.typeMvt}}</td>
+      <td > {{mvtstk.sourceMvt}}</td>
 
-    <!--  details categorie-->
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h5>{{mvtstk.quantite}}</h5>
-        </div>
-      </div>
-    </div>
+    </tr>
+    </tbody>
+  </table>
 
-    <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h5>{{mvtstk.typeMvt}}</h5>
-        </div>
-      </div>
-    </div>
-
-    <!--  boutons action-->
-    <div class="col-md-3 mb-1 mt-1">
-      <div class="row text-center">
-        <h5>{{mvtstk.sourceMvt}}</h5>
-
-      </div>
-    </div>
   </div>

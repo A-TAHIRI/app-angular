@@ -37,13 +37,13 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private  router:Router,
+    private router: Router,
     private clientService: ClientService,
     private fournisseurService: FournisseurService,
     private articleService: ArticleService,
     private utilisateurService: UtilisateurService,
-    private  commandeClientService :CommandeclientService,
-    private commandeFournisseurService:CommandefournisseurService
+    private commandeClientService: CommandeclientService,
+    private commandeFournisseurService: CommandefournisseurService
   ) {
   }
 
@@ -98,22 +98,22 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   /**
    * Method pour ajouter une commade client/fournisseur a la bdd
    */
-  enregistrerCommande( ) {
+  enregistrerCommande() {
     const commande = this.preparerCommande();
-  if (this.origin === 'client'){
-    this.commandeClientService.add(commande as CommandeClient).subscribe(cmd=>{
-      this.router.navigate(['dashboard/commandesclient'])
-    }, error => {
-      this.errorMsg= error.error.errors;
-    });
-  }else if (this.origin ==='fournisseur'){
+    if (this.origin === 'client') {
+      this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
+        this.router.navigate(['dashboard/commandesclient'])
+      }, error => {
+        this.errorMsg = error.error.errors;
+      });
+    } else if (this.origin === 'fournisseur') {
 
-    this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd=>{
-      this.router.navigate(['dashboard/commandesfournisseur']);
-    },error => {
-      this.errorMsg= error.error.errors;
-    });
-  }
+      this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
+        this.router.navigate(['dashboard/commandesfournisseur']);
+      }, error => {
+        this.errorMsg = error.error.errors;
+      });
+    }
 
   }
 
@@ -134,11 +134,11 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   ajouterLigneCommande() {
     this.checkLigneCommande();
     this.calculerTotalCommande();
-      this.searchedArticle = {};
-      this.quantite = '';
-      this.codeArticle = '';
-      this.articleNotYetSelected = false;
-      this.findAllArticle();
+    this.searchedArticle = {};
+    this.quantite = '';
+    this.codeArticle = '';
+    this.articleNotYetSelected = false;
+    this.findAllArticle();
   }
 
   /**
@@ -168,28 +168,29 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         }
       });
     } else {
-      if (this.origin === 'client') {
-
-        const ligneCmd: LigneCommandeClient = {
-          article: this.searchedArticle,
-          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-          quantite: +this.quantite,
-          idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
-        }
-        this.lignesCommande.push(ligneCmd);
-      } else if (this.origin === 'fournisseur') {
-
-        const ligneCmd: LigneCommandeFournisseur = {
-          article: this.searchedArticle,
-          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-          quantite: +this.quantite,
-          idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
-        }
-        this.lignesCommande.push(ligneCmd);
-      }
 
     }
+    if (this.origin === 'fournisseur') {
+
+      const ligneCmd: LigneCommandeFournisseur = {
+        article: this.searchedArticle,
+        prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+        quantite: +this.quantite,
+        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+      }
+      this.lignesCommande.push(ligneCmd);
+    } else if (this.origin === 'client') {
+
+      const ligneCmd: LigneCommandeClient = {
+        article: this.searchedArticle,
+        prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+        quantite: +this.quantite,
+        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+      }
+      this.lignesCommande.push(ligneCmd);
+    }
   }
+
   /**
    * Method pour selectioner l'article pour l'ajouter à la ligne de commade client/fournisseur
    * @param article
@@ -206,22 +207,22 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    */
   private preparerCommande(): any {
     if (this.origin === 'client') {
-      return  {
+      return {
         client: this.selectedClientFournisseur,
         reference: this.codeCommande,
-        etatCommande:"EN_PREPARATION",
+        etatCommande: "EN_PREPARATION",
         dateCommande: new Date(),
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
-        ligneCommandeClients:this.lignesCommande
+        ligneCommandeClients: this.lignesCommande
       };
     } else if (this.origin === 'fournisseur') {
-      return  {
+      return {
         fournisseur: this.selectedClientFournisseur,
-        reference:this.codeCommande,
-        etatCommande:"EN_PREPARATION",
+        reference: this.codeCommande,
+        etatCommande: "EN_PREPARATION",
         dateCommande: new Date(),
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
-        ligneCommandeFournisseurs:this.lignesCommande
+        ligneCommandeFournisseurs: this.lignesCommande
       };
     }
   }

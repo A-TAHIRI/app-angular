@@ -16,13 +16,13 @@
     <tbody style="position: relative">
     <tr data-aos="zoom-in" >
       <td  ><img [src]="imgUrl" class="rounded-circle"  width="50px" height="50px"   alt="{{origin}}"></td>
-      <td >{{ clientFournisseur.nom }}</td>
+      <td class="text-primary fw-bold">{{ clientFournisseur.nom }}</td>
       <td class="text-primary fw-bold">{{ clientFournisseur.prenom }}</td>
-      <td class="fw-bold" >{{ clientFournisseur.numTel }}</td>
-      <td  class="fw-bold" >{{ clientFournisseur.adresse?.adresse1 }} </td>
-      <td >{{ clientFournisseur.adresse?.ville}}</td>
-      <td >{{ clientFournisseur.adresse?.pays }}</td>
-      <td >
+      <td class=" text-primary fw-bold" >{{ clientFournisseur.numTel }}</td>
+      <td  class=" text-primary fw-bold" >{{ clientFournisseur.adresse?.adresse1 }} </td>
+      <td class="text-primary fw-bold">{{ clientFournisseur.adresse?.ville}}</td>
+      <td class="text-primary fw-bold" >{{ clientFournisseur.adresse?.pays }}</td>
+      <td class="text-primary fw-bold">
         <div class="action">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow " >

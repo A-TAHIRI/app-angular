@@ -42,10 +42,10 @@
                 </thead>
                 <tbody>
                 <tr data-aos="zoom-in">
-                  <td style="width: 10%;text-align: center;" ><img [src]=" cat.image ? imgUrl+cat.image : basImgUrl "  class="rounded-circle" width="50" height="50"   alt="categorie"></td>
-                  <td style="width: 10%; text-align: center;" >{{cat.code }}</td>
+                  <td style="width: 10%;text-align: center;" ><img [src]=" cat.image ? imgUrl+cat.image : basImgUrl "    alt="categorie"></td>
+                  <td style="width: 10%; text-align: center;" class="text-primary fw-bold">{{cat.code }}</td>
                   <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{ cat.designation }}</td>
-                  <td style="width: 10%;text-align: center;" >
+                  <td style="width: 10%;text-align: center;" class="text-primary fw-bold">
                     <div class="action">
                       <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

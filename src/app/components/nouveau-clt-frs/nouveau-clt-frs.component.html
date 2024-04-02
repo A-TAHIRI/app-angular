@@ -35,34 +35,34 @@
                 <form>
                   <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Nom" name="nom" [(ngModel)]="clientfournisseur.nom">
+                      <input type="text" class="form-control" placeholder="Nom" name="nom" [(ngModel)]="clientfournisseur.nom" style="box-shadow: none">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Adresse 1" name="adresse1" [(ngModel)]="adresse.adresse1" >
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Prenom"  name="prenom" [(ngModel)]="clientfournisseur.prenom" >
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="Adresse 2"  name="adresse2" [(ngModel)]="adresse.adresse2" >
+                      <input type="text" class="form-control" placeholder="Adresse 1" name="adresse1" [(ngModel)]="adresse.adresse1" style="box-shadow: none" >
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col">
-                      <input type="email" class="form-control" placeholder="E-mail" name="email" [(ngModel)]="clientfournisseur.email">
+                      <input type="text" class="form-control" placeholder="Prenom"  name="prenom" [(ngModel)]="clientfournisseur.prenom" style="box-shadow: none">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Ville"  name="ville" [(ngModel)]="adresse.ville">
+                      <input type="text" class="form-control" placeholder="Adresse 2"  name="adresse2" [(ngModel)]="adresse.adresse2" style="box-shadow: none">
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Telephone" name="numTel" [(ngModel)]="clientfournisseur.numTel">
+                      <input type="email" class="form-control" placeholder="E-mail" name="email" [(ngModel)]="clientfournisseur.email" style="box-shadow: none">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Code postal"  name="codePostale" [(ngModel)]="adresse.codePostale">
+                      <input type="text" class="form-control" placeholder="Ville"  name="ville" [(ngModel)]="adresse.ville" style="box-shadow: none">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Telephone" name="numTel" [(ngModel)]="clientfournisseur.numTel" style="box-shadow: none">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Code postal"  name="codePostale" [(ngModel)]="adresse.codePostale" style="box-shadow: none">
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -71,7 +71,7 @@
                       <input type="hidden" name="photo"   [value]="pathFile"  >
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control" placeholder="Pays" name="pays" [(ngModel)]="adresse.pays" >
+                      <input type="text" class="form-control" placeholder="Pays" name="pays" [(ngModel)]="adresse.pays" style="box-shadow: none" >
                     </div>
                   </div>
                 </form>

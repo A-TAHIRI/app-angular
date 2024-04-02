@@ -10,11 +10,10 @@
 </div><!-- End Page Title -->
 
 <section class="section dashboard" data-aos="fade-down">
-  <div class="row">
-
+  <div class="row" >
     <!-- Top Selling -->
-    <div class="col-12">
-      <div class="card top-selling overflow-auto">
+    <div class="col-12"   >
+      <div class="card top-selling overflow-auto" style="background-color:rgba(256,256,256,0.1)">
         <app-boutton-action
           [isImporterVisible]="false"
           [isNouveauVisible]="false"
@@ -32,17 +31,16 @@
                           [i]="i"
                        (click)="mvtstksByArticle(mvtstk.article?.id)"
                     >
-
                     </app-detail-mvt-stk-article>
                   </button>
 
                 <div [attr.id]="'collapseOne'+mvtstk.article?.id" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
           overflow-y: scroll">
                   <div class="card-body">
-                    <app-detail-mvt-stk *ngFor=" let mvtstk of mvtstksByidArticle"
+                    <app-detail-mvt-stk *ngFor=" let mvtstk of mvtstksByidArticle let i =index"
                     [mvtstk]="mvtstk"
+                   [i]="i"
                     >
-
                     </app-detail-mvt-stk>
 
                   </div>

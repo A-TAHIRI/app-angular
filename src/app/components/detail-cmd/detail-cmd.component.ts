@@ -6,6 +6,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./detail-cmd.component.css']
 })
 export class DetailCmdComponent  implements  OnInit{
+  @Input()
+  i:number=0;
 
   @Input()
   origin='';

@@ -16,13 +16,13 @@
     <tbody>
     <tr data-aos="zoom-in">
       <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="profile" class="rounded-circle" width="50" height="50"></td>
-      <td style="width: 10%; text-align: center;" >{{ utilisateur.nom }}</td>
+      <td style="width: 10%; text-align: center;"   class="text-primary fw-bold">{{ utilisateur.nom }}</td>
       <td style="width: 10%;text-align: center;" class="text-primary fw-bold">{{ utilisateur.prenom }}</td>
-      <td style="width: 10%;text-align: center;" class="fw-bold" >{{ utilisateur.numTel }}</td>
-      <td style="width: 10%;text-align: center;"  class="fw-bold" >{{ utilisateur.adresse?.adresse1 }} </td>
-      <td style="width: 10%;text-align: center;" >{{ utilisateur.adresse?.ville}}</td>
-      <td style="width: 10%;text-align: center;" >{{ utilisateur.adresse?.pays }}</td>
-      <td style="width: 10%;text-align: center;" >
+      <td style="width: 10%;text-align: center;" class=" text-primary fw-bold" >{{ utilisateur.numTel }}</td>
+      <td style="width: 10%;text-align: center;"  class=" text-primary fw-bold" >{{ utilisateur.adresse?.adresse1 }} </td>
+      <td style="width: 10%;text-align: center;"  class="text-primary fw-bold">{{ utilisateur.adresse?.ville}}</td>
+      <td style="width: 10%;text-align: center;"  class="text-primary fw-bold">{{ utilisateur.adresse?.pays }}</td>
+      <td style="width: 10%;text-align: center;"  class="text-primary fw-bold">
         <div class="action">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

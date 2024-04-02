@@ -12,13 +12,13 @@
   </thead>
   <tbody>
   <tr data-aos="zoom-in">
-    <td  ><img [src]="imgUrl " alt="article" class="rounded-circle"></td>
-    <td>{{ article.codeArticle }}</td>
+    <td  ><img [src]="imgUrl " alt="article" ></td>
+    <td class="text-primary fw-bold">{{ article.codeArticle }}</td>
     <td class="text-primary fw-bold">{{ article.designation }}</td>
-    <td class="fw-bold">{{ article.prixUnitaireHt }}€</td>
-    <td class="fw-bold">{{ article.prixUnitaireTtc }} €</td>
-    <td>{{ article.categorie?.designation }}</td>
-    <td>
+    <td class=" text-primary  fw-bold">{{ article.prixUnitaireHt }}€</td>
+    <td class=" text-primary  fw-bold">{{ article.prixUnitaireTtc }} €</td>
+    <td class=" text-primary  fw-bold">{{ article.categorie?.designation }}</td>
+    <td class=" text-primary  fw-bold">
       <div class="action" >
         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"  >
