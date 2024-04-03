@@ -19,8 +19,8 @@
       <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"    alt="stock"></td>
       <td style="width: 10%; text-align: center;"   class="fw-bold text-primary "  >{{mvtstk.article.codeArticle}}</td>
       <td style="width: 10%;text-align: center;" class=" fw-bold text-primary  ">{{mvtstk.article.designation}}</td>
-      <td style="width: 10%;text-align: center;" class="fw-bold text-primary " >{{mvtstk.article.prixUnitaireHt}}</td>
-      <td style="width: 10%;text-align: center;"  class="fw-bold text-primary " > {{mvtstk.article.prixUnitaireTtc}}</td>
+      <td style="width: 10%;text-align: center;" class="fw-bold text-primary " >{{mvtstk.article.prixUnitaireHt}}&nbsp;€</td>
+      <td style="width: 10%;text-align: center;"  class="fw-bold text-primary " > {{mvtstk.article.prixUnitaireTtc}}&nbsp;€</td>
       <td style="width: 10%;text-align: center;"   class="fw-bold text-primary " >{{mvtstk.article.categorie.designation}}</td>
       <td style="width: 10%;text-align: center;"   class="fw-bold  "  [ngClass]="{'text-danger':stock<10, 'text-success':stock>10}" >{{ stock }}<br>
       <span  *ngIf="stock<10" style="color: red">Le stock est faible !</span>

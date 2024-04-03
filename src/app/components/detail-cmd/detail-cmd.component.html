@@ -3,7 +3,8 @@
       <thead *ngIf="i==0"  class="table-secondary mb-5">
       <tr data-aos="zoom-in">
         <th    class="fw-bold"  scope="col" >Référence</th>
-        <th   class="fw-bold"  scope="col">Designation</th>
+        <th   class="fw-bold"  scope="col">Produit</th>
+        <th   class="fw-bold"  scope="col">Categorie</th>
         <th   class="fw-bold" scope="col">Qantité</th>
         <th   class="fw-bold"  scope="col">prixUnitaire</th>
         <th   class="fw-bold"  scope="col">Total</th>
@@ -13,6 +14,7 @@
       <tr data-aos="zoom-in"   >
         <td  >{{ligneCommande.article?.codeArticle}}</td>
         <td  > {{ligneCommande.article?.designation}}</td>
+        <td  > {{ligneCommande.article?.categorie.designation}}</td>
         <td  > {{ligneCommande.quantite}}</td>
         <td > {{   ligneCommande.prixUnitaire  }} &nbsp; €</td>
         <td > {{  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') }}&nbsp;€</td>

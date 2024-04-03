@@ -95,7 +95,7 @@ export class CmdCltFrsComponent  implements OnInit {
    * Method qui parcouri les lingne de commade pour calculer le total
    * @param list
    */
-  calculerTatalCmd(list: Array<any>): number {
+  calculerTatalCmd(list: Array<any>): any {
 
     let total = 0;
     list.forEach(ligne => {
@@ -103,7 +103,7 @@ export class CmdCltFrsComponent  implements OnInit {
         total = total+((+ligne.quantite) * (+ligne.prixUnitaire));
       }
     });
-    return Math.floor(total);
+    return total.toFixed(2);
   }
 
   /**

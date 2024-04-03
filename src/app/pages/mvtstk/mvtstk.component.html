@@ -10,9 +10,9 @@
 </div><!-- End Page Title -->
 
 <section class="section dashboard" data-aos="fade-down">
-  <div class="row" >
+  <div class="row">
     <!-- Top Selling -->
-    <div class="col-12"   >
+    <div class="col-12">
       <div class="card top-selling overflow-auto" style="background-color:rgba(256,256,256,0.1)">
         <app-boutton-action
           [isImporterVisible]="false"
@@ -20,26 +20,29 @@
         ></app-boutton-action>
         <div class="card-body pb-0">
           <h5 class="card-title">Mouvements du stock</h5>
+          <div class="accordion" id="mvtStkDetails">
+            <div class="col accordion-item" *ngFor="let mvtstk of mvtstkGroupByIdArticle let i = index">
+              <div id="headingOne">
+                <button class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapseOne'+mvtstk.article?.id" aria-expanded="true"
+                        aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0">
+                  <app-detail-mvt-stk-article
+                    [mvtstk]="mvtstk"
+                    [i]="i"
+                    (click)="mvtstksByArticle(mvtstk.article?.id)"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                  </app-detail-mvt-stk-article>
+                </button>
 
-          <div class="col" *ngFor="let mvtstk of mvtstkGroupByIdArticle let i = index">
-            <div class="accordion" id="mvtStkDetails">
-
-                <div  id="headingOne">
-                  <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + mvtstk.article?.id" aria-expanded="true" aria-controls="collapseOne" style="width: 100%">
-                    <app-detail-mvt-stk-article
-                      [mvtstk]="mvtstk"
-                          [i]="i"
-                       (click)="mvtstksByArticle(mvtstk.article?.id)"
-                    >
-                    </app-detail-mvt-stk-article>
-                  </button>
-
-                <div [attr.id]="'collapseOne'+mvtstk.article?.id" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
+                <div [attr.id]="'collapseOne'+mvtstk.article?.id" class="collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#mvtStkDetails" style="max-height: 300px;
           overflow-y: scroll">
                   <div class="card-body">
                     <app-detail-mvt-stk *ngFor=" let mvtstk of mvtstksByidArticle let i =index"
-                    [mvtstk]="mvtstk"
-                   [i]="i"
+                                        [mvtstk]="mvtstk"
+                                        [i]="i"
                     >
                     </app-detail-mvt-stk>
 
@@ -50,7 +53,6 @@
 
             </div>
           </div>
-
 
 
         </div>

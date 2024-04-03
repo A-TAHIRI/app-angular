@@ -35,6 +35,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   datCommande: any;
 
 
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -46,6 +47,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private commandeFournisseurService: CommandefournisseurService
   ) {
   }
+
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
@@ -149,6 +151,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.lignesCommande.forEach(ligne => {
       if (ligne.prixUnitaire && ligne.quantite) {
         this.totalCommande += +ligne.prixUnitaire * +ligne.quantite;
+        this.totalCommande.toFixed(2)
       }
     });
   }
@@ -166,31 +169,32 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           // @ts-ignore
           lig.quantite = lig.quantite + +this.quantite;
         }
+
       });
     } else {
 
-    }
-    if (this.origin === 'fournisseur') {
 
-      const ligneCmd: LigneCommandeFournisseur = {
-        article: this.searchedArticle,
-        prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-        quantite: +this.quantite,
-        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
-      }
-      this.lignesCommande.push(ligneCmd);
-    } else if (this.origin === 'client') {
+      if (this.origin === 'fournisseur') {
 
-      const ligneCmd: LigneCommandeClient = {
-        article: this.searchedArticle,
-        prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-        quantite: +this.quantite,
-        idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+        const ligneCmd: LigneCommandeFournisseur = {
+          article: this.searchedArticle,
+          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+          quantite: +this.quantite,
+          idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+        }
+        this.lignesCommande.push(ligneCmd);
+      } else if (this.origin === 'client') {
+
+        const ligneCmd: LigneCommandeClient = {
+          article: this.searchedArticle,
+          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+          quantite: +this.quantite,
+          idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+        }
+        this.lignesCommande.push(ligneCmd);
       }
-      this.lignesCommande.push(ligneCmd);
     }
   }
-
   /**
    * Method pour selectioner l'article pour l'ajouter à la ligne de commade client/fournisseur
    * @param article
@@ -225,5 +229,9 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         ligneCommandeFournisseurs: this.lignesCommande
       };
     }
+  }
+
+  cancel() {
+    this.router.navigate(['/dashboard/commandes'+this.origin])
   }
 }

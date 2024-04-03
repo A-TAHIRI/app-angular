@@ -1,9 +1,9 @@
-<div class="row mb-1 mr-0 custom-border">
+<div class="row mb-1 mr-0 custom-border" >
 
   <table class="table table-borderless">
-    <thead *ngIf="i==0">
+    <thead >
     <tr data-aos="zoom-in">
-      <th style="width: 10%; text-align: center;" scope="col" >Aperçu</th>
+      <th style="width: 10%; text-align: center;" scope="col" >{{ origin.charAt(0).toUpperCase() + origin.slice(1) }}</th>
       <th style="width: 10%; text-align: center;" scope="col">Nom</th>
       <th style="width: 10%; text-align: center;" scope="col">Prenom</th>
       <th style="width: 10%; text-align: center;" scope="col">Tel</th>
