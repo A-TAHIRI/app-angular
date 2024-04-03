@@ -35,7 +35,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   datCommande: any;
 
 
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -103,18 +102,28 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   enregistrerCommande() {
     const commande = this.preparerCommande();
     if (this.origin === 'client') {
-      this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
-        this.router.navigate(['dashboard/commandesclient'])
-      }, error => {
-        this.errorMsg = error.error.errors;
-      });
-    } else if (this.origin === 'fournisseur') {
+      if (commande.ligneCommandeClients.length!=0){
+        this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
+          this.router.navigate(['dashboard/commandesclient'])
+        }, error => {
+          this.errorMsg = error.error.errors;
+        });
 
-      this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
-        this.router.navigate(['dashboard/commandesfournisseur']);
-      }, error => {
-        this.errorMsg = error.error.errors;
-      });
+      }else{
+        this.errorMsg.push("Veuillez renseigner le code de l'articl et la quantité")
+      }
+
+    } else if (this.origin === 'fournisseur') {
+      if (commande.ligneCommandeFournisseurs.length!=0) {
+        this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
+          this.router.navigate(['dashboard/commandesfournisseur']);
+        }, error => {
+          this.errorMsg = error.error.errors;
+        });
+
+      } else {
+        this.errorMsg.push("Veuillez renseigner le code de l'articl et la quantité")
+      }
     }
 
   }
@@ -182,7 +191,12 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           quantite: +this.quantite,
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
-        this.lignesCommande.push(ligneCmd);
+        if (ligneCmd.article == null || ligneCmd.quantite == 0) {
+          const msg = "Veuillez rensigner les données de l'article";
+          this.errorMsg.push(msg);
+        }else {  this.lignesCommande.push(ligneCmd);}
+
+
       } else if (this.origin === 'client') {
 
         const ligneCmd: LigneCommandeClient = {
@@ -191,10 +205,15 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           quantite: +this.quantite,
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
-        this.lignesCommande.push(ligneCmd);
+        if (ligneCmd.article == null || ligneCmd.quantite == 0) {
+          const msg = "Veuillez ajouter les données de l'article.";
+          this.errorMsg.push(msg);
+        }else { this.lignesCommande.push(ligneCmd);}
+
       }
     }
   }
+
   /**
    * Method pour selectioner l'article pour l'ajouter à la ligne de commade client/fournisseur
    * @param article
@@ -232,6 +251,26 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/dashboard/commandes'+this.origin])
+    this.router.navigate(['/dashboard/commandes' + this.origin])
+  }
+
+  plus() {
+    const url = this.router.url;
+    if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
+      this.lignesCommande.forEach(ele => {
+        ele.quantite += 1;
+      })
+      this.calculerTotalCommande()
+    }
+  }
+
+  moins() {
+    const url = this.router.url;
+    if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
+      this.lignesCommande.forEach(ele => {
+        ele.quantite -= 1
+      })
+    this.calculerTotalCommande()
+    }
   }
 }

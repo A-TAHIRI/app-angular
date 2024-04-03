@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,31 +9,35 @@ import {Router} from "@angular/router";
 export class DetailCmdComponent  implements  OnInit{
   @Input()
   i:number=0;
+  url ='';
 
   @Input()
   origin='';
 
   @Input()
   ligneCommande :any={};
+
+
+
+  @Output()
+  pluss = new EventEmitter();
+  @Output()
+  minus = new EventEmitter();
+
+
   constructor(private  router : Router) {
   }
   ngOnInit(): void {
   }
 
-
-  moins() {
-    const url= this.router.url;
-
-    if(url== '/dashboard/nouvellecommandeclt' || url=='/dashboard/nouvellecommandefrs'){
-      this.ligneCommande.quantite -=1;
-    }
-
+  moinsClick(): void {
+    this.minus.emit();
   }
-  plus(){
-    const url= this.router.url;
-    if (url== '/dashboard/nouvellecommandeclt'|| url=='/dashboard/nouvellecommandefrs'){
-      this.ligneCommande.quantite +=1;
-    }
-
+  plusClick(): void {
+    this.pluss.emit();
   }
+
+
+
+
 }

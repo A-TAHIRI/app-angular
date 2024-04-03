@@ -32,6 +32,7 @@
                       aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0; ">
 
                 <app-detail-cmd-clt-frs
+
                   [commande]="cmd"
                   [i]="i"
                   [origin]="origin"
@@ -42,7 +43,7 @@
                    style="max-height: 300px;
                           overflow-y: scroll">
                 <div class="card-body container">
-                  
+
                   <app-detail-cmd
                     *ngFor="let ligne of mapLignesCommande.get(cmd.id) let i=index"
                     [ligneCommande]="ligne"

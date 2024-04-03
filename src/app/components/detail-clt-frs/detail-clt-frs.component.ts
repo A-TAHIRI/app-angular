@@ -20,6 +20,7 @@ i:number=0;
 
 
 
+
   @Output()
   suppritionResult = new EventEmitter();
 

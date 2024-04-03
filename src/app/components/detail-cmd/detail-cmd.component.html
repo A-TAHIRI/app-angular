@@ -1,3 +1,4 @@
+<div *ngIf="ligneCommande.quantite!==0 || ligneCommande.article!==null ">
 <h5 class="card-title " *ngIf="i==0">Ligne de commade</h5>
     <table class="table table-borderless">
       <thead *ngIf="i==0"  class="table-secondary mb-5">
@@ -15,7 +16,7 @@
         <td  >{{ligneCommande.article?.codeArticle}}</td>
         <td  > {{ligneCommande.article?.designation}}</td>
         <td  > {{ligneCommande.article?.categorie.designation}}</td>
-        <td  > <button  type="button" class="border-0" (click)="moins()"><i class="bi bi-dash-circle-fill text-danger"></i></button>  &nbsp;{{ligneCommande.quantite}}&nbsp; <button class="border-0" type="button " (click)="plus()"><i class="bi bi-plus-circle-fill text-success"></i></button> </td>
+        <td  > <button   type="button" class="border-0" (click)="moinsClick()"><i class="bi bi-dash-circle-fill text-danger"></i></button>  &nbsp;{{ligneCommande.quantite}}&nbsp; <button  class="border-0" type="button " (click)="plusClick()"><i class="bi bi-plus-circle-fill text-success"></i></button> </td>
         <td > {{   ligneCommande.prixUnitaire  }} &nbsp; €</td>
         <td > {{  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') }}&nbsp;€</td>
 
@@ -23,5 +24,5 @@
       </tbody>
     </table>
 
-
+</div>
 
