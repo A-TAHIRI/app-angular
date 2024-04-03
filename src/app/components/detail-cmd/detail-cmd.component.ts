@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-detail-cmd',
@@ -14,11 +15,25 @@ export class DetailCmdComponent  implements  OnInit{
 
   @Input()
   ligneCommande :any={};
-  constructor() {
+  constructor(private  router : Router) {
   }
   ngOnInit(): void {
   }
 
 
+  moins() {
+    const url= this.router.url;
 
+    if(url== '/dashboard/nouvellecommandeclt' || url=='/dashboard/nouvellecommandefrs'){
+      this.ligneCommande.quantite -=1;
+    }
+
+  }
+  plus(){
+    const url= this.router.url;
+    if (url== '/dashboard/nouvellecommandeclt'|| url=='/dashboard/nouvellecommandefrs'){
+      this.ligneCommande.quantite +=1;
+    }
+
+  }
 }

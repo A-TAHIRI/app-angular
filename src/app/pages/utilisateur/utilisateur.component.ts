@@ -37,7 +37,8 @@ export class UtilisateurComponent implements OnInit {
    */
   tousUtilisateurs(){
     this.utilisateurService.getAll().subscribe((data)=>{
-      this.liste= data;
+      // @ts-ignore
+      this.liste= data.sort((a, b)=>  b.id -a.id);
     },(error)=>{
       this.errorMsg=error.error.errors
     })

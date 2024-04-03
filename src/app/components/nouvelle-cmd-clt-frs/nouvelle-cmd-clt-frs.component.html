@@ -30,7 +30,6 @@
               <div class=" row form-group m-lg-2 ">
                 <label for="Code commade" class="col-md-4 form-label ">Code commade </label>
                 <div class="col-md-8"> <input type="text" id="Code commade" class="  form-control " name="codeCommande" placeholder="Code commande" [(ngModel)]="codeCommande" style="box-shadow: none"></div>
-
               </div>
               <div class="row form-group m-lg-2">
                 <label for="Code commade" class="col-md-4 form-label ">Coordonnées de {{origin}}</label>
@@ -47,12 +46,12 @@
           </div>
           <!---article commander-->
           <div class="col-md-6">
-              <div class=" m-lg-2 row">
+              <div class=" m-lg-2 row position-relative">
                 <label for="Code article" class="col-md-4 form-label ">Code article </label>
                 <div class=" col-md-8">
                 <input type="text" id="Code article" class="form-control" placeholder="Code article" [(ngModel)]="codeArticle" (input)="filtrerArticle()" style="box-shadow: none">
                 </div>
-                <div *ngIf="codeArticle.length && !articleNotYetSelected" class="col-md-8  autocomplete shadow p-3 mb-5 bg-white rounded">
+                <div *ngIf="codeArticle.length && !articleNotYetSelected" class="col-md-8 autocomplete shadow p-3 mb-5 bg-white rounded  text-center position-absolute bottom-0 end-0 ">
                   <p class="p-1" *ngFor="let article of listArticle"
                      (click)="selectArticleClick(article)"
                   >
@@ -84,6 +83,7 @@
         <!--ling de commande-->
         <div class="row mt-2 p-3 custom-border" style="max-height: 300px;overflow-y: scroll">
           <div class="col-md-12">
+
             <app-detail-cmd *ngFor="let ligne of lignesCommande let i = index"
                             [ligneCommande]="ligne"
                             [i]="i"
@@ -94,7 +94,7 @@
 
         <!--total-->
         <div class="row mt-2 p-6 custom-border ">
-          <div class="col-md-12 text-end" >
+          <div class="col-md-12 text-end pe-5" *ngIf="totalCommande>0" >
             <h3 style="color: #4a5464">Total de la commande: {{ totalCommande }}&nbsp;€</h3>
           </div>
         </div>
@@ -119,9 +119,9 @@
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center" *ngIf="selectedClientFournisseur.nom">
 
           <img  [src]="selectedClientFournisseur.photo ? imgUrl+selectedClientFournisseur.photo :  'assets/image/user.png' "  alt="Profile" class="rounded-circle" width="110px" height="110px" >
-          <h2>{{ selectedClientFournisseur.nom }}{{ selectedClientFournisseur.prenom }}</h2>
-          <h3>{{ selectedClientFournisseur.numTel }}</h3>
-          <h4>EN PREPARATION</h4>
+          <h2 class="text-start  "  style="color: #0e1d34"><i class="bi bi-person-check-fill text-secondary"></i>&nbsp;&nbsp;{{ selectedClientFournisseur.nom }}{{ selectedClientFournisseur.prenom }}</h2>
+          <h3 class="text-start" style="color: #0e1d34"><i class="bi bi-telephone-forward-fill text-secondary"></i>&nbsp;&nbsp;{{ selectedClientFournisseur.numTel }}</h3>
+          <h5 class="text-start" style="color: #0e1d34"><i class="bi bi-cart-check-fill text-secondary"></i>&nbsp;&nbsp;EN PREPARATION</h5>
           <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

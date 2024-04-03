@@ -12,16 +12,16 @@
   </thead>
   <tbody>
   <tr data-aos="zoom-in">
-    <td  ><img [src]="imgUrl " alt="article" ></td>
+    <td  ><img [src]="imgUrl " alt="article" width="50" height="50"></td>
     <td class="text-primary fw-bold">{{ article.codeArticle }}</td>
     <td class="text-primary fw-bold">{{ article.designation }}</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireHt }}€</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireTtc }} €</td>
     <td class=" text-primary  fw-bold">{{ article.categorie?.designation }}</td>
-    <td class=" text-primary  fw-bold">
+    <td class=" text-primary  fw-bold" style="position: relative">
       <div class="action" >
         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"  >
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bottom-0 end-0"  style="position: absolute; ">
           <li class="dropdown-header text-start" >
             <h6>Actions</h6>
           </li>

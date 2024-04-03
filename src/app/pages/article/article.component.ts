@@ -38,7 +38,7 @@ export class ArticleComponent implements OnInit {
 
    private articles() {
      this.articleService.getAll().subscribe((data)=> {
-         this.liste = data;
+         this.liste = data.sort((a,b)=> b.id -a.id);
 
        }
        )

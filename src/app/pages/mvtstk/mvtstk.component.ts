@@ -26,7 +26,8 @@ export class MvtstkComponent implements OnInit{
    */
   mvtstksByArticle(id?:number){
     this.mvtstkService.getAllByArticle(id).subscribe(data=>{
-      this.mvtstksByidArticle=data;
+      // @ts-ignore
+      this.mvtstksByidArticle=data.sort((a,b)=>  b.id -a.id);
     })
   }
 
@@ -35,7 +36,8 @@ export class MvtstkComponent implements OnInit{
    */
   mvtstkByIdArticle(){
     this.mvtstkService.getMvtstkGroupByAricle().subscribe(data=>{
-      this.mvtstkGroupByIdArticle=data;
+      // @ts-ignore
+      this.mvtstkGroupByIdArticle=data.sort((a,b)=>  b.id -a.id);
 
     })
   }

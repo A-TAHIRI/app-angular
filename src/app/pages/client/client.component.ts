@@ -28,7 +28,8 @@ export class ClientComponent implements OnInit {
 
   clients(){
     this.clientService.getAll().subscribe(data=>{
-      this.liste=data;
+      // @ts-ignore
+      this.liste=data.sort((a, b )=>  b.id -a.id);
     })
   }
 

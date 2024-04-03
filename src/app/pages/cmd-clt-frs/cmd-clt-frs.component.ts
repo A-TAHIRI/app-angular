@@ -48,12 +48,12 @@ export class CmdCltFrsComponent  implements OnInit {
   commandesClientFournisseur(){
     if (this.origin === 'fournisseur'){
     this.commandeFournisseurService.getAll().subscribe(cmd=>{
-      this.listCommande= cmd;
+      this.listCommande= cmd.sort((a,b)=> b.id -a.id);
       this.findAllLignesCommande();
     })
     }else if (this.origin === 'client'){
       this.commandeClientService.getAll().subscribe(cmd=>{
-        this.listCommande= cmd;
+        this.listCommande= cmd.sort((a,b)=> b.id -a.id);
         this.findAllLignesCommande();
       })
     }

@@ -28,7 +28,8 @@ export class FournisseurComponent implements OnInit {
 
   fournisseurs(){
     this.fournisseurService.getAll().subscribe(data=>{
-      this.liste=data;
+      // @ts-ignore
+      this.liste=data.sort((a, b)=>  b.id -a.id);
     })
   }
 

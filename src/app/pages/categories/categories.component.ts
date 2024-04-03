@@ -46,7 +46,7 @@ export class CategoriesComponent implements OnInit {
    */
   getAll(){
    this.categorieService.getToutesCategories().subscribe((data)=>{
-     this.liste=data;
+     this.liste=data.sort((a: { id: number; }, b: { id: number; })=>  b.id -a.id);
    }, error => {
      this.errorsMsg=error.error.errors
      }
