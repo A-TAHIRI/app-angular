@@ -1,4 +1,5 @@
-<div class="pagetitle">
+<div class="pagetitle" >
+  <button (click)="pdf('cccc')">pdf</button>
   <h1>Commande {{ origin }}s</h1>
   <nav>
     <ol class="breadcrumb">
@@ -9,7 +10,7 @@
   </nav>
 </div><!-- End Page Title -->
 
-<section class="section dashboard" data-aos="fade-down">
+<section class="section dashboard" data-aos="fade-down" id="cccc" >
   <div class="row">
 
     <!-- Top Selling -->
@@ -28,6 +29,7 @@
               <button class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
                       [attr.data-bs-target]="'#collapse'+cmd.id"
                       (click)="findLignesCommande(cmd.id)"
+
                       aria-expanded="true"
                       aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0; ">
 
@@ -82,6 +84,39 @@
 </section>
 
 
+<section class="container facture" id="order" style="width: 100vw; height: 100vh; ">
+  <div class="facure-header d-flex justify-content-between" style=" background-color: #6ca0f5;" >
+    <div></div>
+    <div></div>
 
+  </div>
+  <div class="facture-cordonnes d-flex justify-content-around" style=" background-color: #6ca0f5;">
+    <div>
+      <h4>Facturé à</h4>
+    </div>
+    <div>
+      <h4>Envoyé à</h4>
+    </div>
+    <div>
+      <h4>Facture n° :  &nbsp;&nbsp;
+
+      </h4>
+    </div>
+
+  </div>
+  <div class="facture-ligne-commade" style=" background-color: #6ca0f5;">
+    <div></div>
+
+  </div>
+  <div class="facture-signatue" style="">
+    <div></div>
+
+
+  </div>
+  <div class="facture-footer" style="">
+    <div></div>
+
+  </div>
+</section>
 
 

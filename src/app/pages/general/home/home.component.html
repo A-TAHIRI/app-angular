@@ -145,31 +145,32 @@
 
         <div class="col-xl-6">
           <div class="card p-4" style="background: rgba(256,256,256,0)">
-            <form action="" method="post" class="php-email-form" style="background: rgba(256,256,256,0);">
+            <form method="POST"  style="background: rgba(256,256,256,0);"class="php-email-form">
               <div class="row gy-4">
+                <div *ngIf="errorMsg.length>0" class="alert alert-danger">
+                  <div *ngFor="let msg of errorMsg" ><span>{{msg}}</span></div>
+                </div>
+                <div *ngIf="msgSucces" class="alert alert-success">{{msgSucces}}</div>
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Votre Nom" required>
+                  <input type="text" name="name" class="form-control" placeholder="Votre Nom" [(ngModel)]="contact.nom ? contact.nom : connectedUser.nom">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Votre Email" required>
+                  <input type="email" class="form-control" name="email" placeholder="Votre Email" [(ngModel)]="contact.email ? contact.nom : connectedUser.email">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Objet" required>
+                  <input type="text" class="form-control" name="subject" placeholder="Objet" [(ngModel)]="contact.sujet" >
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" [(ngModel)]="contact.message" ></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit"><i class="bi bi-send"></i> &nbsp;Envoyer&nbsp;</button>
+                  <button type="submit" (click)="contacter()"><i class="bi bi-send"></i> &nbsp;Envoyer&nbsp;</button>
                 </div>
 
               </div>

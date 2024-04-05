@@ -3,6 +3,8 @@ import {UtilisateurService} from "../../../services/utilisateur/utilisateur.serv
 import {UtilisateurDto} from "../../../dto/utilisateur-dto";
 import { Router} from "@angular/router";
 import {MesServicesService} from "../../../services/mesServices/mes-services.service";
+import {ContactService} from "../../../services/contact/contact.service";
+import {Contact} from "../../../models/contact";
 
 
 
@@ -19,10 +21,14 @@ export class HomeComponent implements OnInit {
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   isConnected: boolean = false;
   mesServices!: any[];
+  contact :Contact={};
+  msgSucces='';
+  errorMsg :Array<string>=[];
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private  utilisateurService: UtilisateurService,
+    private  contactSerice :ContactService,
     private  router: Router,
     private  services:MesServicesService
 
@@ -49,6 +55,21 @@ export class HomeComponent implements OnInit {
 
 
 
+  }
+
+  contacter(){
+    if (this.utilisateurService.getConnectedUser()){
+      this.contact.nom= this.utilisateurService.getConnectedUser().nom;
+      this.contact.email=this.utilisateurService.getConnectedUser().email;
+
+    }
+    this.contactSerice.add(this.contact).subscribe(data=>{
+      this.msgSucces='Merci ! Le message à été bien envoyer';
+      this.contact={};
+
+    },error =>{
+      this.errorMsg= error.error.errors
+    });
   }
 
 

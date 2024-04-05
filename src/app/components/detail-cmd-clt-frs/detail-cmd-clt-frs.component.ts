@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {GenererPdfService} from "../../services/genererPdf/generer-pdf.service";
 
 @Component({
   selector: 'app-detail-cmd-clt-frs',
@@ -17,11 +18,16 @@ export class DetailCmdCltFrsComponent  implements OnInit{
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   cltFrs: any={};
-  constructor() {
+
+  constructor(private genererPdfService : GenererPdfService  ) {
   }
   ngOnInit(): void {
     this.extractClientFournisseur()
     this.imgUrl = this.cltFrs ? 'http://localhost:8082/file/image/'+this.cltFrs?.photo :'assets/image/user.png' ;
+  }
+
+  pdf(id :string){
+    this.genererPdfService.generatedPDF(id);
   }
 
   extractClientFournisseur(): void {

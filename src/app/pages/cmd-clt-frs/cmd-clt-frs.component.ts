@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {CommandeclientService} from "../../services/commandeclient/commandeclient.service";
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
+import {GenererPdfService} from "../../services/genererPdf/generer-pdf.service";
 
 @Component({
   selector: 'app-cmd-clt-frs',
@@ -20,9 +21,8 @@ export class CmdCltFrsComponent  implements OnInit {
      private router: Router,
      private activatedRoute: ActivatedRoute,
      private commandeClientService: CommandeclientService,
-     private commandeFournisseurService : CommandefournisseurService
-
-
+     private commandeFournisseurService : CommandefournisseurService,
+     private  genererPdfService: GenererPdfService
     ) { }
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
@@ -40,6 +40,9 @@ export class CmdCltFrsComponent  implements OnInit {
     } else if (this.origin === 'fournisseur') {
       this.router.navigate(['dashboard/nouvellecommandefrs']);
     }
+  }
+  pdf(id :string){
+    this.genererPdfService.generatedPDF(id);
   }
 
   /**
