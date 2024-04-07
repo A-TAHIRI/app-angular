@@ -11,9 +11,18 @@ export class EntrepriseService {
 
   constructor(private http: HttpClient) { }
 
-  
+
   add(entreprise: Entreprise): Observable<Object> {
     const url = `${this.baseUrl}/entreprises`;
     return this.http.post(url, entreprise);
+  }
+
+  /**
+   * Service pour récupiré l'entreprise par son id
+   * @param id
+   */
+  getById(id:number){
+    const url = `${this.baseUrl}/entreprises/${id}`;
+    return this.http.get(url);
   }
 }

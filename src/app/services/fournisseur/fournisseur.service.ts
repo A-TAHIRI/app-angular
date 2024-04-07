@@ -25,7 +25,7 @@ export class FournisseurService {
    * Service qui retourne un fournisseur
    * @param id
    */
-  getFournisseur(id?: number){
+  getFournisseur(id?: number):Observable<Fournisseur>{
     if (id){
       const url = this.baseUrl+`/${id}`;
       return  this.http.get(url)

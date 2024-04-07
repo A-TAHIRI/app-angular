@@ -1,0 +1,30 @@
+.facture{
+  font-family: "Nunito", sans-serif;
+}
+th{
+  background-color: #0e1d34;
+  color: #FFFFFF;
+}
+td{
+font-weight: bold;
+background: #e9ecef;
+  color: #0e1d34;
+}
+h5{
+padding-bottom: 20px;
+
+}
+li{
+  color: #0e1d34;
+  text-decoration: none;
+  list-style: none;
+}
+.bi {
+  font-size: 22px; /* Taille de la police de l'icône */
+  vertical-align: middle; /* Alignement vertical pour centrer l'icône */
+  margin-right: 8px; /* Marge à droite pour séparer l'icône du texte */
+  color: #0e1d34;
+}
+button{
+  font-family: "Nunito", sans-serif;
+}

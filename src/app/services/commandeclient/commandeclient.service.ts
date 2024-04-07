@@ -29,12 +29,28 @@ export class CommandeclientService {
     return this.http.get<any>(url)
   }
 
+  /**
+   * Service qui retourne les ligneCommande client par id de commade
+   * @param idCommande
+   */
   findAllLigneCommandesClient(idCommande?: number):Observable<any[]> {
     if (idCommande){
       const url =this.baseUrl+`/lignesCommande/${idCommande}`;
      return this.http.get<any>(url);
     }
     return of();
+  }
+
+  /**
+   * Service qui retourne la commande  client par son id
+   * @param id
+   */
+  getById(id?:number):Observable<any>{
+    if(id){
+      const  url = this.baseUrl+`/${id}`;
+      return this.http.get(url);
+    }
+    return of()
   }
 
 

@@ -12,6 +12,7 @@ export class GenererPdfService {
 generatedPDF(id:string){
    const elmentToPrint:any = document.getElementById(id) ;
 
+
    html2canvas(elmentToPrint, {scale:2}).then((canvas)=>{
      const  pdf = new jsPDF();
      pdf.addImage(canvas.toDataURL('/img/img'),'PNG,JPG', 0,0,211,298);

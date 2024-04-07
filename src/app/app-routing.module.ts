@@ -30,6 +30,7 @@ import {CaracteridtiqueDetailsComponent} from "./components/caracteridtique-deta
 import {RGPDComponent} from "./pages/general/rgpd/rgpd.component";
 import {CGUComponent} from "./pages/general/cgu/cgu.component";
 import {MotPasseOublieComponent} from "./pages/profil/mot-passe-oublie/mot-passe-oublie.component";
+import {FactureComponent} from "./pages/general/facture/facture.component";
 
 
 const routes: Routes = [
@@ -80,6 +81,13 @@ children:[
     data: {
       origin: 'client'
     }},
+
+  {path:'facture/commandesclient/:idcommande' ,component: FactureComponent,
+    canActivate: [ApplicationGuardService],
+    data: {
+      origin: 'client'
+    }
+  },
   {path: 'nouvellecommandeclt', component: NouvelleCmdCltFrsComponent,
     canActivate: [ApplicationGuardService],
     data: {
@@ -91,6 +99,13 @@ children:[
     data: {
       origin: 'fournisseur'
     }},
+
+  {path:'facture/commandesfournisseur/:idcommande' ,component: FactureComponent,
+    canActivate: [ApplicationGuardService],
+    data: {
+      origin: 'fournisseur'
+    }
+  },
   {path: 'nouveaufournisseur', component: NouveauCltFrsComponent,
     canActivate: [ApplicationGuardService],
     data: {

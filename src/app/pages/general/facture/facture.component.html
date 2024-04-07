@@ -1,0 +1,123 @@
+<div class="text-end  " style=" margin: 0 111px 0 111px ; background: #e9ecef;  "><button style="background-color: #0e1d34 ; color: #FFFFFF; border: none; padding: 5px; border-radius: 5px; " class="  text-light fw-bold" type="button" (click)="Telecharger('order')"><i class="bi bi-file-pdf-fill text-light"></i> Telecharger</button></div>
+
+<section class="container facture  section  dashboard  " id="order"
+         style="width: 100vw;   padding: 100px 0 0 0;  ;background:#e9ecef ; ">
+
+  <!--
+  <div class=" container facure-header d-flex justify-content-around  " style=" padding: 0 20px; margin-bottom: 75px; ">
+    <div class="d-flex justify-content-center align-items-center gap-2"> <img [src]="'http://localhost:8082/file/image/'+entreprise.image" class="rounded-circle " width="50" height="50"><h2 class="fw-bold " style="color: #0e1d34">{{entreprise.nom}}</h2></div>
+    <div class="d-flex justify-content-center align-items-center gap-2"> <img [src]=" cltfrs.photo ?'http://localhost:8082/file/image/'+cltfrs.photo: 'assets/image/user.png'" class="rounded-circle" width="50" height="50"></div>
+
+  </div>
+  -->
+  <div class=" container facture-cordonnes d-flex justify-content-around "
+       style=" padding: 0 20px; margin-bottom: 75px ; width: 80%">
+    <!-- coordonnée entreprise-->
+    <div>
+      <ul >
+        <h5 class="fw-bold text-primary">Facturé à</h5>
+        <li><i class="bi bi-person-fill-up">&nbsp;</i>{{entreprise.nom}}</li>
+        <li><i class="bi bi-geo-alt-fill"></i>&nbsp;{{entreprise.adresse?.adresse1}}, &nbsp;{{ entreprise.adresse?.ville }}</li>
+        <li> <i class="bi bi-telephone-fill"></i>&nbsp;{{ entreprise.numTel }}</li>
+      </ul>
+    </div>
+
+    <!-- cordonnées clt/frs-->
+    <div>
+      <ul>
+        <h5 class="fw-bold text-primary">Envoyé à</h5>
+        <li><i class="bi bi-person-fill-down">&nbsp;</i>{{cltfrs.nom}} {{cltfrs.prenom}}</li>
+        <li><i class="bi bi-geo-alt-fill"></i>&nbsp;{{cltfrs.adresse.adresse1}}, &nbsp;{{cltfrs.adresse.ville}}</li>
+
+        <li><i class="bi bi-telephone-fill"></i>&nbsp;{{cltfrs.numTel}}</li>
+      </ul>
+    </div>
+
+    <!-- command -->
+    <div>
+      <ul>
+        <h5 class="fw-bold text-primary">Facture n° : 24-{{ commande.id }}</h5>
+        <li><i class="bi bi-calendar-check-fill"></i>&nbsp; {{commande.dateCommande | date:'dd/MM/YYY' }}</li>
+        <li><i class="bi bi-upc  "  ></i>&nbsp; n° : {{commande.id}}</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- ligne de commande -->
+  <div class=" container facture-ligne-commade" style=" padding: 0 100px;  width: 80%; ">
+    <div>
+      <table class="table table-borderless">
+        <thead class="table-secondary mb-5">
+        <tr data-aos="zoom-in">
+          <th class="fw-bold text-center" scope="col">N°</th>
+          <th class="fw-bold text-center" scope="col">Désignation</th>
+          <th class="fw-bold text-center" scope="col">Prix Unit.HT</th>
+          <th class="fw-bold text-center" scope="col">Qté</th>
+          <th class="fw-bold text-center" scope="col">Montant HT</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-aos="zoom-in" *ngFor="let ligne of lignesCommandes; let i =index; ">
+          <td class="text-center">{{ i+1}}  </td>
+          <td class="text-center">{{ligne.article.designation}}</td>
+          <td class="text-center"> {{ligne.article.prixUnitaireHt}}</td>
+          <td class="text-center"> {{ligne.quantite}}
+          </td>
+          <td class="text-center">{{ligne.article.prixUnitaireHt * ligne.quantite}} €
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class=" fw-bold d-flex justify-content-end align-items-center gap-5  " style="background:#e9ecef ">
+      <div class="col col-3 text-start" style="background:#e9ecef ">
+        <div class="pb-2 pt-3">Total HT</div>
+        <div class="pb-2"> TVA 20 %</div>
+        <div class="text-primary pb-2">Totale de la facture :</div>
+
+      </div>
+      <div class="col col-3 text-center" style="background:#e9ecef ">
+        <div class="pb-2 pt-3">{{calculerTatalCmdSonTva(lignesCommandes)}} €</div>
+        <div class="pb-2">{{tva(lignesCommandes) }} €</div>
+        <div class="text-primary pb-2" >{{calculerTatalCmd(lignesCommandes)}} €</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- signature-->
+  <div class=" container   facture-signatue" style=" padding: 20px 100px 100px 20px ;width: 80% ">
+    <div class="container  d-flex justify-content-end">
+       <img src="assets/image/signature.png" width="150px">
+    </div>
+
+  </div>
+
+  <!-- footer-->
+  <div class="  container  d-flex justify-content-around align-items-center   " style=" padding: 20px ;   background: #0e1d34 ;  ">
+    <div style="color: #FFFFFF">
+      <ul>
+        <h4>Terms & Conditions</h4>
+        <li class="text-light">Adresse </li>
+        <li class="text-light">Ville</li>
+        <li class="text-light">Payé</li>
+        <li class="text-light">Phone</li>
+      </ul>
+
+    </div>
+    <div style="color: #FFFFFF">
+      <h4>Payement Method</h4>
+      <li>Paypal</li>
+    </div>
+
+  </div>
+
+</section>
+

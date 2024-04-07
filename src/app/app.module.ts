@@ -53,6 +53,7 @@ import { CaracteridtiqueDetailsComponent } from './components/caracteridtique-de
 import { RGPDComponent } from './pages/general/rgpd/rgpd.component';
 import { CGUComponent } from './pages/general/cgu/cgu.component';
 import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-passe-oublie.component';
+import { FactureComponent } from './pages/general/facture/facture.component';
 
 
 
@@ -104,7 +105,8 @@ import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-pas
     CaracteridtiqueDetailsComponent,
     RGPDComponent,
     CGUComponent,
-    MotPasseOublieComponent
+    MotPasseOublieComponent,
+    FactureComponent
 
 
 

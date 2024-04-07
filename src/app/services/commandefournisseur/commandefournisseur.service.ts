@@ -28,7 +28,10 @@ export class CommandefournisseurService {
     const url = this.baseUrl;
     return this.http.get<any>(url)
   }
-
+  /**
+   * Service qui retourne les ligneCommande fournisseur par id de commade
+   * @param idCommande
+   */
   findAllLigneCommandesFournisseur(idCommande?: number):Observable<any[]> {
     if (idCommande){
       const url =this.baseUrl+`/lignesCommande/${idCommande}`;
@@ -36,4 +39,17 @@ export class CommandefournisseurService {
     }
     return of();
   }
+
+  /**
+   * Service qui retourne la commande  fournisseur par son id
+   * @param id
+   */
+  getById(id?:number):Observable<any>{
+    if(id){
+      const  url = this.baseUrl+`/${id}`;
+      return this.http.get(url);
+    }
+    return of()
+  }
+
 }

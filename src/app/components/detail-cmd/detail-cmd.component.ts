@@ -11,6 +11,7 @@ export class DetailCmdComponent  implements  OnInit{
   i:number=0;
   url ='';
 
+
   @Input()
   origin='';
 

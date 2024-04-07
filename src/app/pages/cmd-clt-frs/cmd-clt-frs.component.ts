@@ -10,12 +10,13 @@ import {GenererPdfService} from "../../services/genererPdf/generer-pdf.service";
   styleUrls: ['./cmd-clt-frs.component.css']
 })
 export class CmdCltFrsComponent  implements OnInit {
-
+ commadetype='';
   origin = '';
   listCommande:Array<any>=[];
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
   lignesCommandes: Array<any>=[];
+
 
   constructor(
      private router: Router,
@@ -29,6 +30,7 @@ export class CmdCltFrsComponent  implements OnInit {
       this.origin = data['origin'];
     });
     this.commandesClientFournisseur();
+
   }
 
   /**

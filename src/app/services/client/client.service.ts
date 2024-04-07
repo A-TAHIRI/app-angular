@@ -25,7 +25,7 @@ export class ClientService  {
    * Service qui retourne un Client
    * @param id
    */
-  getClinet(id?: number){
+  getClinet(id?: number):Observable<Client>{
     if (id){
       const url = this.baseUrl+`/${id}`;
       return  this.http.get(url);
