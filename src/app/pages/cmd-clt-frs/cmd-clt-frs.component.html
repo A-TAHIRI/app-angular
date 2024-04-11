@@ -1,5 +1,4 @@
 <div class="pagetitle" >
-  <button (click)="pdf('cccc')">pdf</button>
   <h1>Commande {{ origin }}s</h1>
   <nav>
     <ol class="breadcrumb">
@@ -10,7 +9,7 @@
   </nav>
 </div><!-- End Page Title -->
 
-<section class="section dashboard" data-aos="fade-down" id="cccc" >
+<section class="section dashboard position-relative" data-aos="fade-down"  >
   <div class="row">
 
     <!-- Top Selling -->
@@ -44,7 +43,7 @@
               <div [attr.id]="'collapse'+cmd.id" class="collapse" data-bs-parent="#accordionExample"
                    style="max-height: 300px;
                           overflow-y: scroll">
-                <div class="card-body container">
+                <div class="card-body container position-relative z-1">
 
                   <app-detail-cmd
                     *ngFor="let ligne of mapLignesCommande.get(cmd.id) let i=index"

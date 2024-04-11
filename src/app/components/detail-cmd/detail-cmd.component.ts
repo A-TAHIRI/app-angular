@@ -21,9 +21,10 @@ export class DetailCmdComponent  implements  OnInit{
 
 
   @Output()
-  pluss = new EventEmitter();
+  pluss = new EventEmitter<number>();
+
   @Output()
-  minus = new EventEmitter();
+  minus = new EventEmitter<number>();
 
 
   constructor(private  router : Router) {
@@ -31,11 +32,12 @@ export class DetailCmdComponent  implements  OnInit{
   ngOnInit(): void {
   }
 
-  moinsClick(): void {
-    this.minus.emit();
+  moinsClick(id :number): void {
+    console.log(id)
+    this.minus.emit(id);
   }
-  plusClick(): void {
-    this.pluss.emit();
+  plusClick(id:number): void {
+    this.pluss.emit(id);
   }
 
 

@@ -26,7 +26,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   errorMsg: Array<string> = [];
   searchedArticle: Article = {};
   codeArticle = '';
-  quantite = '';
+  quantite :any ;
   lignesCommande: Array<any> = [];
   codeCommande = '';
   totalCommande = 0;
@@ -102,19 +102,19 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   enregistrerCommande() {
     const commande = this.preparerCommande();
     if (this.origin === 'client') {
-      if (commande.ligneCommandeClients.length!=0){
+      if (commande.ligneCommandeClients.length != 0) {
         this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
           this.router.navigate(['dashboard/commandesclient'])
         }, error => {
           this.errorMsg = error.error.errors;
         });
 
-      }else{
+      } else {
         this.errorMsg.push("Veuillez renseigner le code de l'articl et la quantité")
       }
 
     } else if (this.origin === 'fournisseur') {
-      if (commande.ligneCommandeFournisseurs.length!=0) {
+      if (commande.ligneCommandeFournisseurs.length != 0) {
         this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
           this.router.navigate(['dashboard/commandesfournisseur']);
         }, error => {
@@ -143,13 +143,16 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour ajouter une ligne de commade a la commande client/fournisseur
    */
   ajouterLigneCommande() {
-    this.checkLigneCommande();
-    this.calculerTotalCommande();
-    this.searchedArticle = {};
-    this.quantite = '';
-    this.codeArticle = '';
-    this.articleNotYetSelected = false;
-    this.findAllArticle();
+
+      this.checkLigneCommande();
+      this.calculerTotalCommande();
+      this.searchedArticle = {};
+      this.quantite = '';
+      this.codeArticle = '';
+      this.articleNotYetSelected = false;
+      this.findAllArticle();
+
+
   }
 
   /**
@@ -194,7 +197,9 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         if (ligneCmd.article == null || ligneCmd.quantite == 0) {
           const msg = "Veuillez rensigner les données de l'article";
           this.errorMsg.push(msg);
-        }else {  this.lignesCommande.push(ligneCmd);}
+        } else {
+          this.lignesCommande.push(ligneCmd);
+        }
 
 
       } else if (this.origin === 'client') {
@@ -208,7 +213,9 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         if (ligneCmd.article == null || ligneCmd.quantite == 0) {
           const msg = "Veuillez ajouter les données de l'article.";
           this.errorMsg.push(msg);
-        }else { this.lignesCommande.push(ligneCmd);}
+        } else {
+          this.lignesCommande.push(ligneCmd);
+        }
 
       }
     }
@@ -254,23 +261,43 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.router.navigate(['/dashboard/commandes' + this.origin])
   }
 
-  plus() {
-    const url = this.router.url;
-    if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
-      this.lignesCommande.forEach(ele => {
-        ele.quantite += 1;
-      })
-      this.calculerTotalCommande()
+
+  /**
+   * Method pour augmenter la quantité d'une ligne de commade par son id
+   * @param id
+   */
+  plus(id: number) {
+    if (this.lignesCommande[id]&& this.lignesCommande[id].quantite>=0) {
+      const url = this.router.url;
+      if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
+       this.lignesCommande[id].quantite += 1;
+
+        this.calculerTotalCommande()
+      }
     }
+
+
   }
 
-  moins() {
-    const url = this.router.url;
-    if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
-      this.lignesCommande.forEach(ele => {
-        ele.quantite -= 1
-      })
-    this.calculerTotalCommande()
+  /**
+   * Method pour diminuer la quantité d'une ligne de commade par son id , et lorsque la quantité atendre 0 en supprime la ligne de la liste de  ligne de commade
+   * @param id
+   */
+  moins(id: number) {
+    if (this.lignesCommande[id] && this.lignesCommande[id].quantite>=1) {
+      const url = this.router.url;
+      if (url == '/dashboard/nouvellecommandeclt' || url == '/dashboard/nouvellecommandefrs') {
+         this.lignesCommande[id].quantite -= 1;
+        this.calculerTotalCommande()
+      }
+      if (this.lignesCommande[id].quantite==0){
+        this.lignesCommande.splice(id);
+        this.calculerTotalCommande()
+      }
+
+
     }
+
   }
+
 }

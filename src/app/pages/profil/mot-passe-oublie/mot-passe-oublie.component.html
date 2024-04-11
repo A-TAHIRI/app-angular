@@ -23,7 +23,7 @@
             <h4 class="mb-2">Mot de passe oublié?  🔒</h4>
             <p class="mb-4">Entrez votre email et nous vous enverrons des instructions pour réinitialiser votre mot de passe</p>
 
-
+                <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
             <form id="formAuthentication" class="mb-3 p-lg-3"  method="POST" >
               <div class="mb-3">
                 <label for="email" class="form-label">Email </label>
@@ -35,12 +35,13 @@
                   placeholder="Entrer votre email"
                   autofocus
                   style="box-shadow: none; "
+                  [(ngModel)]="userEmail"
                 />
               </div>
 
 
               <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit"  >Envoyer le lien de réinitialisation</button>
+                <button class="btn btn-primary d-grid w-100" type="submit"  (click)="send()" >Envoyer le lien de réinitialisation</button>
               </div>
             </form>
 

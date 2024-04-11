@@ -16,15 +16,22 @@ export class BouttonActionComponent  implements OnInit {
   isImporterVisible = true;
   @Output()
   clickEvent = new EventEmitter();
+  @Output()
+  exportEvent= new EventEmitter();
 
   ngOnInit(): void {
-    
+
   }
   constructor() { }
 
-  
+
   bouttonNouveauClick(): void {
     this.clickEvent.emit();
+  }
+
+
+  buttonExport(){
+    this.exportEvent.emit()
   }
 
 }

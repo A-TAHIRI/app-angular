@@ -29,6 +29,7 @@
     "html2canvas": "^1.4.1",
     "jquery": "^3.5.1",
     "jspdf": "^2.5.1",
+    "jwt-decode": "^4.0.0",
     "masonry-layout": "^4.2.1",
     "ngx-owl-carousel-o": "^16.0.0",
     "ngx-wow": "^2.0.1",

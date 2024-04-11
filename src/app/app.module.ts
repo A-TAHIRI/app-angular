@@ -54,6 +54,7 @@ import { RGPDComponent } from './pages/general/rgpd/rgpd.component';
 import { CGUComponent } from './pages/general/cgu/cgu.component';
 import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-passe-oublie.component';
 import { FactureComponent } from './pages/general/facture/facture.component';
+import { ResetPasswordComponent } from './pages/profil/reset-password/reset-password.component';
 
 
 
@@ -106,7 +107,8 @@ import { FactureComponent } from './pages/general/facture/facture.component';
     RGPDComponent,
     CGUComponent,
     MotPasseOublieComponent,
-    FactureComponent
+    FactureComponent,
+    ResetPasswordComponent
 
 
 
