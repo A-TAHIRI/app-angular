@@ -7,6 +7,7 @@ import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {ArticleDto} from "../../../dto/article-dto";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-nouvel-article',
@@ -30,7 +31,8 @@ export class NouvelArticleComponent implements OnInit {
     private categorieService: CategorieService,
     private fileUploadService: FileUploadService,
     private utilisateurService: UtilisateurService,
-    private activatedRouter : ActivatedRoute
+    private activatedRouter : ActivatedRoute,
+    private notificationService:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -65,10 +67,12 @@ export class NouvelArticleComponent implements OnInit {
     this.article.categorie=this.categorie;
     this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise?.id
     this.articleService.add(this.article).subscribe(() => {
+      this.notificationService.success('L\'article a été ajouté avec succès.')
       this.router.navigate(['dashboard/articles']);
     },
       error => {
-      this.errorsMsg=error.error.errors
+      this.notificationService.showErrors(error.error.errors);
+       this.router.navigate(['dashboard/nouvelarticle'])
       }
     );
   }
@@ -84,10 +88,12 @@ export class NouvelArticleComponent implements OnInit {
        this.pathFile=res.pathFile;
        this.playImage = 'http://localhost:8082/file/image/' + res.pathFile;
        this.article.image = res.pathFile;
+       this.notificationService.success('File uploaded success');
        console.log('File uploaded success');
 
      },
      (error) => {
+       this.notificationService.error('Error uploading file:'+ error)
        console.error('Error uploading file:', error);
      }
    );

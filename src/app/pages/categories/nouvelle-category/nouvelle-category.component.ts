@@ -5,6 +5,7 @@ import {Categorie} from "../../../models/categirie";
 import {CategorieDto} from "../../../dto/categorie-dto";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {FileUploadService} from "../../../services/upload/file-upload.service";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-nouvelle-category',
@@ -21,7 +22,8 @@ export class NouvelleCategoryComponent implements OnInit {
     private categorieService: CategorieService,
     private utilisateurService : UtilisateurService,
     private  activatedRouter:ActivatedRoute,
-    private fileUploadService:FileUploadService
+    private fileUploadService:FileUploadService,
+    private notificationService:NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -47,11 +49,11 @@ export class NouvelleCategoryComponent implements OnInit {
     // @ts-ignore
     this.categorie.idEntreprise = this.utilisateurService.getConnectedUser().entreprise.id;
     this.categorieService.ajouterCategorie(this.categorie).subscribe((data)=>{
-       console.log(data);
+      this.notificationService.success('La categorie a été ajouté avec succès.')
        this.router.navigate(['dashboard/categories']);
    },
      err =>{
-     this.errorsMsg = err.error.errors;
+      this.notificationService.showErrors(err.error.errors);
      this.router.navigate(['dashboard/nouvellecategorie']);
      }
 
@@ -65,10 +67,12 @@ export class NouvelleCategoryComponent implements OnInit {
         this.pathFile=res.pathFile;
 
         this.categorie.image = res.pathFile;
+        this.notificationService.success('File uploaded success');
         console.log('File uploaded success');
 
       },
       (error) => {
+        this.notificationService.error('Error uploading file:'+ error)
         console.error('Error uploading file:', error);
       }
     );

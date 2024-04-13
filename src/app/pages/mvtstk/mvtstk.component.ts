@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
 import {MvtStk} from "../../models/mvt-stk";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-mvtstk',
@@ -13,7 +14,10 @@ export class MvtstkComponent implements OnInit{
   mvtstkGroupByIdArticle: Array<MvtStk>=[];
 
 
-  constructor(private  mvtstkService : MvtstkService) {
+  constructor(
+    private  mvtstkService : MvtstkService,
+    private notificationService:NotificationService
+  ) {
   }
   ngOnInit(): void {
     this.mvtstkByIdArticle();

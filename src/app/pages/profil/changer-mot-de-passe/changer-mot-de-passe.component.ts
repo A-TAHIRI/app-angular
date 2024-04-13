@@ -4,6 +4,7 @@ import {UtilisateurService} from "../../../services/utilisateur/utilisateur.serv
 import {UtilisateurDto} from "../../../dto/utilisateur-dto";
 import {ChangerMotDePasseUtilisateurDto} from "../../../dto/changer-mot-de-passe-utilisateur-dto";
 import {of} from "rxjs";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-changer-mot-de-passe',
@@ -19,7 +20,8 @@ export class ChangerMotDePasseComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private utilisateurService: UtilisateurService
+    private utilisateurService: UtilisateurService,
+    private notificationService: NotificationService
   ) {
   }
 
@@ -48,7 +50,8 @@ export class ChangerMotDePasseComponent implements OnInit {
       this.utilisateurService.getConnectedUser();
       this.router.navigate([''])
     },error => {
-      this.errorMsg=error.error.message;
+      this.notificationService.error(error.error.message);
+
     })
 
   }

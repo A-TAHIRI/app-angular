@@ -5,6 +5,7 @@ import {UtilisateurService} from "../../../services/utilisateur/utilisateur.serv
 import {ChangerMotDePasseUtilisateurDto} from "../../../dto/changer-mot-de-passe-utilisateur-dto";
 import {Utilisateur} from "../../../models/utilisateur";
 import * as jwt_decode from 'jwt-decode';
+import {NotificationService} from "../../../services/notification/notification.service";
 
 
 @Component({
@@ -22,7 +23,8 @@ export class ResetPasswordComponent implements OnInit{
   constructor(private  acivatedRoute: ActivatedRoute,
               private  router:Router,
              private sendEmailService : SendEmailService,
-             private utilisateurService: UtilisateurService
+             private utilisateurService: UtilisateurService,
+              private notificationService: NotificationService
               ) {
   }
   ngOnInit(): void {
@@ -44,13 +46,17 @@ export class ResetPasswordComponent implements OnInit{
   chagerMotDePasseUtilisateur( ) {
     if (this.changerMotDePasseUtilisateurDto.motDePasse === this.changerMotDePasseUtilisateurDto.confirmMotDePasse) {
       this.sendEmailService.resetPassword(this.changerMotDePasseUtilisateurDto, this.extrerToken).subscribe(data => {
+        this.notificationService.success('Le mot de passe à été changer avec succès')
           this.router.navigate(['/login'])
       }, error => {
-        this.errorMsg = error.error.message
+        this.notificationService.error(error.error.message);
+
       })
+    }else {
+      this.notificationService.error("le mot passe n'est pas compatible  Veuillez essayé")
+      this.router.navigate(['/reset-password']);
+
     }
-    this.errorMsg="le mot passe n'est pas compatible  Veuillez essayé";
-     this.router.navigate(['/reset-password']);
 
 }
 

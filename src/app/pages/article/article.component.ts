@@ -6,6 +6,7 @@ import { ArticleDto } from 'src/app/dto/article-dto';
 
 import { ArticleService } from 'src/app/services/article/article.service';
 import {Article} from "../../models/article";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-article',
@@ -19,7 +20,8 @@ export class ArticleComponent implements OnInit {
   messageSucces ='';
   constructor(
     private router: Router,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private notificationService:NotificationService
     ) {};
 
   ngOnInit(): void {
@@ -47,10 +49,13 @@ export class ArticleComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
-      this.messageSucces='La suppression a été effectuée avec succès!';
+      this.notificationService.success('La suppression a été effectuée avec succès!')
+      this.reload();
       this.articles();
     }else {
-      this.errorsMsg=event;
+      this.notificationService.error(event);
+
+
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Fournisseur} from "../../models/fournisseur";
 import {FournisseurService} from "../../services/fournisseur/fournisseur.service";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-fournisseur',
@@ -16,7 +17,8 @@ export class FournisseurComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private  fournisseurService: FournisseurService
+    private  fournisseurService: FournisseurService,
+    private notificationService: NotificationService
 
   ) { }
 
@@ -39,10 +41,10 @@ export class FournisseurComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
+      this.notificationService.success('La suppression a été effectuée avec succès!');
+      this.reload();
       this.fournisseurs();
-      this.messageSucces='La suppression a été effectuée avec succès!'
-    }else {
-      this.errorsMsg=event;
+    }else {this.notificationService.error(event);
     }
   }
 

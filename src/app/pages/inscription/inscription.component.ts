@@ -6,6 +6,7 @@ import { EntrepriseService } from 'src/app/services/entreprise/entreprise.servic
 import {AuthRequestDto} from "../../dto/auth-request";
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 import {FileUploadService} from "../../services/upload/file-upload.service";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-inscription',
@@ -15,14 +16,15 @@ import {FileUploadService} from "../../services/upload/file-upload.service";
 export class InscriptionComponent implements OnInit {
   entreprise: Entreprise = {};
   adresse: Adresse = {};
-  errorsMsg: Array<string> = [];
+  errors: Array<string> = [];
   pathFile='';
 
   constructor(
     private router: Router,
     private entrepriseService: EntrepriseService,
     private utilisateurService : UtilisateurService,
-    private fileUploadService : FileUploadService
+    private fileUploadService : FileUploadService,
+    private  notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -38,10 +40,12 @@ export class InscriptionComponent implements OnInit {
     this.entreprise.adresse = this.adresse;
     this.entrepriseService.add(this.entreprise).subscribe(
       (data) => {
+
         this.conectEntreprise()
       },
       (error) => {
-        this.errorsMsg = error.error.errors;
+        this.errors=error.error.errors
+        this.notificationService.showErrors(this.errors)
       this.router.navigate(['inscrire']);
       }
     );
@@ -59,6 +63,7 @@ export class InscriptionComponent implements OnInit {
     this.getUserByEmail(authRequestDto.email);
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
+      this.notificationService.info(" Veuillez changer votre mot passe");
       this.router.navigate(['changermotdepasse']);
     });
   }

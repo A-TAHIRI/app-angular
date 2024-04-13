@@ -5,6 +5,7 @@ import { Adresse } from 'src/app/models/adresse';
 import { Utilisateur } from 'src/app/models/utilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur/utilisateur.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-nouvel-utilisateur',
@@ -22,7 +23,8 @@ export class NouvelUtilisateurComponent implements OnInit {
     private router: Router,
     private utilisateurService: UtilisateurService,
     private fileUploadService : FileUploadService,
-    private  activatedRouter : ActivatedRoute
+    private  activatedRouter : ActivatedRoute,
+    private notificationService: NotificationService
   ) {
 
   }
@@ -53,9 +55,11 @@ export class NouvelUtilisateurComponent implements OnInit {
       this.utilisateur.adresse = this.adresse;
       this.utilisateur.entreprise = this.utilisateurService.getConnectedUser().entreprise;
       this.utilisateurService.add(this.utilisateur).subscribe((data) => {
+        this.notificationService.success('L\'utilisateur à été ajouter avec succès');
           this.router.navigate(['dashboard/utilisateurs']);
         }, (err) => {
-          this.errorsMsg = err.error.errors;
+        this.notificationService.showErrors(err.error.errors);
+        this.reload();
         }
       );
 
@@ -71,13 +75,17 @@ export class NouvelUtilisateurComponent implements OnInit {
       (res: any) => {
         this.pathFile = res.pathFile;
         this.utilisateur.photo = res.pathFile;
+        this.notificationService.success('File uploaded success');
         console.log('File uploaded success');
 
       },
       (error) => {
-        console.error('Error uploading file:', error);
+        this.notificationService.error('Error uploading file:'+error);
+        console.error();
       }
     );
   }
-
+ reload(){
+    window.location.reload();
+ }
 }

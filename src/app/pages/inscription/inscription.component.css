@@ -57,3 +57,7 @@
 .menu-horizontal .app-brand + .menu-divider {
   display: none !important;
 }
+
+#formAuthentication input{
+box-shadow: none;
+}

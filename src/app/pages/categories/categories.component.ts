@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {CategorieService} from "../../services/categorie/categorie.service";
 import {CategorieDto} from "../../dto/categorie-dto";
 import {Categorie} from "../../models/categirie";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-categories',
@@ -22,6 +23,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private router: Router,
    private  categorieService: CategorieService,
+   private  notificationService:NotificationService
    // private lobibox : Lobibox,
 
 
@@ -48,7 +50,8 @@ export class CategoriesComponent implements OnInit {
    this.categorieService.getToutesCategories().subscribe((data)=>{
      this.liste=data.sort((a: { id: number; }, b: { id: number; })=>  b.id -a.id);
    }, error => {
-     this.errorsMsg=error.error.errors
+     this.notificationService.showErrors(error.error.errors)
+     this.router.navigate(['dashboard'])
      }
 
    )
@@ -86,12 +89,13 @@ export class CategoriesComponent implements OnInit {
 
     if (this.selectedCatIdToDelete !== -1){
       this.categorieService.supprimerCategorie(this.selectedCatIdToDelete).subscribe(res=>{
-          this.messageSucces='La suppression a été effectuée avec succès!';
+        this.notificationService.success('La suppression a été effectuée avec succès!')
+         this.reload();
        this.getAll();
       },
         error=>{
-    //lobibox.notify("error",{msg:error.error.message,sound:true,icon:false})
-           this.errorsMsg= error.error.message;
+            this.notificationService.error(error.error.message)
+           this.router.navigate(['dashboard/categories'])
         });
     }
 

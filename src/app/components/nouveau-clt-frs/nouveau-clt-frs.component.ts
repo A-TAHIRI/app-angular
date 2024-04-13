@@ -7,6 +7,7 @@ import {UtilisateurService} from "../../services/utilisateur/utilisateur.service
 import {Adresse} from "../../models/adresse";
 import {Client} from "../../models/client";
 import {Fournisseur} from "../../models/fournisseur";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-nouveau-clt-frs',
@@ -28,7 +29,8 @@ export class NouveauCltFrsComponent  implements OnInit {
     private  fileUploadService:FileUploadService,
     private  fourniseurService : FournisseurService,
     private  clientService : ClientService,
-    private  utilisateurService:UtilisateurService
+    private  utilisateurService:UtilisateurService,
+    private notificationService : NotificationService
     ) { }
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
@@ -46,7 +48,8 @@ export class NouveauCltFrsComponent  implements OnInit {
             this.clientfournisseur = data;
             this.adresse = this.clientfournisseur.adresse ? this.clientfournisseur.adresse : {};
           }, error => {
-            this.errorsMsg = error.error.message;
+          this.notificationService.showErrors(error.error.message);
+
           }
         )
 
@@ -55,7 +58,7 @@ export class NouveauCltFrsComponent  implements OnInit {
           this.clientfournisseur = data;
           this.adresse = this.clientfournisseur.adresse ? this.clientfournisseur.adresse : {};
         }, error => {
-          this.errorsMsg = error.error.message;
+          this.notificationService.showErrors(error.error.message);
         })
 
       }
@@ -87,9 +90,11 @@ export class NouveauCltFrsComponent  implements OnInit {
         this.pathFile=res.pathFile;
         this.clientfournisseur.photo = res.pathFile;
         this.playImage = 'http://localhost:8082/file/image/' + res.pathFile;
+        this.notificationService.success('File uploaded success');
         console.log('File uploaded success');
       },
       (error) => {
+        this.notificationService.error('Error uploading file:'+error)
         console.error('Error uploading file:', error);
       }
     );
@@ -99,18 +104,20 @@ export class NouveauCltFrsComponent  implements OnInit {
     if (this.origin === 'client') {
       this.clientService.add(this.mapToClient()).subscribe(data=>{
         this.clientfournisseur= data;
+        this.notificationService.success('Le client à été ajouter avec succès')
         this.router.navigate(['dashboard/clients']);
       },error => {
-        this.errorsMsg=error.error.errors;
+        this.notificationService.showErrors(error.error.errors);
       })
 
     } else if (this.origin === 'fournisseur') {
 
       this.fourniseurService.add(this.mapToFournisseur()).subscribe(data=>{
         this.clientfournisseur= data;
+        this.notificationService.success('Le fournisseur à été ajouter avec succès')
         this.router.navigate(['dashboard/fournisseurs']);
       },error => {
-        this.errorsMsg=error.error.errors;
+        this.notificationService.showErrors(error.error.errors);
       });
 
     }

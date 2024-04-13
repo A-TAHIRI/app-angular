@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientService} from "../../services/client/client.service";
 import {Client} from "../../models/client";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-client',
@@ -17,7 +18,8 @@ export class ClientComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private notificationService:NotificationService
   ) {
   }
 
@@ -44,11 +46,14 @@ export class ClientComponent implements OnInit {
 
   handleSuppression(event: any) {
     if( event === 'success'){
-      this.messageSucces='La suppression a été effectuée avec succès!';
+      this.notificationService.success('La suppression a été effectuée avec succès!')
+      this.reload();
       this.clients();
 
     }else {
-      this.errorsMsg=event;
+      this.notificationService.error(event);
+      this.router.navigate(['dashboard/clients'])
+
     }
   }
 

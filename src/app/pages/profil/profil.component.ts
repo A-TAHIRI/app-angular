@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-profil',
@@ -18,7 +19,8 @@ export class ProfilComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private utilsateurService : UtilisateurService
+    private utilsateurService : UtilisateurService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class ProfilComponent implements OnInit {
       this.utilsateurService.getConnectedUser();
       this.router.navigate([''])
     },error => {
-      this.errorMsg=error.error.message;
+      this.notificationService.error(error.error.message);
     })
 
   }

@@ -3,6 +3,7 @@ import {ContactService} from "../../../services/contact/contact.service";
 import {Contact} from "../../../models/contact";
 import {Router} from "@angular/router";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,8 @@ export class ContactComponent  implements  OnInit{
   constructor(
     private  contactSerice :ContactService,
     private  utilisateurService : UtilisateurService,
-    private  reouter : Router
+    private  reouter : Router,
+    private  notificationService: NotificationService
   ) {
   }
   ngOnInit(): void {
@@ -31,11 +33,11 @@ export class ContactComponent  implements  OnInit{
 
     }
     this.contactSerice.add(this.contact).subscribe(data=>{
-      this.msgSucces='Merci ! Le message à été bien envoyer';
+      this.notificationService.success(' Le message à été bien envoyer !')
      this.contact={};
 
     },error =>{
-      this.errorMsg= error.error.errors
+      this.notificationService.showErrors(error.error.errors);
     });
   }
 

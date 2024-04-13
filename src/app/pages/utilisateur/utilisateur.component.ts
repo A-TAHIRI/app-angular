@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Utilisateur} from "../../models/utilisateur";
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-utilisateur',
@@ -16,7 +17,9 @@ export class UtilisateurComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private  utilisateurService: UtilisateurService
+    private  utilisateurService: UtilisateurService,
+    private notificationService: NotificationService
+
   ) { }
 
   ngOnInit(): void {
@@ -40,18 +43,19 @@ export class UtilisateurComponent implements OnInit {
       // @ts-ignore
       this.liste= data.sort((a, b)=>  b.id -a.id);
     },(error)=>{
-      this.errorMsg=error.error.errors
+      this.notificationService.showErrors(error.error.errors);
+
     })
   }
 
   handleSuppression(event: any) {
     if( event === 'success'){
-      this.messageSucces='La suppression a été effectuée avec succès!';
+      this.notificationService.success('La suppression a été effectuée avec succès!');
+      this.reload();
       this.tousUtilisateurs();
     }else {
-      this.errorMsg=event;
-
-
+      this.notificationService.error(event);
+      this.reload();
     }
   }
 

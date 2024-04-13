@@ -10,6 +10,7 @@ import {Entreprise} from "../../../models/entreprise";
 import {GenererPdfService} from "../../../services/genererPdf/generer-pdf.service";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import {NotificationService} from "../../../services/notification/notification.service";
 
 
 
@@ -38,7 +39,8 @@ export class FactureComponent implements OnInit {
     private entrepriseService: EntrepriseService,
     private clientService: ClientService,
     private fournisseurService: FournisseurService,
-    private genererPdfService:GenererPdfService
+    private genererPdfService:GenererPdfService,
+    private notificationService:NotificationService
   ) {
   }
   ngOnInit(): void {
@@ -66,7 +68,7 @@ export class FactureComponent implements OnInit {
           this.cltFrs();
           this. findLignesCommande();
         }, error => {
-          this.errorsMsg = error.error.message;
+          this.notificationService.error(error.error.message);
         })
       } else if (this.origin === 'fournisseur') {
         this.commadeFournisseurService.getById(id).subscribe(data => {
@@ -76,7 +78,7 @@ export class FactureComponent implements OnInit {
           this.cltFrs();
           this.findLignesCommande();
         }, error => {
-          this.errorsMsg = error.error.message;
+          this.notificationService.error( error.error.message);
         })
       }
     }
@@ -89,6 +91,8 @@ export class FactureComponent implements OnInit {
     if (this.commande.idEntreprise)
       this.entrepriseService.getById(this.commande.idEntreprise).subscribe(data => {
         this.entreprise = data;
+      },error => {
+        this.notificationService.error(error.error.message);
       })
   }
 
@@ -100,10 +104,14 @@ export class FactureComponent implements OnInit {
       if (this.cltid) {
         this.clientService.getClinet(this.cltid).subscribe(data => {
           this.cltfrs = data
-        })
+        },error =>{
+          this.notificationService.error(error.error.message);
+        } )
       } else if (this.frsid) {
         this.fournisseurService.getFournisseur(this.frsid).subscribe(data => {
           this.cltfrs = data
+        },error => {
+          this.notificationService.error(error.error.message);
         })
       }
     }

@@ -44,7 +44,11 @@ constructor(
      this.notificationService.success("Email envoyé avec success");
      this.router.navigate(['/']);
     },error => {
-      this.errorMsg=error.error.error
+      this.notificationService.error(error.error.message)
+     this.router.navigate(['mot-passe-oublie']).then(()=>{
+       window.location.reload();
+     })
+
     });
 
 

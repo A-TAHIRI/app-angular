@@ -12,6 +12,7 @@ import {CommandeFournisseur} from "../../models/commande-fournisseur";
 import {CommandeclientService} from "../../services/commandeclient/commandeclient.service";
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
 import {ArticleDto} from "../../dto/article-dto";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-nouvelle-cmd-clt-frs',
@@ -43,7 +44,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private articleService: ArticleService,
     private utilisateurService: UtilisateurService,
     private commandeClientService: CommandeclientService,
-    private commandeFournisseurService: CommandefournisseurService
+    private commandeFournisseurService: CommandefournisseurService,
+    private notificationService:NotificationService
   ) {
   }
 
@@ -104,25 +106,27 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (this.origin === 'client') {
       if (commande.ligneCommandeClients.length != 0) {
         this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
+          this.notificationService.success('La commade client à été ajouter avec succes')
           this.router.navigate(['dashboard/commandesclient'])
         }, error => {
-          this.errorMsg = error.error.errors;
+          this.notificationService.showErrors(error.error.errors);
         });
 
       } else {
-        this.errorMsg.push("Veuillez renseigner le code de l'articl et la quantité")
+        this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
       }
 
     } else if (this.origin === 'fournisseur') {
       if (commande.ligneCommandeFournisseurs.length != 0) {
         this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
+          this.notificationService.success('La commade fournisseur à été ajouter avec succes')
           this.router.navigate(['dashboard/commandesfournisseur']);
         }, error => {
-          this.errorMsg = error.error.errors;
+          this.notificationService.showErrors(error.error.errors);
         });
 
       } else {
-        this.errorMsg.push("Veuillez renseigner le code de l'articl et la quantité")
+        this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
       }
     }
 
@@ -195,8 +199,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
         if (ligneCmd.article == null || ligneCmd.quantite == 0) {
-          const msg = "Veuillez rensigner les données de l'article";
-          this.errorMsg.push(msg);
+          this.notificationService.error("Veuillez rensigner les données de l'article");
         } else {
           this.lignesCommande.push(ligneCmd);
         }
@@ -211,8 +214,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
         if (ligneCmd.article == null || ligneCmd.quantite == 0) {
-          const msg = "Veuillez ajouter les données de l'article.";
-          this.errorMsg.push(msg);
+          this.notificationService.error("Veuillez rensigner les données de l'article");
         } else {
           this.lignesCommande.push(ligneCmd);
         }
