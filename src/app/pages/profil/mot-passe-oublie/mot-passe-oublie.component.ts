@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SendEmailService} from "../../../services/sendEmail/send-email.service";
 import {Email} from "../../../models/email";
 import {Router} from "@angular/router";
+import {NotificationService} from "../../../services/notification/notification.service";
+
 
 @Component({
   selector: 'app-mot-passe-oublie',
@@ -14,7 +16,9 @@ export class MotPasseOublieComponent implements OnInit{
    errorMsg= '';
 constructor(
   private sendEmailService : SendEmailService,
-  private router : Router
+  private router : Router,
+  private notificationService:NotificationService
+
 ) {
 }
 
@@ -37,7 +41,8 @@ constructor(
     }
 
     this.sendEmailService.sendEmail(email).subscribe(data=>{
-      this.router.navigate(['/']);
+     this.notificationService.success("Email envoyé avec success");
+     this.router.navigate(['/']);
     },error => {
       this.errorMsg=error.error.error
     });
@@ -45,5 +50,6 @@ constructor(
 
 
   }
+
 
 }

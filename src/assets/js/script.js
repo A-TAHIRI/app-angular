@@ -5,7 +5,12 @@
  * Author: BootstrapMade.com
  * License: https://bootstrapmade.com/license/
  */
-
+function displaySuccessMsg(msg) {
+  Lobibox.notify("success", { msg:msg,sound: false,icon: false});
+}
+function displayErrorMsg(msg) {
+  Lobibox.notify("error", { msg:msg,sound: false,icon: false});
+}
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 

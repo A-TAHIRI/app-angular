@@ -42,13 +42,17 @@ export class ResetPasswordComponent implements OnInit{
 
 
   chagerMotDePasseUtilisateur( ) {
-    this.sendEmailService.resetPassword(this.changerMotDePasseUtilisateurDto,this.extrerToken).subscribe(data=>{
-      this.router.navigate(['/login'])
-    },error => {
-      this.errorMsg=error.error.errors
-    })
-  }
+    if (this.changerMotDePasseUtilisateurDto.motDePasse === this.changerMotDePasseUtilisateurDto.confirmMotDePasse) {
+      this.sendEmailService.resetPassword(this.changerMotDePasseUtilisateurDto, this.extrerToken).subscribe(data => {
+          this.router.navigate(['/login'])
+      }, error => {
+        this.errorMsg = error.error.message
+      })
+    }
+    this.errorMsg="le mot passe n'est pas compatible  Veuillez essayé";
+     this.router.navigate(['/reset-password']);
 
+}
 
 isValid(){
      this.sendEmailService.validateToken(this.extrerToken).subscribe(data=>{

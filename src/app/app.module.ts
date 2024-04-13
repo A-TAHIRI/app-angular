@@ -16,6 +16,8 @@ import {registerLocaleData} from "@angular/common";
 import * as fr from '@angular/common/locales/fr'
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+
+
 import {NouvelUtilisateurComponent} from "./pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component";
 import {NouvelleCategoryComponent} from "./pages/categories/nouvelle-category/nouvelle-category.component";
 import {CategoriesComponent} from "./pages/categories/categories.component";
@@ -55,6 +57,8 @@ import { CGUComponent } from './pages/general/cgu/cgu.component';
 import { MotPasseOublieComponent } from './pages/profil/mot-passe-oublie/mot-passe-oublie.component';
 import { FactureComponent } from './pages/general/facture/facture.component';
 import { ResetPasswordComponent } from './pages/profil/reset-password/reset-password.component';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -121,6 +125,9 @@ import { ResetPasswordComponent } from './pages/profil/reset-password/reset-pass
     ReactiveFormsModule,
     HttpClientModule,
     CarouselModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+
 
 
   ],
