@@ -49,4 +49,10 @@ export class FournisseurService {
     const url= this.baseUrl+`/${id}`;
     return  this.http.delete(url);
   }
+
+  getAllFournisseur( nom :string='' , page : number=0, size :number=1){
+    const url= this.baseUrl+`/fournisseurs?nom=${nom}&page=${page}&size=${size}`
+    console.log(url);
+    return this.http.get(url);
+  }
 }

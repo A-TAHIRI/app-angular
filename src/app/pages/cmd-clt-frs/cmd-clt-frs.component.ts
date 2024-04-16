@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {CommandeclientService} from "../../services/commandeclient/commandeclient.service";
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
 import {GenererPdfService} from "../../services/genererPdf/generer-pdf.service";
+import {DataService} from "../../services/dataService/data.service";
+import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-cmd-clt-frs',
@@ -16,6 +18,10 @@ export class CmdCltFrsComponent  implements OnInit {
   mapLignesCommande = new Map();
   mapPrixTotalCommande = new Map();
   lignesCommandes: Array<any>=[];
+  pageActuel: number;
+  receivedData: any;
+  allpages: any;
+
 
 
   constructor(
@@ -23,13 +29,26 @@ export class CmdCltFrsComponent  implements OnInit {
      private activatedRoute: ActivatedRoute,
      private commandeClientService: CommandeclientService,
      private commandeFournisseurService : CommandefournisseurService,
-     private  genererPdfService: GenererPdfService
-    ) { }
+     private  genererPdfService: GenererPdfService,
+     private notificationService:NotificationService,
+     private dataService: DataService,
+    ) {
+    this.dataService.data$.subscribe(data => {
+      if (data) {
+        this.receivedData = data;
+        this.goToPage(data);
+      }
+
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+  }
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
       this.origin = data['origin'];
     });
     this.commandesClientFournisseur();
+    this.allCommandes();
 
   }
 
@@ -117,6 +136,45 @@ export class CmdCltFrsComponent  implements OnInit {
    */
   calculerTotalCommande(id?: number): number {
     return this.mapPrixTotalCommande.get(id);
+  }
+
+
+  allCommandes(){
+    if (this.origin === 'client') {
+      this.commandeClientService.getAllCommandes().subscribe(data => {
+        this.allpages = data;
+        this.pageActuel = this.allpages.number;
+      }, error => {
+        this.notificationService.error(error.error.message);
+      })
+    }else if (this.origin === 'fournisseur'){
+      this.commandeFournisseurService.getAllCommandes().subscribe(data => {
+        this.allpages = data;
+        this.pageActuel = this.allpages.number;
+      }, error => {
+        this.notificationService.error(error.error.message);
+      })
+
+    }
+  }
+
+  goToPage(name?: string, pageNumber: number = 0): void {
+    if (this.origin === 'client') {
+      this.commandeClientService.getAllCommandes(name, pageNumber).subscribe(data => {
+        this.allpages = data;
+        this.pageActuel = pageNumber;
+      }, error => {
+        this.notificationService.error(error.error.message);
+      })
+    }else if (this.origin === 'fournisseur'){
+      this.commandeFournisseurService.getAllCommandes(name, pageNumber).subscribe(data => {
+        this.allpages = data;
+        this.pageActuel = pageNumber;
+      }, error => {
+        this.notificationService.error(error.error.message);
+      })
+    }
+
   }
 
 

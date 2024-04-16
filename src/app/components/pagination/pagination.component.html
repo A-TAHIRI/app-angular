@@ -1,19 +1,13 @@
-<div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-chevron-double-left"></i>
-    </button>
+<div class="btn-group" role="group" aria-label="Basic example" >
+  <button type="button" class="btn btn-light" (click)="goToNextOrPreviousPage('backward',receivedData)" [ngClass]="0 == pageActuel  ? ' disabled' : ''">
+    <i class="bi bi-chevron-double-left"></i>
+  </button>
+  <ng-container *ngFor=" let numePage  of [].constructor (pages.totalPages) ; let i = index">
+    <button type="button" class="btn btn-light" (click)="goToPage(receivedData,i)" [ngClass]="i == pageActuel ? ' active' : ''">{{i+1}}</button>
+  </ng-container>
 
+  <button type="button" class="btn btn-light" (click)="goToNextOrPreviousPage('forward',receivedData)" [ngClass]="(pages.totalPages - 1) == pageActuel ? ' disabled' : ''">
+    <i class="bi bi-chevron-double-right"></i>
+  </button>
 
-    <button type="button" class="btn btn-light">1</button>
-    <button type="button" class="btn btn-light">2</button>
-    <button type="button" class="btn btn-light">3</button>
-    <button type="button" class="btn btn-light">4</button>
-    <button type="button" class="btn btn-light">5</button>
-    <button type="button" class="btn btn-light">6</button>
-
-
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-chevron-double-right"></i>
-    </button>
-
-  </div>
+</div>

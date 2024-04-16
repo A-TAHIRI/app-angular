@@ -31,7 +31,7 @@
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des fournisseurs</h5>
 
-          <app-detail-clt-frs *ngFor=" let fournisseur of liste let i=index"
+          <app-detail-clt-frs *ngFor=" let fournisseur of allpages.content let i=index"
                               [clientFournisseur]="fournisseur"
                               [origin]="'fournisseur'"
                               [i]="i"
@@ -47,7 +47,14 @@
   </div>
   <div class="row mb-3">
     <div class=" col-md-12 text-center" data-aos="fade-up">
-      <app-pagination></app-pagination>
+      <app-pagination
+        [pages]="allpages"
+        [pageActuel]="pageActuel"
+        [receivedData]="receivedData"
+        (gotoEvent)="goToPage($event.name,$event.pageNumber)"
+
+
+      ></app-pagination>
     </div>
   </div>
 </section>

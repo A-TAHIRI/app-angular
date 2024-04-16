@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
 import {AuthReponse} from "../../dto/auth-reponse";
 import {UtilisateurDto} from "../../dto/utilisateur-dto";
+import {ApiResponse} from "../../models/api-response";
+import {Page} from "../../models/page";
 
 @Injectable({
   providedIn: 'root'
@@ -136,6 +138,18 @@ update(id : number , utilisateur: Utilisateur){
       return  this.http.delete(url);
     }
     return of();
+  }
+
+
+  users$ = (nom: string = '', page: number = 0, size: number = 3): Observable<ApiResponse<Page>> =>
+    this.http.get<ApiResponse<Page>>(this.baseUrl+`/api/v1/utilisateurs/users?nom=${nom}&page=${page}&size=${size}`);
+
+
+
+  getUsers( nom :string='' , page : number=0, size :number=1){
+    const url= this.baseUrl+`/api/v1/utilisateurs?nom=${nom}&page=${page}&size=${size}`
+    console.log(url);
+    return this.http.get(url);
   }
 
 

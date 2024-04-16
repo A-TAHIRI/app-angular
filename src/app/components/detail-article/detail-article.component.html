@@ -1,6 +1,6 @@
 <table class="table table-borderless">
   <thead *ngIf="i==0" class="mb-5">
-  <tr data-aos="zoom-in" >
+  <tr data-aos="zoom-in"  style="position: relative; z-index: 0">
     <th scope="col">Aperçu</th>
     <th scope="col">Référence</th>
     <th scope="col">Produit</th>
@@ -11,26 +11,27 @@
   </tr>
   </thead>
   <tbody>
-  <tr data-aos="zoom-in">
+  <tr data-aos="zoom-in"   >
     <td  ><img [src]="imgUrl " alt="article" width="50" height="50"></td>
     <td class="text-primary fw-bold">{{ article.codeArticle }}</td>
     <td class="text-primary fw-bold">{{ article.designation }}</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireHt }}€</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireTtc }} €</td>
     <td class=" text-primary  fw-bold">{{ article.categorie?.designation }}</td>
-    <td class=" text-primary  fw-bold" style="position: relative">
-      <div class="action" >
+    <td class=" text-primary  fw-bold"   style="position: relative; z-index: 1">
+      <div class="action">
         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bottom-0 end-0"  style="position: absolute; ">
-          <li class="dropdown-header text-start" >
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow bottom-0 end-0" style="  width: 100px; min-height: 175px;"
+        >
+          <li class="dropdown-header text-start" style="position: absolute;z-index: 0;bottom: 0; top: 0" >
             <h6>Actions</h6>
           </li>
-          <li ><a class="dropdown-item" href="javascript:void(0)" (click)="modifierArticle( article.id)">
+          <li style="position: absolute;z-index: 0 ; bottom: 0; top: 35px"><a class="dropdown-item" href="javascript:void(0)" (click)="modifierArticle( article.id)">
             <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+          <li style="position: absolute;z-index: 0;width:   0; top: 70px"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
                  [attr.data-bs-target]="'#modalDeleteArticle'+article.id" >
             <i class="bi bi-trash3"></i>Supprimer</a></li>
-          <li ><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
+          <li style="position: absolute;z-index: 0; bottom: 0; top: 105px"><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
         </ul>
       </div>
     </td>

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ClientService} from "../../services/client/client.service";
 import {Client} from "../../models/client";
 import {NotificationService} from "../../services/notification/notification.service";
+import {DataService} from "../../services/dataService/data.service";
 
 @Component({
   selector: 'app-client',
@@ -15,16 +16,30 @@ export class ClientComponent implements OnInit {
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   client :Client={};
   messageSucces='';
+  pageActuel: number;
+  receivedData: any;
+  allpages: any;
 
   constructor(
     private router: Router,
     private clientService: ClientService,
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    private dataService: DataService,
   ) {
+    this.dataService.data$.subscribe(data => {
+      if (data) {
+        this.receivedData = data;
+        this.goToPage(data);
+      }
+
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
   }
 
   ngOnInit(): void {
   this.clients();
+  this.allclients();
 
   }
 
@@ -60,4 +75,24 @@ export class ClientComponent implements OnInit {
   reload() {
     window.location.reload();
   }
+  allclients(){
+    this.clientService.getAllClients().subscribe(data => {
+      this.allpages = data;
+      this.pageActuel = this.allpages.number;
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+  }
+
+  goToPage(name?: string, pageNumber: number = 0): void {
+    this.clientService.getAllClients(name, pageNumber).subscribe(data => {
+      this.allpages = data;
+      this.pageActuel = pageNumber;
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+
+  }
+
+
 }

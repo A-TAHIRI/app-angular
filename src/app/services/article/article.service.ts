@@ -69,4 +69,9 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
     const  url = this.baseUrl+`/filter/${codeArticle}`;
      return  this.http.get(url);
   }
+  getAllArticles( nom :string='' , page : number=0, size :number=1){
+    const url= this.baseUrl+`/articles?nom=${nom}&page=${page}&size=${size}`
+    console.log(url);
+    return this.http.get(url);
+  }
 }

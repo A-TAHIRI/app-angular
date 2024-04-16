@@ -23,18 +23,18 @@
       <td class="text-primary fw-bold">{{ clientFournisseur.adresse?.ville}}</td>
       <td class="text-primary fw-bold" >{{ clientFournisseur.adresse?.pays }}</td>
       <td class="text-primary fw-bold " >
-        <div class="action">
-          <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow  " >
-            <li class="dropdown-header text-start">
+        <div class="action"   >
+          <a class="icon" href="#" data-bs-toggle="dropdown" style="position: relative" ><i class="bi bi-three-dots-vertical"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow  "   [ngStyle]=" i==0 ?{'position': 'absolute','top':'-500px','width':'100px','min-height': '175px'}:{'width':'100px','min-height': '175px'} " >
+            <li class="dropdown-header text-start"  style="position: absolute;z-index: 0;bottom: 0; top: 0"  >
               <h6 class="pt-0">Actions</h6>
             </li>
-            <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifierClientFournisseur()">
+            <li style="position: absolute;z-index: 0 ; bottom: 0; top: 35px"><a class="dropdown-item" href="javascript:void(0)" (click)="modifierClientFournisseur()">
               <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+            <li style="position: absolute;z-index: 0;width:   0; top: 70px"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
                    [attr.data-bs-target]="'#modalDeleteCltFrs'+clientFournisseur.id" >
               <i class="bi bi-trash3"></i>Supprimer</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
+            <li style="position: absolute;z-index: 0; bottom: 0; top: 105px"><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
           </ul>
         </div>
       </td>

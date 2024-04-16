@@ -64,7 +64,11 @@ export class InscriptionComponent implements OnInit {
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
       this.notificationService.info(" Veuillez changer votre mot passe");
-      this.router.navigate(['changermotdepasse']);
+      this.router.navigate(['changermotdepasse']).then(()=>{
+        window.location.reload();
+      }
+
+      );
     });
   }
 
@@ -78,10 +82,12 @@ export class InscriptionComponent implements OnInit {
       (res: any) => {
         this.pathFile = res.pathFile;
         this.entreprise.image = res.pathFile;
+        this.notificationService.success('File uploaded success');
         console.log('File uploaded success');
 
       },
       (error) => {
+        this.notificationService.error('Error uploading file:'+ error)
         console.error('Error uploading file:', error);
       }
     );

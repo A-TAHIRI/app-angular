@@ -7,6 +7,7 @@ import { ArticleDto } from 'src/app/dto/article-dto';
 import { ArticleService } from 'src/app/services/article/article.service';
 import {Article} from "../../models/article";
 import {NotificationService} from "../../services/notification/notification.service";
+import {DataService} from "../../services/dataService/data.service";
 
 @Component({
   selector: 'app-article',
@@ -18,14 +19,30 @@ export class ArticleComponent implements OnInit {
  liste !:  Article[];
   errorsMsg='';
   messageSucces ='';
+  pageActuel: number;
+  receivedData: any;
+  allpages: any;
   constructor(
     private router: Router,
     private articleService: ArticleService,
-    private notificationService:NotificationService
-    ) {};
+    private notificationService:NotificationService,
+    private dataService: DataService,
+    ) {
+
+    this.dataService.data$.subscribe(data => {
+      if (data) {
+        this.receivedData = data;
+        this.goToPage(data);
+      }
+
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+  };
 
   ngOnInit(): void {
     this.articles();
+    this.allArticles()
   }
 
 
@@ -61,5 +78,23 @@ export class ArticleComponent implements OnInit {
 
   reload() {
     window.location.reload();
+  }
+  allArticles(){
+    this.articleService.getAllArticles().subscribe(data => {
+      this.allpages = data;
+      this.pageActuel = this.allpages.number;
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+  }
+
+  goToPage(name?: string, pageNumber: number = 0): void {
+    this.articleService.getAllArticles(name, pageNumber).subscribe(data => {
+      this.allpages = data;
+      this.pageActuel = pageNumber;
+    }, error => {
+      this.notificationService.error(error.error.message);
+    })
+
   }
 }

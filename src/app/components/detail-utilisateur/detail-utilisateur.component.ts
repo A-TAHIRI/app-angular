@@ -43,7 +43,7 @@ i:number=0;
       this.utilisateurService.delet(this.utilisateur.id).subscribe((data)=>{
         this.suppressionResult.emit('success')
       }, error=>{
-        this.suppressionResult.emit(error.error.message)
+        this.suppressionResult.emit(error.error.error)
         }
         )
 

@@ -24,7 +24,7 @@
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des commandes {{ origin + 's' }}</h5>
           <div class="accordion" id="accordionExample">
-            <div class="col m-3 accordion-item" *ngFor="let cmd of listCommande let i =index" style="background-color: #e9ecef">
+            <div class="col m-3 accordion-item" *ngFor="let cmd of allpages.content let i =index" style="background-color: #e9ecef">
               <button class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
                       [attr.data-bs-target]="'#collapse'+cmd.id"
                       (click)="findLignesCommande(cmd.id)"
@@ -32,7 +32,7 @@
                       aria-expanded="true"
                       aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0; ">
 
-                <app-detail-cmd-clt-frs
+                <app-detail-cmd-clt-frs style="position: relative ; z-index: 2"
 
                   [commande]="cmd"
                   [i]="i"
@@ -78,7 +78,13 @@
   </div>
   <div class="row mb-3">
     <div class=" col-md-12 text-center" data-aos="fade-up">
-      <app-pagination></app-pagination>
+      <app-pagination
+        [pages]="allpages"
+        [pageActuel]="pageActuel"
+        [receivedData]="receivedData"
+        (gotoEvent)="goToPage($event.name,$event.pageNumber)"
+      >
+      </app-pagination>
     </div>
   </div>
 </section>

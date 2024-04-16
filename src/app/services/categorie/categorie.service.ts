@@ -61,5 +61,11 @@ export class CategorieService {
     return this.http.get(url);
   }
 
+  getAllCategories( nom :string='' , page : number=0, size :number=1){
+    const url= this.baseUrl+`/cate?nom=${nom}&page=${page}&size=${size}`
+    console.log(url);
+    return this.http.get(url);
+  }
+
 
 }

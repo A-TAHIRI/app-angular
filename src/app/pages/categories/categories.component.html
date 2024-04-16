@@ -30,7 +30,7 @@
               {{messageSucces}}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="reload()"></button>
             </div>
-            <div class="row col-md-12 custom-border "  *ngFor=" let cat of liste let i= index" >
+            <div class="row col-md-12 custom-border "  *ngFor=" let cat of allpages.content let i= index" >
               <table class="table table-borderless">
                 <thead *ngIf="i==0">
                 <tr data-aos="zoom-in">
@@ -48,16 +48,16 @@
                   <td style="width: 10%;text-align: center;" class="text-primary fw-bold">
                     <div class="action">
                       <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"  [ngClass]=" i===0 ?{'position': 'absolute','top':'-500px'}:'' " style="width: 100px; min-height: 175px">
+                        <li class="dropdown-header text-start" style="position: absolute;z-index: 0;bottom: 0; top: 0">
                           <h6>Actions</h6>
                         </li>
-                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifierCategoie(cat.id )">
+                        <li style="position: absolute;z-index: 0 ; bottom: 0; top: 35px"><a class="dropdown-item" href="javascript:void(0)" (click)="modifierCategoie(cat.id )">
                           <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
+                        <li style="position: absolute;z-index: 0;width:   0; top: 70px"><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
                                data-bs-target="#modalDeleteCat" (click)="selectCatPourSupprimer(cat.id)">
                           <i class="bi bi-trash3"></i>Supprimer</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
+                        <li style="position: absolute;z-index: 0; bottom: 0; top: 105px"><a class="dropdown-item" href="javascript:void(0)"><i class="bi bi-ticket-detailed"></i>Détails</a></li>
                       </ul>
                     </div>
                   </td>
@@ -73,7 +73,13 @@
   </div>
   <div class="row mb-3">
     <div class=" col-md-12 text-center" data-aos="fade-up">
-      <app-pagination></app-pagination>
+      <app-pagination
+        [pages]="allpages"
+        [pageActuel]="pageActuel"
+        [receivedData]="receivedData"
+        (gotoEvent)="goToPage($event.name,$event.pageNumber)"
+
+      ></app-pagination>
     </div>
   </div>
 </section>

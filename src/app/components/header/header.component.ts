@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {Router} from "@angular/router";
+import {DataService} from "../../services/dataService/data.service";
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,12 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements  OnInit{
   connectedUser: UtilisateurDto = {};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
+  name:any;
   constructor( private elementRef: ElementRef ,
                private  renderer : Renderer2,
                private  utilisateurService: UtilisateurService,
-               private  router: Router
+               private  router: Router,
+               private dataService: DataService
                ) {}
   toggleSidebar() {
     this.elementRef.nativeElement.ownerDocument.body.classList.toggle('toggle-sidebar')
@@ -43,4 +46,7 @@ export class HeaderComponent implements  OnInit{
     localStorage.removeItem('connectedUser')
   }
 
+  sendData() {
+   return  this.dataService.setData(this.name);
+  }
 }

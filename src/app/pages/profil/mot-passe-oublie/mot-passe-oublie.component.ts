@@ -42,11 +42,13 @@ constructor(
 
     this.sendEmailService.sendEmail(email).subscribe(data=>{
      this.notificationService.success("Email envoyé avec success");
-     this.router.navigate(['/']);
+     this.router.navigate(['/']).then(()=>{
+       window.location.reload();
+     });
     },error => {
       this.notificationService.error(error.error.message)
      this.router.navigate(['mot-passe-oublie']).then(()=>{
-       window.location.reload();
+
      })
 
     });

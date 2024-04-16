@@ -50,6 +50,10 @@ export class ClientService  {
    return  this.http.delete(url);
    }
 
-
+  getAllClients( nom :string='' , page : number=0, size :number=1){
+    const url= this.baseUrl+`/clients?nom=${nom}&page=${page}&size=${size}`
+    console.log(url);
+    return this.http.get(url);
+  }
 
 }

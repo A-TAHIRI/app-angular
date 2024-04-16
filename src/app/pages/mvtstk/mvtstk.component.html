@@ -21,12 +21,12 @@
         <div class="card-body pb-0">
           <h5 class="card-title">Mouvements du stock</h5>
           <div class="accordion" id="mvtStkDetails">
-            <div class="col accordion-item" *ngFor="let mvtstk of mvtstkGroupByIdArticle let i = index">
+            <div class="col accordion-item" *ngFor="let mvtstk of allpages.content let i = index">
               <div id="headingOne">
                 <button class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#collapseOne'+mvtstk.article?.id" aria-expanded="true"
                         aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0">
-                  <app-detail-mvt-stk-article
+                  <app-detail-mvt-stk-article style="position: relative ; z-index: 2"
                     [mvtstk]="mvtstk"
                     [i]="i"
                     (click)="mvtstksByArticle(mvtstk.article?.id)"
@@ -62,7 +62,14 @@
   </div>
   <div class="row mb-3">
     <div class=" col-md-12 text-center" data-aos="fade-up">
-      <app-pagination></app-pagination>
+      <app-pagination
+        [pages]="allpages"
+        [pageActuel]="pageActuel"
+        [receivedData]="receivedData"
+        (gotoEvent)="goToPage($event.name,$event.pageNumber)"
+      >
+
+      </app-pagination>
     </div>
   </div>
 </section>

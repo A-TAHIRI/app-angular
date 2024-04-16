@@ -52,7 +52,7 @@ i : number=0;
        this.suppressionResult.emit('success')
       },
         error=>{
-         this.suppressionResult.emit(error.error.error);
+         this.suppressionResult.emit(error.error.message);
         })
     }
 
