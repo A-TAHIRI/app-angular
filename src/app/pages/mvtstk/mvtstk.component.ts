@@ -13,6 +13,7 @@ export class MvtstkComponent implements OnInit{
 
   mvtstksByidArticle :Array<MvtStk>=[];
   mvtstkGroupByIdArticle: Array<MvtStk>=[];
+  mvtstks: Array<MvtStk>=[];
   pageActuel: number;
   receivedData: any;
   allpages: any;

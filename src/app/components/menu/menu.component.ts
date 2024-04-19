@@ -8,12 +8,14 @@ import {Menu} from "./menu";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent  implements OnInit{
-
+  activeIndex: number | null = null;
   constructor( private router: Router) {
   }
   ngOnInit(): void {
   }
-
+  setActive(index: number) {
+    this.activeIndex = index;
+  }
   public menuProperties: Array<Menu> = [
     {
       id: '1',
@@ -132,13 +134,8 @@ export class MenuComponent  implements OnInit{
 
   sidebarLinks = [
     {
-      label: 'Dashboard',  icon: 'bi bi-grid',   collapse: 'dashboard',  expanded: true,
-
-      children: [
-        { label: "Vue D'ensemble", route: '/dashboard' },
-        { label: 'Statistiques', route: '/dashboard/statistiques' },
-      ]
-
+      label: 'Dashboard',  icon: 'bi bi-grid',     route: '/dashboard', collapse: '',
+      expanded: false
     },
     {
       label: 'Articles', icon: 'bi bi-boxes', collapse: 'articles', expanded: true,

@@ -8,6 +8,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 import {Article} from "../../models/article";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import {Page} from "../../models/page";
 
 @Component({
   selector: 'app-article',
@@ -81,7 +82,7 @@ export class ArticleComponent implements OnInit {
   }
   allArticles(){
     this.articleService.getAllArticles().subscribe(data => {
-      this.allpages = data;
+      this.allpages =  data;
       this.pageActuel = this.allpages.number;
     }, error => {
       this.notificationService.error(error.error.message);
@@ -90,7 +91,8 @@ export class ArticleComponent implements OnInit {
 
   goToPage(name?: string, pageNumber: number = 0): void {
     this.articleService.getAllArticles(name, pageNumber).subscribe(data => {
-      this.allpages = data;
+      this.allpages = data     ;
+
       this.pageActuel = pageNumber;
     }, error => {
       this.notificationService.error(error.error.message);

@@ -52,7 +52,7 @@ export class CommandefournisseurService {
     return of()
   }
 
-  getAllCommandes( nom :string='' , page : number=0, size :number=1){
+  getAllCommandes( nom :string='' , page : number=0, size :number=5){
     const url= this.baseUrl+`/commandes?nom=${nom}&page=${page}&size=${size}`
     console.log(url);
     return this.http.get(url);

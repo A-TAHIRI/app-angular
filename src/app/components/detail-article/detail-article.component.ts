@@ -21,6 +21,9 @@ i : number=0;
   @Input()
   article : Article = {};
 
+  @Input()
+  articles :Array<Article>=[];
+
   constructor(
    private router: Router,
    private articleService: ArticleService

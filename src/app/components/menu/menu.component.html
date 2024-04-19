@@ -20,10 +20,16 @@
 <!-- End Sidebar-->
 <aside id="sidebar" class="sidebar" data-aos="fade-right" >
   <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item" *ngFor="let link of sidebarLinks">
-      <a class="nav-link collapsed" [attr.data-bs-target]="'#'+link.collapse" data-bs-toggle="collapse" href="#">
+    <li class="nav-item" *ngFor="let link of sidebarLinks let i = index">
+      <a class="nav-link" *ngIf="!link.children" [routerLink]="[link.route]"
+      >
+        <i class="{{link.icon}}"></i><span>{{ link.label }}</span>
+      </a>
+      <a *ngIf="link.children" class="nav-link collapsed" [attr.data-bs-target]="'#'+link.collapse" data-bs-toggle="collapse" href="#">
+
         <i class="{{link.icon}}"></i><span>{{ link.label }}</span><i *ngIf="link.children"
                                                                               class="bi bi-chevron-down ms-auto"></i>
+
       </a>
       <ul *ngIf="link.children && link.children.length > 0 && link.expanded" [id]="link.collapse"
           class="nav-content collapse " data-bs-parent="#sidebar-nav">

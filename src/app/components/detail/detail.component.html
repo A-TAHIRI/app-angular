@@ -15,114 +15,620 @@
     <div class="col-lg-8">
       <div class="row">
 
-        <!-- Sales Card -->
-        <div class="col-xxl-4 col-md-6">
-          <div class="card info-card sales-card">
 
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title">Sales <span>| Today</span></h5>
-
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-cart"></i>
-                </div>
-                <div class="ps-3">
-                  <h6>145</h6>
-                  <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div><!-- End Sales Card -->
-
-        <!-- Revenue Card -->
-        <div class="col-xxl-4 col-md-6">
-          <div class="card info-card revenue-card">
-
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-currency-dollar"></i>
-                </div>
-                <div class="ps-3">
-                  <h6>$3,264</h6>
-                  <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div><!-- End Revenue Card -->
-
-        <!-- Customers Card -->
+        <!-- Utilisateurs Card -->
         <div class="col-xxl-4 col-xl-12">
 
           <div class="card info-card customers-card">
 
-            <div class="filter">
+            <div class="filter nav  " >
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
                   <h6>Filter</h6>
                 </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                       data-bs-target="#this-month">This Month</button></li>
 
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+
               </ul>
             </div>
 
-            <div class="card-body">
-              <h5 class="card-title">Customers <span>| This Year</span></h5>
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-year">
+                <h5 class="card-title">Utilisateurs <span>| Cette année</span></h5>
 
-              <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-people"></i>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countByYear }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countByYear < countByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countByYear, countByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countByYear<countByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByYear>countByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByYear==countByLastYear">identique </span>
+                  </div>
                 </div>
-                <div class="ps-3">
-                  <h6>1244</h6>
-                  <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
-                </div>
               </div>
+              <div class=" card-body tab-pane fade " id="today">
+                <h5 class="card-title">Utilisateurs <span>| Aujourd'huit</span></h5>
 
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countByDay < countByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countByDay, countByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countByDay<countByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay>countByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay==countByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-month">
+                <h5 class="card-title">Utilisateurs <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countByThisMonth }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countByThisMonth < countByMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countByThisMonth, countByMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countByThisMonth<countByMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countByThisMonth>countByMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByThisMonth==countByMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
-        </div><!-- End Customers Card -->
+        </div><!-- End Utilisateurs Card -->
+
+
+        <!-- Fournisseur Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card customers-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-frs-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#frs-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-frs-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-frs-year">
+                <h5 class="card-title">Fournisseurs <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countFrsByYear }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countFrsByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countFrsByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countFrsByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="frs-today">
+                <h5 class="card-title">Fournisseurs <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countFrsByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countFrsByDay < countFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countFrsByDay, countFrsByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countFrsByDay<countFrsByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByDay>countFrsByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByDay==countFrsByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-frs-month">
+                <h5 class="card-title">Fournisseurs <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countFrsByMonth }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countFrsByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countFrsByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countFrsByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countFrsByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End Fournisseur Card -->
+
+
+        <!-- Clients Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card customers-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-clt-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#clt-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-clt-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-clt-year">
+                <h5 class="card-title">Clients <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByYear }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="clt-today">
+                <h5 class="card-title">Clients <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-clt-month">
+                <h5 class="card-title">Clients <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByMonth }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End Clients Card -->
+
+
+        <!-- commande fournisseur Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card sales-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-cmd-sfr-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#sfr-cmd-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-cmd-sfr-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-cmd-sfr-year">
+                <h5 class="card-title"> CMDS Frss <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByYear }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="sfr-cmd-today">
+                <h5 class="card-title">CMDS Frss <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-cmd-sfr-month">
+                <h5 class="card-title">CMDS Frss <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByMonth }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End commande fournisseur Card -->
+
+
+        <!--commande Clients Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card sales-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-cmd-clt-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#clt-cmd-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-cmd-clt-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-cmd-clt-year">
+                <h5 class="card-title"> CMDS Clts <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByYear }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="clt-cmd-today">
+                <h5 class="card-title">CMDS Clts <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-cmd-clt-month">
+                <h5 class="card-title">CMDS Clts <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByMonth }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End commande Clients Card -->
+
+        <!--Revennue Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card revenue-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-revennue-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#revennue-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-revennue-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-revennue-year">
+                <h5 class="card-title"> Revenues <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByYear }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="revennue-today">
+                <h5 class="card-title">Revenues <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-revennue-month">
+                <h5 class="card-title">Revenues <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByMonth }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End Revennue Card -->
+
+
+        <!-- Dépence Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card revenue-card">
+
+            <div class="filter nav  " >
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                <li class="dropdown-header text-start ">
+                  <h6>Filter</h6>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link active"  data-bs-toggle="tab"
+                                             data-bs-target="#this-depence-year">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab" data-bs-target="#depence-today">Today</button>
+                </li>
+                <li class="nav-item"><button class="dropdown-item nav-link"  data-bs-toggle="tab"
+                                             data-bs-target="#this-depence-month">This Month</button></li>
+
+
+              </ul>
+            </div>
+
+            <div class="tab-content" >
+              <div class=" card-body tab-pane fade show active " id="this-depence-year">
+                <h5 class="card-title"> Dépences <span>| Cette année</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByYear }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByYear < countFrsByLastYear ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByYear, countFrsByLastYear) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByYear<countFrsByLastYear">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear>countFrsByLastYear">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByYear==countFrsByLastYear">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class=" card-body tab-pane fade " id="depence-today">
+                <h5 class="card-title">Dépences <span>| Aujourd'huit</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card-body tab-pane fade " id="this-depence-month">
+                <h5 class="card-title">Dépences <span>| Ce mois</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByMonth }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByMonth < countFrsByLastMonth ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByMonth, countFrsByLastMonth) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByMonth<countFrsByLastMonth">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByMonth>countFrsByLastMonth">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByMonth==countFrsByLastMonth">identique </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- End Dépence Card -->
+
+
+
 
         <!-- Reports -->
+        <!--
         <div class="col-12">
           <div class="card">
 
@@ -142,7 +648,7 @@
             <div class="card-body">
               <h5 class="card-title">Reports <span>/Today</span></h5>
 
-              <!-- Line Chart -->
+
               <div id="reportsChart"></div>
 
               <script>
@@ -197,12 +703,14 @@
                   }).render();
                 });
               </script>
-              <!-- End Line Chart -->
+
 
             </div>
 
           </div>
-        </div><!-- End Reports -->
+        </div>
+        -->
+        <!-- End Reports -->
 
         <!-- Recent Sales -->
         <div class="col-12">
@@ -308,7 +816,7 @@
                   <th scope="col">Revenue</th>
                 </tr>
                 </thead>
-                <tbody >
+                <tbody>
                 <tr>
                   <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
                   <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
@@ -506,6 +1014,7 @@
       </div><!-- End Budget Report -->
 
       <!-- Website Traffic -->
+      <!--
       <div class="card">
         <div class="filter">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -581,289 +1090,73 @@
           </script>
 
         </div>
-      </div><!-- End Website Traffic -->
+      </div>
+      -->
+      <!-- End Website Traffic -->
 
       <!-- News & Updates Traffic -->
-      <div class="card">
-        <div class="filter">
-          <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-            <li class="dropdown-header text-start">
-              <h6>Filter</h6>
-            </li>
+      <!--
+           <div class="card">
+             <div class="filter">
+               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                 <li class="dropdown-header text-start">
+                   <h6>Filter</h6>
+                 </li>
 
-            <li><a class="dropdown-item" href="#">Today</a></li>
-            <li><a class="dropdown-item" href="#">This Month</a></li>
-            <li><a class="dropdown-item" href="#">This Year</a></li>
-          </ul>
-        </div>
+                 <li><a class="dropdown-item" href="#">Today</a></li>
+                 <li><a class="dropdown-item" href="#">This Month</a></li>
+                 <li><a class="dropdown-item" href="#">This Year</a></li>
+               </ul>
+             </div>
 
-        <div class="card-body pb-0">
-          <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+             <div class="card-body pb-0">
+               <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
 
-          <div class="news">
-            <div class="post-item clearfix">
-              <img src="assets/img/news-1.jpg" alt="">
-              <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-              <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-            </div>
+               <div class="news">
+                 <div class="post-item clearfix">
+                   <img src="assets/img/news-1.jpg" alt="">
+                   <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
+                   <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+                 </div>
 
-            <div class="post-item clearfix">
-              <img src="assets/img/news-2.jpg" alt="">
-              <h4><a href="#">Quidem autem et impedit</a></h4>
-              <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
-            </div>
+                 <div class="post-item clearfix">
+                   <img src="assets/img/news-2.jpg" alt="">
+                   <h4><a href="#">Quidem autem et impedit</a></h4>
+                   <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
+                 </div>
 
-            <div class="post-item clearfix">
-              <img src="assets/img/news-3.jpg" alt="">
-              <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-              <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-            </div>
+                 <div class="post-item clearfix">
+                   <img src="assets/img/news-3.jpg" alt="">
+                   <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
+                   <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
+                 </div>
 
-            <div class="post-item clearfix">
-              <img src="assets/img/news-4.jpg" alt="">
-              <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-              <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-            </div>
+                 <div class="post-item clearfix">
+                   <img src="assets/img/news-4.jpg" alt="">
+                   <h4><a href="#">Laborum corporis quo dara net para</a></h4>
+                   <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
+                 </div>
 
-            <div class="post-item clearfix">
-              <img src="assets/img/news-5.jpg" alt="">
-              <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-              <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-            </div>
+                 <div class="post-item clearfix">
+                   <img src="assets/img/news-5.jpg" alt="">
+                   <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
+                   <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                 </div>
 
-          </div><!-- End sidebar recent posts-->
+               </div>
 
-        </div>
-      </div><!-- End News & Updates -->
 
-    </div><!-- End Right side columns -->
 
-  </div>
+             </div>
+           </div>
+          -->
+      <!-- End News & Updates -->
 
-  <!-- Basic Bootstrap Table -->
-  <div class="card">
-    <h5 class="card-header">Table Basic</h5>
-    <div class="table-responsive text-nowrap">
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Project</th>
-          <th>Client</th>
-          <th>Users</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody class="table-border-bottom-0">
-        <tr>
-          <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-          <td>Albert Cook</td>
-          <td>
-            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Lilian Fuller"
-              >
-                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Sophia Wilkerson"
-              >
-                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Christina Parker"
-              >
-                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-              </li>
-            </ul>
-          </td>
-          <td><span class="badge bg-label-primary me-1">Active</span></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                >
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-trash me-1"></i> Delete</a
-                >
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-          <td>Barry Hunter</td>
-          <td>
-            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Lilian Fuller"
-              >
-                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Sophia Wilkerson"
-              >
-                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Christina Parker"
-              >
-                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-              </li>
-            </ul>
-          </td>
-          <td><span class="badge bg-label-success me-1">Completed</span></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                >
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-trash me-2"></i> Delete</a
-                >
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
-          <td>Trevor Baker</td>
-          <td>
-            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Lilian Fuller"
-              >
-                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Sophia Wilkerson"
-              >
-                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Christina Parker"
-              >
-                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-              </li>
-            </ul>
-          </td>
-          <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                >
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-trash me-2"></i> Delete</a
-                >
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
-          </td>
-          <td>Jerry Milton</td>
-          <td>
-            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Lilian Fuller"
-              >
-                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Sophia Wilkerson"
-              >
-                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-              </li>
-              <li
-                data-bs-toggle="tooltip"
-                data-popup="tooltip-custom"
-                data-bs-placement="top"
-                class="avatar avatar-xs pull-up"
-                title="Christina Parker"
-              >
-                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-              </li>
-            </ul>
-          </td>
-          <td><span class="badge bg-label-warning me-1">Pending</span></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                >
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-trash me-2"></i> Delete</a
-                >
-              </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
     </div>
+
+    <!-- End Right side columns -->
+
   </div>
+
 </section>

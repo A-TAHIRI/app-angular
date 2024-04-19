@@ -2,11 +2,11 @@
   <button type="button" class="btn btn-light" (click)="goToNextOrPreviousPage('backward',receivedData)" [ngClass]="0 == pageActuel  ? ' disabled' : ''">
     <i class="bi bi-chevron-double-left"></i>
   </button>
-  <ng-container *ngFor=" let numePage  of [].constructor (pages.totalPages) ; let i = index">
-    <button type="button" class="btn btn-light" (click)="goToPage(receivedData,i)" [ngClass]="i == pageActuel ? ' active' : ''">{{i+1}}</button>
+  <ng-container *ngFor=" let numePage  of  getPager().allpages; let i = index">
+    <button type="button" class="btn btn-light" (click)="goToPage(receivedData,numePage-1)" [ngClass]="numePage-1== pageActuel ? ' active' : ''">{{numePage}}</button>
   </ng-container>
 
-  <button type="button" class="btn btn-light" (click)="goToNextOrPreviousPage('forward',receivedData)" [ngClass]="(pages.totalPages - 1) == pageActuel ? ' disabled' : ''">
+  <button type="button" class="btn btn-light" (click)="goToNextOrPreviousPage('forward',receivedData)" [ngClass]="(pages.totalPages-1 ) == pageActuel ? ' disabled' : ''">
     <i class="bi bi-chevron-double-right"></i>
   </button>
 

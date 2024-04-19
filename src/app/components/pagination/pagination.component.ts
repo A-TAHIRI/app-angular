@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+// @ts-ignore
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-pagination',
@@ -7,7 +9,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
   ngOnInit(): void {
-    this.visiblePageNumbers()
+
+
+
   }
 
   @Input()
@@ -27,12 +31,41 @@ export class PaginationComponent implements OnInit {
   @Output()
   gotoEvent = new EventEmitter<{ name: string, pageNumber: number }>;
 
-  visiblePageNumbers() {
-    let pageNumbers = [];
-    for (let i = this.pageActuel; i <= Math.min(this.pageActuel + 9, this.pages.totalPages); i++) {
-      pageNumbers.push(i);
+  getPager(  ) {
+    let totalItems=this.pages.totalElements;
+    let pageSize=this.pages.size;
+    let curretPage=this.pageActuel;
+  let totalPages=this.pages.totalPages;
+  let startPage:number;
+    let endPage:number;
+    if (totalPages<=10){
+      startPage=1;
+      endPage=totalPages;
+    }else if (curretPage<=6){
+      startPage=1;
+      endPage=10;
+    }else if (curretPage+4>=totalPages){
+      startPage=totalPages-9;
+      endPage=totalPages;
+    }else {
+      startPage=curretPage-5;
+      endPage=curretPage+4;
     }
-    return pageNumbers;
+    let startIndex=(curretPage-1)*pageSize;
+    let endIndex=Math.min(startIndex+pageSize-1,totalItems-1);
+    let allpages= _.range(startPage,endPage+1);
+
+    return{
+      totalItems:totalItems,
+      curretPage:curretPage,
+      pageSize:pageSize,
+      totalPages:totalPages,
+      startPage:startPage,
+      endPage:endPage,
+      startIndex:startIndex,
+      endIndex:endIndex,
+      allpages:allpages
+    };
   }
 
 

@@ -52,7 +52,52 @@ export class FournisseurService {
 
   getAllFournisseur( nom :string='' , page : number=0, size :number=1){
     const url= this.baseUrl+`/fournisseurs?nom=${nom}&page=${page}&size=${size}`
-    console.log(url);
     return this.http.get(url);
   }
+
+  /**
+   * Service qui retourne les fourniseur de mois passer
+   */
+  getByMonth(){
+    const url = this.baseUrl+`/bymonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les fourniseur de mois actuel
+   */
+  getByThisMonth(){
+    const url = this.baseUrl+`/bythismonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les fourniseur de l'année actuel
+   */
+  getByYear(){
+    const url = this.baseUrl+`/byyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les fourniseur de l'année actuel
+   */
+  getByLastYear(){
+    const url = this.baseUrl+`/bylastyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les fourniseur de ce jour actuel
+   */
+  getByDay(){
+    const url = this.baseUrl+`/byday`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les fourniseur de ced'hier
+   */
+  getByLastDay(){
+    const url = this.baseUrl+`/bylastday`;
+    return this.http.get(url);
+  }
+
 }

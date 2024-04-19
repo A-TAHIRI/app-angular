@@ -144,13 +144,64 @@ update(id : number , utilisateur: Utilisateur){
   users$ = (nom: string = '', page: number = 0, size: number = 3): Observable<ApiResponse<Page>> =>
     this.http.get<ApiResponse<Page>>(this.baseUrl+`/api/v1/utilisateurs/users?nom=${nom}&page=${page}&size=${size}`);
 
-
+  /**
+   * Services pour ruciper les utilisateur par page
+   * @param nom
+   * @param page
+   * @param size
+   */
 
   getUsers( nom :string='' , page : number=0, size :number=1){
     const url= this.baseUrl+`/api/v1/utilisateurs?nom=${nom}&page=${page}&size=${size}`
     console.log(url);
     return this.http.get(url);
   }
+
+  /**
+   * Service qui retourne les utilisateur de mois passer
+   */
+  getByMonth(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/bymonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les utilisateur de mois actuel
+   */
+  getByThisMonth(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/bythismonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les utilisateur de l'année actuel
+   */
+  getByYear(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/byyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les utilisateur de l'année actuel
+   */
+  getByLastYear(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/bylastyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les utilisateur de ce jour actuel
+   */
+  getByDay(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/byday`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les utilisateur de ced'hier
+   */
+  getByLastDay(){
+    const url = this.baseUrl+`/api/v1/utilisateurs/bylastday`;
+    return this.http.get(url);
+  }
+
 
 
 }
