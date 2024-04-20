@@ -25,7 +25,7 @@
           <h5 class="card-title">Listes des commandes {{ origin + 's' }}</h5>
           <div class="accordion" id="accordionExample">
             <div class="col m-3 accordion-item" *ngFor="let cmd of allpages.content let i =index" style="background-color: #e9ecef">
-              <button class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
+              <button  class="btn btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
                       [attr.data-bs-target]="'#collapse'+cmd.id"
                       (click)="findLignesCommande(cmd.id)"
 
@@ -62,7 +62,7 @@
 
                   </div>
                   <div class="col-md-6  text-center">
-                    <h5>Total commande: {{ calculerTotalCommande(cmd.id) }}&nbsp;€</h5>
+                    <h5 >Total commande: {{ calculerTotalCommande(cmd.id)  }}&nbsp;€ </h5>
                   </div>
                 </div>
               </div>

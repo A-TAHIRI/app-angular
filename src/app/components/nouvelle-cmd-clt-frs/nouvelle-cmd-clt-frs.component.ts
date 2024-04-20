@@ -13,6 +13,8 @@ import {CommandeclientService} from "../../services/commandeclient/commandeclien
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
 import {ArticleDto} from "../../dto/article-dto";
 import {NotificationService} from "../../services/notification/notification.service";
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-nouvelle-cmd-clt-frs',
@@ -58,6 +60,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.findAllArticle();
   }
 
+ uniqueId = uuidv4();
+
   /**
    * Methode qui retourne tous les fournisseurs/clients
    */
@@ -102,9 +106,12 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour ajouter une commade client/fournisseur a la bdd
    */
   enregistrerCommande() {
+
     const commande = this.preparerCommande();
+
     if (this.origin === 'client') {
       if (commande.ligneCommandeClients.length != 0) {
+        commande.totalPrix = this.totalCommande;
         this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
           this.notificationService.success('La commade client à été ajouter avec succes')
           this.router.navigate(['dashboard/commandesclient'])
@@ -118,6 +125,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
     } else if (this.origin === 'fournisseur') {
       if (commande.ligneCommandeFournisseurs.length != 0) {
+        commande.totalPrix = this.totalCommande;
         this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
           this.notificationService.success('La commade fournisseur à été ajouter avec succes')
           this.router.navigate(['dashboard/commandesfournisseur']);
@@ -167,7 +175,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.lignesCommande.forEach(ligne => {
       if (ligne.prixUnitaire && ligne.quantite) {
         this.totalCommande += +ligne.prixUnitaire * +ligne.quantite;
-        this.totalCommande.toFixed(2)
+        parseFloat(this.totalCommande.toFixed(2));
       }
     });
   }
@@ -241,7 +249,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (this.origin === 'client') {
       return {
         client: this.selectedClientFournisseur,
-        reference: this.codeCommande,
+        reference: 'cmdclt'+this.uniqueId,
         etatCommande: "EN_PREPARATION",
         dateCommande: new Date(),
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
@@ -250,7 +258,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     } else if (this.origin === 'fournisseur') {
       return {
         fournisseur: this.selectedClientFournisseur,
-        reference: this.codeCommande,
+        reference: 'cmdfrs'+this.uniqueId,
         etatCommande: "EN_PREPARATION",
         dateCommande: new Date(),
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,

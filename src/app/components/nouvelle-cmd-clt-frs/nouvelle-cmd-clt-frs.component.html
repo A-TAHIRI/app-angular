@@ -27,14 +27,16 @@
           <!-- fournisseur/client-->
           <div class="col-md-6">
             <form>
+              <!--
               <div class=" row form-group m-lg-2 ">
                 <label for="Code commade" class="col-md-4 form-label ">Code commade </label>
                 <div class="col-md-8"> <input type="text" id="Code commade" class="  form-control " name="codeCommande" placeholder="Code commande" [(ngModel)]="codeCommande" style="box-shadow: none"></div>
               </div>
+             -->
               <div class="row form-group m-lg-2">
-                <label for="Code commade" class="col-md-4 form-label ">Coordonnées de {{origin}}</label>
+                <label for="cltfrs" class="col-md-4 form-label ">Coordonnées de {{origin}}</label>
                 <div class="col-md-8">
-                <select class="form-control" name="cltFrs" [(ngModel)]="selectedClientFournisseur" style="box-shadow: none">
+                <select class="form-control" id="cltfrs" name="cltFrs" [(ngModel)]="selectedClientFournisseur" style="box-shadow: none">
                   <option value="" selected >Selectionner un {{ origin }}</option>
                   <option *ngFor="let obj of listClientFournisseur" [ngValue]="obj">
                     {{ obj.nom }}&nbsp;{{ obj.prenom }}
@@ -65,12 +67,14 @@
                 <input type="number"  id="Quantite" min="1" class="form-control" name="quantite" placeholder="Quantite" [(ngModel)]="quantite" style="box-shadow: none" required>
                 </div>
               </div>
+            <!--
               <div class="row m-lg-2">
                 <label for="Prix Unitaire" class="col-md-4 form-label ">Prix Unitaire </label>
                 <div class="col-md-8">
                 <input type="number" id="Prix Unitaire"  min="0" class="form-control" placeholder="Prix Unitaire"  name="prixUnitaireTtc" [(ngModel)]="searchedArticle.prixUnitaireTtc" style="box-shadow: none">
                 </div>
               </div>
+              -->
               <div class="row">
                 <div class="col-md-8"></div>
                 <div class="col-md-4">

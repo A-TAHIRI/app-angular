@@ -58,5 +58,143 @@ export class CommandefournisseurService {
     return this.http.get(url);
   }
 
+  /**********************************************nombre de commande******************************************************************/
+  /**
+   * Service qui retourne les CommendeFournisseur de mois passer
+   */
+  getByMonth(){
+    const url = this.baseUrl+`/bymonth`;
+    return this.http.get(url);
+  }
 
+  /**
+   * Service qui retourne les CommendeFournisseur de mois actuel
+   */
+  getByThisMonth(){
+    const url = this.baseUrl+`/bythismonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les CommendeFournisseur de l'année actuel
+   */
+  getByYear(){
+    const url = this.baseUrl+`/byyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les CommendeFournisseur de l'année actuel
+   */
+  getByLastYear(){
+    const url = this.baseUrl+`/bylastyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les CommendeFournisseur de ce jour actuel
+   */
+  getByDay(){
+    const url = this.baseUrl+`/byday`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les CommendeFournisseur de ced'hier
+   */
+  getByLastDay(){
+    const url = this.baseUrl+`/bylastday`;
+    return this.http.get(url);
+  }
+
+
+  /************************************************REVENUE***********************************************************/
+  /**
+   * Service qui retourne  les revenue CommendeFournisseur de mois actuel
+   */
+  getSumByMonth(){
+    const url = this.baseUrl+`/sumbymonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les revenue CommendeFournisseur de mois president
+   */
+  getSumByLastMonth(){
+    const url = this.baseUrl+`/sumbylastmonth`;
+    return this.http.get(url);
+  }
+
+  /**
+   * Service qui retourne les revenues CommendeFournisseur de l'année actuel
+   */
+  getSumByYear(){
+    const url = this.baseUrl+`/sumbyyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les revenues CommendeFournisseur de l'année actuel
+   */
+  getSumByLastYear(){
+    const url = this.baseUrl+`/sumbylastyear`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les revenues CommendeFournisseur de ce jour actuel
+   */
+  getSumByDay(){
+    const url = this.baseUrl+`/sumbyday`;
+    return this.http.get(url);
+  }
+  /**
+   * Service qui retourne les revenues CommendeFournisseur de ced'hier
+   */
+  getSumByLastDay(){
+    const url = this.baseUrl+`/sumbylastday`;
+    return this.http.get(url);
+  }
+
+  /************************************COMMANDE PAR ORDER DESC TOTALPRIX *******************************************************/
+
+  /**
+   * Service qui retourne  les CommandeFournisseur par order dec totalprix dans le mois actuel
+   */
+  getCmdFrsByMonthByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbymoth`;
+    return this.http.get<any>(url);
+  }
+
+  /**
+   * Service qui retourne les CommandeFournisseur par order dec totalprix dans le mois president
+   */
+  getCmdFrsByLastMonthByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbylastmoth`;
+    return this.http.get<any>(url);
+  }
+
+  /**
+   * Service qui retourne les CommandeFournisseur par order dec totalprixdans l'anné actuel
+   */
+  getCmdFrsByYearByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbyyear`;
+    return this.http.get<any>(url);
+  }
+  /**
+   * Service qui retourne les CommandeFournisseur par order dec totalprixdans l'anné président
+   */
+  getCmdFrsByLastYearByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbylastyear`;
+    return this.http.get<any>(url);
+  }
+  /**
+   * Service qui retourne  les CommandeFournisseur par order dec totalprix le jour actuelle
+   */
+  getCmdFrsByDayByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbyday`;
+    return this.http.get<any>(url);
+  }
+  /**
+   * Service qui retourne les CommandeFournisseur par order dec totalprix le jour président
+   */
+  getCmdFrsByLastDayByOrderByTotalPrixDesc(): Observable<any[]>{
+    const url = this.baseUrl+`/cmdorderbytotlbylastday`;
+    return this.http.get<any>(url);
+  }
 }

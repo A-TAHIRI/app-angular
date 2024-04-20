@@ -41,6 +41,7 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "underscore": "^1.13.6",
+    "uuid": "^9.0.1",
     "wow.js": "^1.2.2",
     "zone.js": "~0.13.0"
   },
@@ -50,6 +51,7 @@
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
     "@types/lobibox": "^1.0.34",
+    "@types/uuid": "^9.0.8",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

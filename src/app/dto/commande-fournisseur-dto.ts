@@ -8,6 +8,7 @@ export interface CommandeFournisseurDto {
   lastModifiedDate?: number,
   reference?: string,
   dateCommande?: number,
+  totalPrix?:number;
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE',
   idEntreprise?: number,
   fournisseur?: FournisseurDto,

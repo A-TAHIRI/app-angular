@@ -8,6 +8,7 @@ export interface CommandeClient {
   lastModifiedDate?: number,
   reference?: string,
   dateCommande?: Date,
+  totalPrix?:number;
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE',
   idEntreprise?: number,
   client?: Client,
