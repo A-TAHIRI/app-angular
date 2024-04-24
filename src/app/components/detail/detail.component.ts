@@ -9,6 +9,7 @@ import {CommandefournisseurService} from "../../services/commandefournisseur/com
 import {LigneCommandeClient} from "../../models/ligne-commande-client";
 import {LigneCommandeFournisseur} from "../../models/ligne-commande-fournisseur";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {ArticleStats} from "../../models/articleStats";
 
 @Component({
   selector: 'app-detail',
@@ -73,6 +74,9 @@ export class DetailComponent implements OnInit {
   lignecommandeclt:Array<LigneCommandeClient>=[];
   mapLignesCommande = new Map();
   lignecommandefrs:Array<LigneCommandeFournisseur>=[];
+  toparticleToDays:Array<ArticleStats>=[];
+  toparticleToMonth:Array<ArticleStats>=[];
+  toparticleToYear:Array<ArticleStats>=[];
 
   constructor(
     private utilisateurService: UtilisateurService,
@@ -139,6 +143,9 @@ export class DetailComponent implements OnInit {
     this.getCmdFrsByLastMonthByOrderByTotalPrixDesc();
     this.getCmdFrsByYearByOrderByTotalPrixDesc();
     this.getCmdFrsByLastYearByOrderByTotalPrixDesc();
+    this.getTopArticlesByCommandesToDay();
+    this.getTopArticlesByCommandesToMonth();
+    this.getTopArticlesByCommandesToYear();
 
   }
 
@@ -541,7 +548,7 @@ findLignCommande(id: number){
     })
   }
 
-  /************************************************************REVENUE COMMANDE FOURNISSEUR***************************************************/
+  /************************************************************Depance COMMANDE FOURNISSEUR***************************************************/
 
 
   /**
@@ -856,7 +863,48 @@ findLignCommande(id: number){
     })
   }
 
+/**********************************************************Top articles *****************************************************************/
 
 
+
+  /**
+   * Methode qui récupére top articles  to day
+   */
+getTopArticlesByCommandesToDay(){
+  this.commandeClientService.getTopArticlesByCommandesToDay().subscribe(data => {
+    this.toparticleToDays = data;
+
+  }, error => {
+    this.notificationService.error(error.error.error);
+  })
+}
+
+
+  /**
+   * Methode qui récupére top articles  to month
+   */
+
+  getTopArticlesByCommandesToMonth(){
+    this.commandeClientService.getTopArticlesByCommandesToMonth().subscribe(data => {
+      this.toparticleToMonth = data;
+
+    }, error => {
+      this.notificationService.error(error.error.error);
+    })
+  }
+
+
+  /**
+   * Methode qui récupére top articles  to year
+   */
+
+  getTopArticlesByCommandesToYear(){
+    this.commandeClientService.getTopArticlesByCommandesToYear().subscribe(data => {
+      this.toparticleToYear = data;
+
+    }, error => {
+      this.notificationService.error(error.error.error);
+    })
+  }
 
 }

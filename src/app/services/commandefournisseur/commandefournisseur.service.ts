@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {CommandeClient} from "../../models/commande-client";
 import {Observable, of} from "rxjs";
 import {CommandeFournisseur} from "../../models/commande-fournisseur";
+import {CommandeClientStats} from "../../models/CommandeClientStats";
 
 @Injectable({
   providedIn: 'root'
@@ -156,7 +157,7 @@ export class CommandefournisseurService {
   /**
    * Service qui retourne  les CommandeFournisseur par order dec totalprix dans le mois actuel
    */
-  getCmdFrsByMonthByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByMonthByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbymoth`;
     return this.http.get<any>(url);
   }
@@ -164,7 +165,7 @@ export class CommandefournisseurService {
   /**
    * Service qui retourne les CommandeFournisseur par order dec totalprix dans le mois president
    */
-  getCmdFrsByLastMonthByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByLastMonthByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbylastmoth`;
     return this.http.get<any>(url);
   }
@@ -172,28 +173,28 @@ export class CommandefournisseurService {
   /**
    * Service qui retourne les CommandeFournisseur par order dec totalprixdans l'anné actuel
    */
-  getCmdFrsByYearByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByYearByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbyyear`;
     return this.http.get<any>(url);
   }
   /**
    * Service qui retourne les CommandeFournisseur par order dec totalprixdans l'anné président
    */
-  getCmdFrsByLastYearByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByLastYearByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbylastyear`;
     return this.http.get<any>(url);
   }
   /**
    * Service qui retourne  les CommandeFournisseur par order dec totalprix le jour actuelle
    */
-  getCmdFrsByDayByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByDayByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbyday`;
     return this.http.get<any>(url);
   }
   /**
    * Service qui retourne les CommandeFournisseur par order dec totalprix le jour président
    */
-  getCmdFrsByLastDayByOrderByTotalPrixDesc(): Observable<any[]>{
+  getCmdFrsByLastDayByOrderByTotalPrixDesc(): Observable<CommandeClientStats[]>{
     const url = this.baseUrl+`/cmdorderbytotlbylastday`;
     return this.http.get<any>(url);
   }

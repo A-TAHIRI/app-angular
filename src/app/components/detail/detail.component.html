@@ -33,12 +33,13 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#today">Today</button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-month">This Month
                   </button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#today">Today</button>
                 </li>
 
 
@@ -47,7 +48,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-year">
-                <h5 class="card-title">Utilisateurs <span>| Cette année</span></h5>
+                <h5 class="card-title">Utilisateurs <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -65,27 +66,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="today">
-                <h5 class="card-title">Utilisateurs <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ countByDay }}</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" countByDay < countByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countByDay, countByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="countByDay<countByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay>countByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay==countByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-month">
-                <h5 class="card-title">Utilisateurs <span>| Ce mois</span></h5>
+                <h5 class="card-title">Utilisateurs <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -104,6 +86,26 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="today">
+                <h5 class="card-title">Utilisateurs <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countByDay < countByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countByDay, countByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countByDay<countByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay>countByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countByDay==countByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -127,12 +129,13 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#frs-today">Today</button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-frs-month">This Month
                   </button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#frs-today">Today</button>
                 </li>
 
 
@@ -141,7 +144,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-frs-year">
-                <h5 class="card-title">Fournisseurs <span>| Cette année</span></h5>
+                <h5 class="card-title">Fournisseurs <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -161,28 +164,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="frs-today">
-                <h5 class="card-title">Fournisseurs <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ countFrsByDay }}</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" countFrsByDay < countFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countFrsByDay, countFrsByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="countFrsByDay<countFrsByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="countFrsByDay>countFrsByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByDay==countFrsByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-frs-month">
-                <h5 class="card-title">Fournisseurs <span>| Ce mois</span></h5>
+                <h5 class="card-title">Fournisseurs <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -202,6 +185,27 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="frs-today">
+                <h5 class="card-title">Fournisseurs <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countFrsByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countFrsByDay < countFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countFrsByDay, countFrsByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countFrsByDay<countFrsByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countFrsByDay>countFrsByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countFrsByDay==countFrsByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -225,12 +229,13 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#clt-today">Today</button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-clt-month">This Month
                   </button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#clt-today">Today</button>
                 </li>
 
 
@@ -239,7 +244,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-clt-year">
-                <h5 class="card-title">Clients <span>| Cette année</span></h5>
+                <h5 class="card-title">Clients <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -259,28 +264,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="clt-today">
-                <h5 class="card-title">Clients <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ countCltByDay }}</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-clt-month">
-                <h5 class="card-title">Clients <span>| Ce mois</span></h5>
+                <h5 class="card-title">Clients <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -300,6 +285,27 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="clt-today">
+                <h5 class="card-title">Clients <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCltByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCltByDay < countCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, countCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCltByDay<countCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCltByDay>countCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCltByDay==countCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -323,14 +329,15 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#sfr-cmd-today">Today
-                  </button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-cmd-sfr-month">This Month
                   </button>
                 </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#sfr-cmd-today">Today
+                  </button>
+                </li>
+
 
 
               </ul>
@@ -338,7 +345,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-cmd-sfr-year">
-                <h5 class="card-title"> CMDS Frss <span>| Cette année</span></h5>
+                <h5 class="card-title"> CMDS Frss <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -357,28 +364,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="sfr-cmd-today">
-                <h5 class="card-title">CMDS Frss <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ countCmdFrsByDay }}</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" countCmdFrsByDay < countCmdFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCmdFrsByDay, countCmdFrsByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="countCmdFrsByDay<countCmdFrsByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countCmdFrsByDay>countCmdFrsByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="countCmdFrsByDay==countCmdFrsByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-cmd-sfr-month">
-                <h5 class="card-title">CMDS Frss <span>| Ce mois</span></h5>
+                <h5 class="card-title">CMDS Frss <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -397,6 +384,27 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="sfr-cmd-today">
+                <h5 class="card-title">CMDS Frss <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCmdFrsByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCmdFrsByDay < countCmdFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCmdFrsByDay, countCmdFrsByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCmdFrsByDay<countCmdFrsByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCmdFrsByDay>countCmdFrsByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCmdFrsByDay==countCmdFrsByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -420,12 +428,13 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#clt-cmd-today">Today
-                  </button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-cmd-clt-month">This Month
+                  </button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#clt-cmd-today">Today
                   </button>
                 </li>
 
@@ -435,7 +444,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-cmd-clt-year">
-                <h5 class="card-title"> CMDS Clts <span>| Cette année</span></h5>
+                <h5 class="card-title"> CMDS Clts <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -454,28 +463,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="clt-cmd-today">
-                <h5 class="card-title">CMDS Clts <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-cart"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ countCmdCltByDay }}</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" countCmdCltByDay < countCmdCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCmdCltByDay, countCmdCltByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="countCmdCltByDay<countCmdCltByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1" *ngIf="countCmdCltByDay>countCmdCltByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="countCmdCltByDay==countCmdCltByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-cmd-clt-month">
-                <h5 class="card-title">CMDS Clts <span>| Ce mois</span></h5>
+                <h5 class="card-title">CMDS Clts <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -494,6 +483,27 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="clt-cmd-today">
+                <h5 class="card-title">CMDS Clts <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ countCmdCltByDay }}</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" countCmdCltByDay < countCmdCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCmdCltByDay, countCmdCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="countCmdCltByDay<countCmdCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1" *ngIf="countCmdCltByDay>countCmdCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="countCmdCltByDay==countCmdCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -516,14 +526,15 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#revennue-today">Today
-                  </button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-revennue-month">This Month
                   </button>
                 </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#revennue-today">Today
+                  </button>
+                </li>
+
 
 
               </ul>
@@ -531,7 +542,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-revennue-year">
-                <h5 class="card-title"> Revenues <span>| Cette année</span></h5>
+                <h5 class="card-title"> Revenues <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -551,29 +562,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="revennue-today">
-                <h5 class="card-title">Revenues <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-euro"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ sumCmdCltByDay }}€</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" sumCmdCltByDay < sumCmdCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(sumCmdCltByDay, sumCmdCltByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="sumCmdCltByDay<sumCmdCltByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="sumCmdCltByDay>sumCmdCltByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="sumCmdCltByDay==sumCmdCltByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-revennue-month">
-                <h5 class="card-title">Revenues <span>| Ce mois</span></h5>
+                <h5 class="card-title">Revenues <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -593,6 +583,28 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="revennue-today">
+                <h5 class="card-title">Revenues <span>|Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ sumCmdCltByDay }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" sumCmdCltByDay < sumCmdCltByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(sumCmdCltByDay, sumCmdCltByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="sumCmdCltByDay<sumCmdCltByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="sumCmdCltByDay>sumCmdCltByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="sumCmdCltByDay==sumCmdCltByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -616,14 +628,15 @@
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#depence-today">Today
-                  </button>
-                </li>
-                <li class="nav-item">
                   <button class="dropdown-item nav-link" data-bs-toggle="tab"
                           data-bs-target="#this-depence-month">This Month
                   </button>
                 </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#depence-today">Today
+                  </button>
+                </li>
+
 
 
               </ul>
@@ -631,7 +644,7 @@
 
             <div class="tab-content">
               <div class=" card-body tab-pane fade show active " id="this-depence-year">
-                <h5 class="card-title"> Dépences <span>| Cette année</span></h5>
+                <h5 class="card-title"> Dépences <span>| This Year</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -651,29 +664,8 @@
                 </div>
 
               </div>
-              <div class=" card-body tab-pane fade " id="depence-today">
-                <h5 class="card-title">Dépences <span>| Aujourd'huit</span></h5>
-
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-euro"></i>
-                  </div>
-                  <div class="ps-3">
-                    <h6>{{ sumCmdFrsByDay }}€</h6>
-                    <span class=" small pt-1 fw-bold"
-                          [ngClass]=" sumCmdFrsByDay < sumCmdFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, sumCmdFrsByLastDay) }}
-                      %</span> <span class="text-muted small pt-2 ps-1"
-                                     *ngIf="sumCmdFrsByDay<sumCmdFrsByLastDay">diminution </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="sumCmdFrsByDay>sumCmdFrsByLastDay">augmententation </span>
-                    <span class="text-muted small pt-2 ps-1"
-                          *ngIf="sumCmdFrsByDay==sumCmdFrsByLastDay">identique </span>
-                  </div>
-                </div>
-
-              </div>
               <div class="card-body tab-pane fade " id="this-depence-month">
-                <h5 class="card-title">Dépences <span>| Ce mois</span></h5>
+                <h5 class="card-title">Dépences <span>| This Month</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -693,6 +685,28 @@
                 </div>
 
               </div>
+              <div class=" card-body tab-pane fade " id="depence-today">
+                <h5 class="card-title">Dépences <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-euro"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ sumCmdFrsByDay }}€</h6>
+                    <span class=" small pt-1 fw-bold"
+                          [ngClass]=" sumCmdFrsByDay < sumCmdFrsByLastDay ? 'text-danger' : ' text-success ' ">{{ facteur(countCltByDay, sumCmdFrsByLastDay) }}
+                      %</span> <span class="text-muted small pt-2 ps-1"
+                                     *ngIf="sumCmdFrsByDay<sumCmdFrsByLastDay">diminution </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="sumCmdFrsByDay>sumCmdFrsByLastDay">augmententation </span>
+                    <span class="text-muted small pt-2 ps-1"
+                          *ngIf="sumCmdFrsByDay==sumCmdFrsByLastDay">identique </span>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -795,16 +809,14 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-
-                <li class="nav-item"><button class="dropdown-item  nav-link active" data-bs-toggle="tab"
-                  data-bs-target="#cmdorderbyday">Today</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link active" data-bs-toggle="tab" data-bs-target="#cmdorderbyYear" >This Year</button></li>
                 <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#cmdorderbyMont">This Month</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link " data-bs-toggle="tab" data-bs-target="#cmdorderbyYear" >This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdorderbyday">Today</button></li>
               </ul>
             </div>
             <div class="tab-content">
-              <div class="card-body tab-pane fade show active" id="cmdorderbyday">
-                <h5 class="card-title">Recent Commandes Clients <span>| Today</span></h5>
+              <div class="card-body tab-pane fade show active " id= "cmdorderbyYear">
+                <h5 class="card-title">Recent Commandes Clients <span>| This Year</span></h5>
 
                 <table class="table table-borderless datatable">
                   <thead>
@@ -817,12 +829,12 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdCltByDay">
+                  <tr *ngFor="let cmd of orderCmdCltByYear">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.client.nom}}&nbsp;{{cmd.client.prenom}}</td>
-                    <td><a href="#" class="text-primary" *ngFor=" let lign of cmd.ligneCommandeClients" ><span>{{lign.arcticle.designation}}</span></a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
@@ -844,17 +856,17 @@
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdCltByMonth">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.client.nom}}&nbsp;{{cmd.client.prenom}}</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
 
               </div>
-              <div class="card-body tab-pane fade " id= "cmdorderbyYear">
-                <h5 class="card-title">Recent Commandes Clients <span>| This Year</span></h5>
+              <div class="card-body tab-pane fade " id="cmdorderbyday">
+                <h5 class="card-title">Recent Commandes Clients <span>| Today</span></h5>
 
                 <table class="table table-borderless datatable">
                   <thead>
@@ -867,17 +879,19 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdCltByYear">
+                  <tr *ngFor="let cmd of orderCmdCltByDay">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.client.nom}}&nbsp;{{cmd.client.prenom}}</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
 
               </div>
+
+
             </div>
 
           </div>
@@ -894,15 +908,14 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-
-                <li class="nav-item"><button class="dropdown-item  nav-link active" data-bs-toggle="tab"
-                                             data-bs-target="#cmdfrsorderbyday">Today</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link active" data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyYear" >This Year</button></li>
                 <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyMont">This Month</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link " data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyYear" >This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyday">Today</button></li>
+
               </ul>
             </div>
             <div class="tab-content">
-              <div class="card-body tab-pane fade show active" id="cmdfrsorderbyday">
+              <div class="card-body tab-pane fade " id="cmdfrsorderbyday">
                 <h5 class="card-title">Recent Commandes Fournisseurs <span>| Today</span></h5>
 
                 <table class="table table-borderless datatable">
@@ -918,10 +931,10 @@
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByDay">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.fournisseur.nom}}&nbsp;{{cmd.fournisseur.prenom}}</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
@@ -943,16 +956,16 @@
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByMonth">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.fournisseur.nom}}&nbsp;{{cmd.fournisseur.prenom}}</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
 
               </div>
-              <div class="card-body tab-pane fade " id= "cmdfrsorderbyYear">
+              <div class="card-body tab-pane fade show active" id= "cmdfrsorderbyYear">
                 <h5 class="card-title">Recent Commandes Fournisseurs <span>| This Year</span></h5>
 
                 <table class="table table-borderless datatable">
@@ -968,10 +981,10 @@
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByYear">
                     <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.fournisseur.nom}}&nbsp;{{cmd.fournisseur.prenom}}</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>{{cmd.totalPrix}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.etatCommande }}</span></td>
+                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
+                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
+                    <td>{{cmd.total}}&nbsp;€</td>
+                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
                   </tr>
                   </tbody>
                 </table>
@@ -984,84 +997,111 @@
         <!-- End Recent Commaes Fournisseurs -->
 
 
-        <!-- Top Selling -->
-        <div class="col-12">
+        <!-- Top Article-->
+        <div class="col-12" data-aos="fade-down">
           <div class="card top-selling overflow-auto">
 
-            <div class="filter">
+            <div class="filter nav">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+                <li class="nav-item"><button class="dropdown-item nav-link active "  data-bs-toggle="tab" data-bs-target="#toparticletoyear">This Year</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#toparticletomonth" >This Month</button></li>
+                <li class="nav-item"><button class="dropdown-item nav-link  "  data-bs-toggle="tab" data-bs-target="#toparticletoday">Today</button></li>
               </ul>
             </div>
+            <div class=" tab-content">
+              <div class="card-body pb-0 tab-pane fade show active" id="toparticletoyear">
+                <h5 class="card-title">Top Articles <span>| This Year</span></h5>
 
-            <div class="card-body pb-0">
-              <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                <table class="table table-borderless">
+                  <thead>
+                  <tr>
+                    <th scope="col">Apérçu</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Total Cmds</th>
+                    <th scope="col"> Total Qantités</th>
+                    <th scope="col">Revenues</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let top of toparticleToYear">
+                    <th scope="row"> <img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></th>
+                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
+                    <td >{{top.nbLigne}}</td>
+                    <td class="fw-bold ">{{top.sumQuantite}}</td>
+                    <td>{{top.total}}€</td>
+                  </tr>
 
-              <table class="table table-borderless">
-                <thead>
-                <tr>
-                  <th scope="col">Preview</th>
-                  <th scope="col">Product</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Sold</th>
-                  <th scope="col">Revenue</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                  <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                  <td>$64</td>
-                  <td class="fw-bold">124</td>
-                  <td>$5,828</td>
-                </tr>
-                <tr>
-                  <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                  <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                  <td>$46</td>
-                  <td class="fw-bold">98</td>
-                  <td>$4,508</td>
-                </tr>
-                <tr>
-                  <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                  <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                  <td>$59</td>
-                  <td class="fw-bold">74</td>
-                  <td>$4,366</td>
-                </tr>
-                <tr>
-                  <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                  <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                  <td>$32</td>
-                  <td class="fw-bold">63</td>
-                  <td>$2,016</td>
-                </tr>
-                <tr>
-                  <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                  <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                  <td>$79</td>
-                  <td class="fw-bold">41</td>
-                  <td>$3,239</td>
-                </tr>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
 
+              </div>
+              <div class="card-body pb-0 tab-pane fade" id="toparticletomonth">
+                <h5 class="card-title">Top Articles <span>| This Month</span></h5>
+
+                <table class="table table-borderless">
+                  <thead>
+                  <tr>
+                    <th scope="col">Apérçu</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Total Cmds</th>
+                    <th scope="col"> Total Qantités</th>
+                    <th scope="col">Revenues</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let top of toparticleToMonth">
+                    <th scope="row"><a href="#"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></a></th>
+                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
+                    <td>{{top.nbLigne}}</td>
+                    <td class="fw-bold ">{{top.sumQuantite}}</td>
+                    <td>{{top.total}}€</td>
+                  </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="card-body pb-0 tab-pane fade" id="toparticletoday">
+                <h5 class="card-title">Top Articles <span>| Today</span></h5>
+
+                <table class="table table-borderless">
+                  <thead>
+                  <tr >
+                    <th scope="col">Apérçu</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Total Cmds</th>
+                    <th scope="col"> Total Qantités</th>
+                    <th scope="col">Revenues</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let top of toparticleToDays">
+                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></th>
+                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
+                    <td >{{top.nbLigne}}</td>
+                    <td class="fw-bold ">{{top.sumQuantite}}</td>
+                    <td>{{top.total}}€</td>
+                  </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
             </div>
 
           </div>
-        </div><!-- End Top Selling -->
+        </div>
+        <!-- End Top Article -->
 
       </div>
     </div><!-- End Left side columns -->
 
     <!-- Right side columns -->
+
     <div class="col-lg-4">
 
       <!-- Recent Activity -->
