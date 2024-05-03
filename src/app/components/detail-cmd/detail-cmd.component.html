@@ -9,6 +9,8 @@
         <th   class="fw-bold" scope="col">Qantité</th>
         <th   class="fw-bold"  scope="col">prixUnitaire</th>
         <th   class="fw-bold"  scope="col">Total</th>
+
+
       </tr>
       </thead>
       <tbody>
@@ -19,6 +21,7 @@
         <td  > <button   type="button" class="border-0" (click)="moinsClick(i)"><i class="bi bi-dash-circle-fill text-danger"></i></button>  &nbsp;{{ligneCommande.quantite}}&nbsp; <button  class="border-0" type="button " (click)="plusClick(i)"><i class="bi bi-plus-circle-fill text-success"></i></button> </td>
         <td > {{   ligneCommande.prixUnitaire  }} &nbsp; €</td>
         <td > {{  (ligneCommande.prixUnitaire && ligneCommande.quantite ? +ligneCommande.prixUnitaire * +ligneCommande.quantite :'') }}&nbsp;€</td>
+
 
       </tr>
       </tbody>

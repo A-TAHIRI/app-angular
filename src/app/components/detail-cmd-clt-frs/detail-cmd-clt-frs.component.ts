@@ -55,4 +55,13 @@ export class DetailCmdCltFrsComponent  implements OnInit{
     }
 
   }
+
+  modifiercmd(id:number) {
+    if (this.origin=='client'){
+      this.router.navigate(['/dashboard/nouvellecommandeclt' , id])
+    }else if (this.origin=='fournisseur'){
+      this.router.navigate(['/dashboard/nouvellecommandefrs' , id])
+    }
+
+  }
 }

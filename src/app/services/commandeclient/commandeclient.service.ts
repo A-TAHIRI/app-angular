@@ -53,12 +53,33 @@ export class CommandeclientService {
     }
     return of()
   }
+  /**
+   * Service qui modifier la commande  client par son id
+   * @param id
+   */
+  updatById( commandeClient: CommandeClient, id?:number):Observable<any>{
+    if(id){
+      const  url = this.baseUrl+`/${id}`;
+      return this.http.put(url, commandeClient);
+    }
+    return of()
+  }
 
 
-  getAllCommandes( nom :string='' , page : number=0, size :number=1){
+
+  getAllCommandes( nom :string='' , page : number=0, size :number=10){
     const url= this.baseUrl+`/commandes?nom=${nom}&page=${page}&size=${size}`
-    console.log(url);
     return this.http.get(url);
+  }
+
+  /**
+   * Service pour supprimer une ligne de commande
+   * @param id
+   */
+  delet(id?:number){
+    const  url = this.baseUrl+`/lignecommande/delet?id=${id}
+    `
+    return this.http.delete(url);
   }
 
 

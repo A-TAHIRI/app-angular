@@ -52,11 +52,32 @@ export class CommandefournisseurService {
     }
     return of()
   }
+  /**
+   * Service qui modifier la commande  client par son id
+   * @param id
+   */
+  updatById( commandeFournisseur: CommandeFournisseur, id?:number):Observable<any>{
+    if(id){
+      const  url = this.baseUrl+`/${id}`;
+      return this.http.put(url, commandeFournisseur);
+    }
+    return of()
+  }
+
 
   getAllCommandes( nom :string='' , page : number=0, size :number=5){
     const url= this.baseUrl+`/commandes?nom=${nom}&page=${page}&size=${size}`
     console.log(url);
     return this.http.get(url);
+  }
+
+  /**
+   * Service pour supprimer une ligne de commande
+   * @param id
+   */
+  delet(id ?:number){
+    const  url = this.baseUrl+`/lignecommande/delet?id=${id}`;
+    return  this.http.delete(url);
   }
 
   /**********************************************nombre de commande******************************************************************/

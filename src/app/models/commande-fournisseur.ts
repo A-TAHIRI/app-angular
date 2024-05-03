@@ -5,7 +5,7 @@ export interface CommandeFournisseur {
 
   id?: number,
   creationDate?: number,
-  lastModifiedDate?: number,
+  lastModifiedDate?: Date,
   reference?: string,
   dateCommande?: Date,
   totalPrix?:number;

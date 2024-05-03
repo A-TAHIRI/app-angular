@@ -110,10 +110,12 @@
             <i class="bi bi-x-octagon"></i>
             Annuler
           </button>
-          <button class="btn btn-primary m-lg-2" (click)="enregistrerCommande()">
+          <button class="btn btn-primary m-lg-2"   (click)="enregistrerCommande()">
             <i class="bi bi-floppy"></i>
             Enregitrer
           </button>
+
+
         </div>
 
       </div>
@@ -126,7 +128,7 @@
           <img  [src]="selectedClientFournisseur.photo ? imgUrl+selectedClientFournisseur.photo :  'assets/image/user.png' "  alt="Profile" class="rounded-circle" width="110px" height="110px" >
           <h2 class="text-start  "  style="color: #0e1d34"><i class="bi bi-person-check-fill text-secondary"></i>&nbsp;&nbsp;{{ selectedClientFournisseur.nom }}{{ selectedClientFournisseur.prenom }}</h2>
           <h3 class="text-start" style="color: #0e1d34"><i class="bi bi-telephone-forward-fill text-secondary"></i>&nbsp;&nbsp;{{ selectedClientFournisseur.numTel }}</h3>
-          <h5 class="text-start" style="color: #0e1d34"><i class="bi bi-cart-check-fill text-secondary"></i>&nbsp;&nbsp;EN PREPARATION</h5>
+          <h5 class="text-start" style="color: #0e1d34"><i class="bi bi-cart-check-fill text-secondary"></i>&nbsp;&nbsp;{{ oldeCommade ? oldeCommade.etatCommande : 'EN_PREPARATION' }}</h5>
           <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

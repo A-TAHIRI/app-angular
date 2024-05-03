@@ -96,6 +96,11 @@ children:[
     data: {
       origin: 'client'
     }},
+  {path: 'nouvellecommandeclt/:idcmd', component: NouvelleCmdCltFrsComponent,
+    canActivate: [ApplicationGuardService],
+    data: {
+      origin: 'client'
+    }},
   {path:'fournisseurs', component: FournisseurComponent},
   {path:'commandesfournisseur', component: CmdCltFrsComponent ,
     canActivate: [ApplicationGuardService],
@@ -120,6 +125,11 @@ children:[
       origin: 'fournisseur'
     }},
   {path: 'nouvellecommandefrs', component: NouvelleCmdCltFrsComponent,
+    canActivate: [ApplicationGuardService],
+    data: {
+      origin: 'fournisseur'
+    }},
+  {path: 'nouvellecommandefrs/:idcmd', component: NouvelleCmdCltFrsComponent,
     canActivate: [ApplicationGuardService],
     data: {
       origin: 'fournisseur'
