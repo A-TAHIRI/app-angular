@@ -77,8 +77,7 @@ export class CommandeclientService {
    * @param id
    */
   delet(id?:number){
-    const  url = this.baseUrl+`/lignecommande/delet?id=${id}
-    `
+    const  url = this.baseUrl+`/lignecommande/delet?id=${id}`
     return this.http.delete(url);
   }
 

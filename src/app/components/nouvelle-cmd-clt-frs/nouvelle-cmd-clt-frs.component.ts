@@ -13,6 +13,7 @@ import {CommandeclientService} from "../../services/commandeclient/commandeclien
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
 import {NotificationService} from "../../services/notification/notification.service";
 import {v4 as uuidv4} from 'uuid';
+import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
 
 
 @Component({
@@ -38,6 +39,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   id: any;
   oldeCommade: any = {};
   url: string;
+  stock:any;
 
 
   constructor(
@@ -50,7 +52,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private commandeClientService: CommandeclientService,
     private commandeFournisseurService: CommandefournisseurService,
     private notificationService: NotificationService,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private mvtstkService : MvtstkService
   ) {
   }
 
@@ -287,6 +290,11 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         if (lig && lig.article?.codeArticle === this.searchedArticle.codeArticle) {
           // @ts-ignore
           lig.quantite = lig.quantite + +this.quantite;
+        this.mvtstkService.getStock(lig.article?.id).subscribe(data=>{
+          if(lig.quantite>data){
+            this.notificationService.error("L'article "+lig.article.designation +"n'est plus disponible");
+          }
+        })
         }
 
       });
@@ -295,20 +303,17 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
       if (this.origin === 'fournisseur'
       ) {
-
-        const ligneCmd: LigneCommandeFournisseur = {
-          article: this.searchedArticle,
-          prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-          quantite: +this.quantite,
-          idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
-        }
-        if (ligneCmd.article == null || ligneCmd.quantite == 0) {
-          this.notificationService.error("Veuillez rensigner les données de l'article");
-        } else {
-          this.lignesCommande.push(ligneCmd);
-        }
-
-
+            const ligneCmd: LigneCommandeFournisseur = {
+              article: this.searchedArticle,
+              prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+              quantite: +this.quantite,
+              idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
+            }
+            if (ligneCmd.article == null || ligneCmd.quantite == 0) {
+              this.notificationService.error("Veuillez rensigner les données de l'article");
+            } else {
+              this.lignesCommande.push(ligneCmd);
+            }
       } else if (this.origin === 'client') {
 
         const ligneCmd: LigneCommandeClient = {
@@ -317,11 +322,17 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           quantite: +this.quantite,
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id
         }
-        if (ligneCmd.article == null || ligneCmd.quantite == 0) {
+        this.mvtstkService.getStock(ligneCmd.article.id).subscribe(data=> {
+          this.stock = data;
+          
+        if (ligneCmd.article === null || ligneCmd.quantite === 0) {
           this.notificationService.error("Veuillez rensigner les données de l'article");
+        }else if(  ligneCmd.quantite > this.stock ){
+            this.notificationService.error("L'article "+ligneCmd.article.designation +"n'est plus disponible");
         } else {
           this.lignesCommande.push(ligneCmd);
         }
+        });
 
       }
     }
@@ -434,10 +445,12 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       }
 
       if (this.lignesCommande[id].quantite == 0) {
+        this.deletmvtstk(this.lignesCommande[id].id);
         this.deleligneclient(this.lignesCommande[id].id);
         this.lignesCommande.splice(id);
         this.calculerTotalCommande();
       } else if (this.oldlignesCommande[id].quantite == 0) {
+        this.deletmvtstk(this.oldlignesCommande[id].id)
         this.deleligneclient(this.oldlignesCommande[id].id);
         this.oldlignesCommande.splice(id);
         this.calculerTotalCommande()
@@ -445,6 +458,24 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     }
 
   }
+
+  /**
+   * Methode pour supprimer mvtstk par son id de ligne de commande clt frs
+   * @param id
+   */
+
+  deletmvtstk(id :number){
+    this.mvtstkService.delet(id).subscribe(data=>{
+      this.notificationService.success('Le mvtstk à été bien supprimer')
+    },error => {
+      this.notificationService.error(error.error.error)
+    })
+  }
+
+  /**
+   * Mthode pour supprimer une ligne de commande clt frs
+   * @param id
+   */
  deleligneclient(id:number){
    if (this.origin=='client') {
      this.commandeClientService.delet(id).subscribe(data=>{

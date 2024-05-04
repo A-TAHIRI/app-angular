@@ -82,5 +82,4 @@ export class MvtstkComponent implements OnInit{
 
   }
 
-
 }
