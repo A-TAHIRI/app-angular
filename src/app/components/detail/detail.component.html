@@ -113,7 +113,7 @@
 
 
         <!-- Fournisseur Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card customers-card">
 
@@ -213,7 +213,7 @@
 
 
         <!-- Clients Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card customers-card">
 
@@ -313,7 +313,7 @@
 
 
         <!-- commande fournisseur Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card sales-card">
 
@@ -337,7 +337,6 @@
                   <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#sfr-cmd-today">Today
                   </button>
                 </li>
-
 
 
               </ul>
@@ -412,7 +411,7 @@
 
 
         <!--commande Clients Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card sales-card">
 
@@ -510,7 +509,7 @@
         </div><!-- End commande Clients Card -->
 
         <!--Revennue Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card revenue-card">
 
@@ -534,7 +533,6 @@
                   <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#revennue-today">Today
                   </button>
                 </li>
-
 
 
               </ul>
@@ -612,7 +610,7 @@
 
 
         <!-- Dépence Card -->
-        <div class="col-xxl-4 col-xl-12"  data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
 
           <div class="card info-card revenue-card">
 
@@ -636,7 +634,6 @@
                   <button class="dropdown-item nav-link" data-bs-toggle="tab" data-bs-target="#depence-today">Today
                   </button>
                 </li>
-
 
 
               </ul>
@@ -800,7 +797,7 @@
         <!-- End Reports -->
 
         <!-- Recent Commades Clients -->
-        <div class="col-12"  data-aos="fade-down">
+        <div class="col-12" data-aos="fade-down">
           <div class="card recent-sales overflow-auto">
 
             <div class="filter nav ">
@@ -809,13 +806,24 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-                <li class="nav-item"><button class="dropdown-item nav-link active" data-bs-toggle="tab" data-bs-target="#cmdorderbyYear" >This Year</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#cmdorderbyMont">This Month</button></li>
-                <li class="nav-item"><button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdorderbyday">Today</button></li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link active" data-bs-toggle="tab" data-bs-target="#cmdorderbyYear">
+                    This Year
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link " data-bs-toggle="tab" data-bs-target="#cmdorderbyMont">This
+                    Month
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdorderbyday">Today
+                  </button>
+                </li>
               </ul>
             </div>
             <div class="tab-content">
-              <div class="card-body tab-pane fade show active " id= "cmdorderbyYear">
+              <div class="card-body tab-pane fade show active " id="cmdorderbyYear">
                 <h5 class="card-title">Recent Commandes Clients <span>| This Year</span></h5>
 
                 <table class="table table-borderless datatable">
@@ -830,11 +838,15 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdCltByYear">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                      <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -855,11 +867,16 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdCltByMonth">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                       <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                   </td>
+
                   </tr>
                   </tbody>
                 </table>
@@ -880,11 +897,15 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdCltByDay">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                      <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -899,7 +920,7 @@
 
 
         <!-- Recent Commaes Fournisseurs -->
-        <div class="col-12"  data-aos="fade-down">
+        <div class="col-12" data-aos="fade-down">
           <div class="card recent-sales overflow-auto">
 
             <div class="filter nav ">
@@ -908,9 +929,21 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-                <li class="nav-item"><button class="dropdown-item nav-link active" data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyYear" >This Year</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyMont">This Month</button></li>
-                <li class="nav-item"><button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyday">Today</button></li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link active" data-bs-toggle="tab"
+                          data-bs-target="#cmdfrsorderbyYear">This Year
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link " data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyMont">This
+                    Month
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item  nav-link " data-bs-toggle="tab" data-bs-target="#cmdfrsorderbyday">
+                    Today
+                  </button>
+                </li>
 
               </ul>
             </div>
@@ -930,11 +963,15 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByDay">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                      <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -955,17 +992,21 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByMonth">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                      <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
 
               </div>
-              <div class="card-body tab-pane fade show active" id= "cmdfrsorderbyYear">
+              <div class="card-body tab-pane fade show active" id="cmdfrsorderbyYear">
                 <h5 class="card-title">Recent Commandes Fournisseurs <span>| This Year</span></h5>
 
                 <table class="table table-borderless datatable">
@@ -980,11 +1021,15 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let cmd of orderCmdFrsByYear">
-                    <th scope="row"><a href="#">{{cmd.id}}</a></th>
-                    <td>{{cmd.nom}}&nbsp;{{cmd.prenom}}</td>
-                    <td><a href="#" class="text-primary">{{cmd.designation}}</a></td>
-                    <td>{{cmd.total}}&nbsp;€</td>
-                    <td><span class="badge bg-success">{{ cmd.status }}</span></td>
+                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                    <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
+                    <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
+                    <td>{{ cmd.total }}&nbsp;€</td>
+                    <td>
+                      <span *ngIf="cmd.status === 'LIVREE'" class="badge bg-success"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'EN_PREPARATION'" class="badge bg-warning"> {{ cmd.status }}</span>
+                      <span *ngIf="cmd.status === 'VALIDEE'" class="badge bg-primary">{{ cmd.status }} </span>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -1007,9 +1052,21 @@
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
-                <li class="nav-item"><button class="dropdown-item nav-link active "  data-bs-toggle="tab" data-bs-target="#toparticletoyear">This Year</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link "  data-bs-toggle="tab" data-bs-target="#toparticletomonth" >This Month</button></li>
-                <li class="nav-item"><button class="dropdown-item nav-link  "  data-bs-toggle="tab" data-bs-target="#toparticletoday">Today</button></li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link active " data-bs-toggle="tab"
+                          data-bs-target="#toparticletoyear">This Year
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link " data-bs-toggle="tab" data-bs-target="#toparticletomonth">This
+                    Month
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="dropdown-item nav-link  " data-bs-toggle="tab" data-bs-target="#toparticletoday">
+                    Today
+                  </button>
+                </li>
               </ul>
             </div>
             <div class=" tab-content">
@@ -1028,11 +1085,12 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let top of toparticleToYear">
-                    <th scope="row"> <img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></th>
-                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
-                    <td >{{top.nbLigne}}</td>
-                    <td class="fw-bold ">{{top.sumQuantite}}</td>
-                    <td>{{top.total}}€</td>
+                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
+                                         width="45" height="45"></th>
+                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td>{{ top.nbLigne }}</td>
+                    <td class="fw-bold ">{{ top.sumQuantite }}</td>
+                    <td>{{ top.total }}€</td>
                   </tr>
 
                   </tbody>
@@ -1054,11 +1112,12 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let top of toparticleToMonth">
-                    <th scope="row"><a href="#"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></a></th>
-                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
-                    <td>{{top.nbLigne}}</td>
-                    <td class="fw-bold ">{{top.sumQuantite}}</td>
-                    <td>{{top.total}}€</td>
+                    <th scope="row"><a href="#"><img [src]="'http://localhost:8082/file/image/'+top.image"
+                                                     alt="{{top.designation}}" width="45" height="45"></a></th>
+                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td>{{ top.nbLigne }}</td>
+                    <td class="fw-bold ">{{ top.sumQuantite }}</td>
+                    <td>{{ top.total }}€</td>
                   </tr>
 
                   </tbody>
@@ -1070,7 +1129,7 @@
 
                 <table class="table table-borderless">
                   <thead>
-                  <tr >
+                  <tr>
                     <th scope="col">Apérçu</th>
                     <th scope="col">Produit</th>
                     <th scope="col">Total Cmds</th>
@@ -1080,11 +1139,12 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let top of toparticleToDays">
-                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}" width="45" height="45"></th>
-                    <td><a href="#" class="text-primary fw-bold">{{top.designation}}</a></td>
-                    <td >{{top.nbLigne}}</td>
-                    <td class="fw-bold ">{{top.sumQuantite}}</td>
-                    <td>{{top.total}}€</td>
+                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
+                                         width="45" height="45"></th>
+                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td>{{ top.nbLigne }}</td>
+                    <td class="fw-bold ">{{ top.sumQuantite }}</td>
+                    <td>{{ top.total }}€</td>
                   </tr>
 
                   </tbody>

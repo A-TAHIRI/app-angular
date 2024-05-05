@@ -1,33 +1,47 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit,ViewChild, ElementRef} from '@angular/core';
 import {GenererPdfService} from "../../services/genererPdf/generer-pdf.service";
 import {Route, Router} from "@angular/router";
+import {CommandeclientService} from "../../services/commandeclient/commandeclient.service";
+import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
+import {NotificationService} from "../../services/notification/notification.service";
+import * as bootstrap from 'bootstrap';
+
+
 
 @Component({
   selector: 'app-detail-cmd-clt-frs',
   templateUrl: './detail-cmd-clt-frs.component.html',
   styleUrls: ['./detail-cmd-clt-frs.component.css']
 })
-export class DetailCmdCltFrsComponent  implements OnInit{
+export class DetailCmdCltFrsComponent implements OnInit {
+  @ViewChild('offcanvasRef') offcanvasRef: ElementRef;
 
   @Input()
-  i : number=0;
+  i: number = 0;
   @Input()
   origin = '';
   @Input()
-  commande:any={};
+  commande: any = {};
 
-  imgUrl : string | ArrayBuffer ='assets/image/user.png';
+  imgUrl: string | ArrayBuffer = 'assets/image/user.png';
 
-  cltFrs: any={};
+  cltFrs: any = {};
+   etatCommande: any;
+   newcommande: any;
+
 
   constructor(
-    private genererPdfService : GenererPdfService,
-    private router :Router
+    private genererPdfService: GenererPdfService,
+    private router: Router,
+    private commandeClientService : CommandeclientService,
+    private commandeFournisseurService: CommandefournisseurService,
+    private notificationService:NotificationService
   ) {
   }
+
   ngOnInit(): void {
     this.extractClientFournisseur()
-    this.imgUrl = this.cltFrs ? 'http://localhost:8082/file/image/'+this.cltFrs?.photo :'assets/image/user.png' ;
+    this.imgUrl = this.cltFrs ? 'http://localhost:8082/file/image/' + this.cltFrs?.photo : 'assets/image/user.png';
   }
 
 
@@ -39,6 +53,7 @@ export class DetailCmdCltFrsComponent  implements OnInit{
       this.cltFrs = this.commande?.client;
     }
   }
+
   modifierClick() {
 
   }
@@ -47,21 +62,57 @@ export class DetailCmdCltFrsComponent  implements OnInit{
    * Method pour retourner la facture  par id de commade
    * @param id
    */
-  facture(id:number) {
-    if (this.origin=='client'){
-      this.router.navigate(['/dashboard/facture/commandesclient' , id])
-    }else if (this.origin=='fournisseur'){
-      this.router.navigate(['/dashboard/facture/commandesfournisseur' , id])
+  facture(id: number) {
+    if (this.origin === 'client') {
+      this.router.navigate(['/dashboard/facture/commandesclient', id])
+    } else if (this.origin == 'fournisseur') {
+      this.router.navigate(['/dashboard/facture/commandesfournisseur', id])
     }
 
   }
 
-  modifiercmd(id:number) {
-    if (this.origin=='client'){
-      this.router.navigate(['/dashboard/nouvellecommandeclt' , id])
-    }else if (this.origin=='fournisseur'){
-      this.router.navigate(['/dashboard/nouvellecommandefrs' , id])
+  modifiercmd(id: number) {
+    if (this.origin ==='client') {
+      this.router.navigate(['/dashboard/nouvellecommandeclt', id])
+    } else if (this.origin == 'fournisseur') {
+      this.router.navigate(['/dashboard/nouvellecommandefrs', id])
     }
 
   }
+
+
+  changeretat() {
+    if (this.commande?.id ) {
+      if(this.origin === 'client'){
+        this.newcommande=this.commande;
+        this.newcommande.etatCommande= this.etatCommande;
+         this.commandeClientService.add(this.newcommande).subscribe(data=>{
+           this.notificationService.success("L'etat de la commande à été bien changer");
+           this.router.navigate(['dashboard/commandesclient']);
+           this.etatCommande='';
+         },error => {
+           this.notificationService.error(error.error.message);
+
+         });
+
+      }else if(this.origin === 'fournisseur'){
+        this.newcommande=this.commande;
+        this.newcommande.etatCommande= this.etatCommande;
+        this.commandeFournisseurService.add(this.newcommande).subscribe(data=>{
+        this.notificationService.success("L'etat de la commande à été bien changer");
+        this.router.navigate(['dashboard/commandesfournisseur']);
+          this.etatCommande='';
+
+      },error => {
+        this.notificationService.error(error.error.message);
+
+      });
+
+      }
+
+    }
+
+  }
+
+
 }

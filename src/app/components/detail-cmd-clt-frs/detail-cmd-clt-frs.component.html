@@ -30,6 +30,8 @@
             <li class="dropdown-header text-start">
               <h6>Actions</h6>
             </li>
+            <li><a class="dropdown-item" href="javascript:void(0)"  data-bs-toggle="offcanvas" [attr.data-bs-target]="'#offcanvasExample'+commande.id"  role="button" aria-controls="offcanvasExample">
+              <i class="bi bi-pencil-square"></i>&nbsp;Mdf Etat de commande</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifiercmd(commande.id)">
               <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
@@ -42,4 +44,28 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+<div class="offcanvas offcanvas-end "   tabindex="-1" [attr.id]="'offcanvasExample'+commande.id" aria-labelledby="offcanvasExampleLabel"  >
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+    <button type="button" class="btn-close text-reset text-bg-light  text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="container">
+      <h4>Veuillez changer l'état de la commande n° : {{commande.id}} . </h4>
+    <form>
+      <div class=" form-group">
+        <select class="form-control" name="etat" [(ngModel)]="etatCommande"    style="box-shadow: none">
+          <option [value]="null" selected >Selectionner une etat</option>
+          <option  [value]="'EN_PREPARATION'"> EN_PREPARATION</option>
+          <option  [value]="'VALIDEE'"> VALIDEE</option>
+          <option  [value]="'LIVREE'">LIVREE</option>
+        </select>
+      </div>
+      <button class="btn btn-light mt-3 " type="submit"  data-bs-dismiss="offcanvas" aria-label="Close" (click)="changeretat()">Sumbit</button>
+    </form>
+    </div>
+
+  </div>
 </div>

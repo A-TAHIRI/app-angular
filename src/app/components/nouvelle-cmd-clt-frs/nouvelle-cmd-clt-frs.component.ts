@@ -146,39 +146,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     })
   }
 
-  /**
-   * Method pour ajouter une commade client/fournisseur a la bdd
-   */
-  updateCommande() {
 
-    const commande = this.preparerCommande();
-
-    if (this.origin === 'client') {
-      if (commande.ligneCommandeClients.length != 0) {
-        commande.totalPrix = this.totalCommande;
-        this.commandeClientService.updatById(commande as CommandeClient).subscribe(cmd => {
-          this.notificationService.success('La commade client à été ajouter avec succes')
-          this.router.navigate(['dashboard/commandesclient'])
-        }, error => {
-          this.notificationService.showErrors(error.error.errors);
-        });
-      } else {
-        this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
-      }
-    } else if (this.origin === 'fournisseur') {
-      if (commande.ligneCommandeFournisseurs.length != 0) {
-        commande.totalPrix = this.totalCommande;
-        this.commandeFournisseurService.updatById(commande as CommandeFournisseur).subscribe(cmd => {
-          this.notificationService.success('La commade fournisseur à été ajouter avec succes')
-          this.router.navigate(['dashboard/commandesfournisseur']);
-        }, error => {
-          this.notificationService.showErrors(error.error.errors);
-        });
-      } else {
-        this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
-      }
-    }
-  }
 
 
   /**
@@ -192,23 +160,16 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       commande.dateCommande = this.oldeCommade.dateCommande;
       commande.lastModifiedDate = new Date();
     }
-      if (this.oldeCommade.etatCommande === 'LIVREE'){
-         this.notificationService.error("EN peux pas modifier une commade déga livrée");
-         if(this.origin==='client'){
-           this.router.navigate(['/dashboard/commandesclient']);
-         }else if(this.origin==='fournisseur'){
-           this.router.navigate(['/dashboard/commandesfournisseur']);
-         }
 
-      }else {
-        if (this.origin === 'client') {
+        if (this.origin == 'client') {
           if (commande.ligneCommandeClients.length != 0) {
+            this.calculerTotalCommande();
             commande.totalPrix = this.totalCommande;
             this.commandeClientService.add(commande as CommandeClient).subscribe(cmd => {
               this.notificationService.success('La commade client à été ajouter avec succes')
               this.router.navigate(['dashboard/commandesclient'])
             }, error => {
-              this.notificationService.showErrors(error.error.errors);
+              this.notificationService.error(error.error.message);
             });
           } else {
             this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
@@ -216,19 +177,20 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
         } else if (this.origin === 'fournisseur') {
           if (commande.ligneCommandeFournisseurs.length != 0) {
+            this.calculerTotalCommande();
             commande.totalPrix = this.totalCommande;
             this.commandeFournisseurService.add(commande as CommandeFournisseur).subscribe(cmd => {
               this.notificationService.success('La commade fournisseur à été ajouter avec succes')
               this.router.navigate(['dashboard/commandesfournisseur']);
             }, error => {
-              this.notificationService.showErrors(error.error.errors);
+              this.notificationService.error(error.error.message);
             });
 
           } else {
-            this.notificationService.error("Veuillez renseigner le code de l'articl et la quantité");
+            this.notificationService.error("Veuillez renseigner le code de l'article et la quantité");
           }
         }
-      }
+
 
   }
 
@@ -265,7 +227,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour calculer le total de la commade
    */
   calculerTotalCommande():void{
-
     this.totalCommande = 0;
     this.lignesCommande.forEach(ligne => {
       if (ligne.prixUnitaire && ligne.quantite) {
@@ -317,6 +278,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       } else if (this.origin === 'client') {
 
         const ligneCmd: LigneCommandeClient = {
+
           article: this.searchedArticle,
           prixUnitaire: this.searchedArticle.prixUnitaireTtc,
           quantite: +this.quantite,
@@ -324,12 +286,13 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         }
         this.mvtstkService.getStock(ligneCmd.article.id).subscribe(data=> {
           this.stock = data;
-          
+
         if (ligneCmd.article === null || ligneCmd.quantite === 0) {
           this.notificationService.error("Veuillez rensigner les données de l'article");
         }else if(  ligneCmd.quantite > this.stock ){
             this.notificationService.error("L'article "+ligneCmd.article.designation +"n'est plus disponible");
         } else {
+
           this.lignesCommande.push(ligneCmd);
         }
         });
@@ -356,7 +319,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
 
  private preparerCommande():any{
     if (this.origin === 'client') {
-
         return {
           client: this.selectedClientFournisseur,
           reference: 'cmdclt' + this.uniqueId,
@@ -376,30 +338,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       };
     }
   }
-  private upCommande():any{
-    if (this.origin === 'client') {
 
-      return {
-        id:this.oldeCommade.id,
-        client: this.oldeCommade.client,
-        reference: this.oldeCommade.reference,
-        etatCommande: this.oldeCommade.etatCommande,
-        dateCommande:this.oldeCommade.dateCommande,
-        idEntreprise: this.oldeCommade.idEntreprise,
-        ligneCommandeClients: this.lignesCommande
-      }
-    } else if (this.origin === 'fournisseur') {
-      return {
-        id:this.oldeCommade.id,
-        client: this.oldeCommade.client,
-        reference: this.oldeCommade.reference,
-        etatCommande: this.oldeCommade.etatCommande,
-        dateCommande:this.oldeCommade.dateCommande,
-        idEntreprise: this.oldeCommade.idEntreprise,
-        ligneCommandeClients: this.lignesCommande
-      };
-    }
-  }
 
   cancel() {
     this.router.navigate(['/dashboard/commandes' + this.origin])
@@ -473,7 +412,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
   /**
-   * Mthode pour supprimer une ligne de commande clt frs
+   * Methode pour supprimer une ligne de commande clt frs
    * @param id
    */
  deleligneclient(id:number){

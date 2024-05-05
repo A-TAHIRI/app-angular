@@ -8,3 +8,13 @@ td{
 background-color: #e9ecef;
   color: #0e1d34;
 }
+.offcanvas{
+  color: #FFFFFF;
+  z-index: 1050;
+padding-top: 75px;
+  background-color: rgba(14, 29, 52, 0.5);
+}
+.offcanvas-body{
+  padding-top: 250px;
+  color: #FFFFFF;
+}
