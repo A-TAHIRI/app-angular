@@ -52,16 +52,19 @@ export class MvtstkComponent implements OnInit{
   }
 
   /**
-   * Method pour récupiré les mtstk regouper by idArticle
+   * Method pour récupiré les mtstk regouper by Article
    */
   mvtstkByIdArticle(){
     this.mvtstkService.getMvtstkGroupByAricle().subscribe(data=>{
       // @ts-ignore
       this.mvtstkGroupByIdArticle=data.sort((a,b)=>  b.id -a.id);
-
+      console.log(data);
     })
   }
 
+  /**
+   * Metgode qui recuper les mvtstk pare page et article
+   */
 
   allMvtstk(){
     this.mvtstkService.getAllMvtstkByArticle().subscribe(data => {
@@ -72,6 +75,12 @@ export class MvtstkComponent implements OnInit{
     })
   }
 
+
+  /**
+   *  Methode qui recuper mvtstk de l'article de la page pageNumber
+   * @param name
+   * @param pageNumber
+   */
   goToPage(name?: string, pageNumber: number = 0): void {
     this.mvtstkService.getAllMvtstkByArticle(name, pageNumber).subscribe(data => {
       this.allpages = data;

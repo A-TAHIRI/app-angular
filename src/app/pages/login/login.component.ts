@@ -5,6 +5,8 @@ import { UtilisateurService } from 'src/app/services/utilisateur/utilisateur.ser
 import {Utilisateur} from "../../models/utilisateur";
 import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {NotificationService} from "../../services/notification/notification.service";
+import {AuthenticationResponse} from "../../models/authenticationResponse";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -15,15 +17,19 @@ export class LoginComponent implements OnInit {
 
   authRequestDto : AuthRequestDto = {};
   errorMessage = '';
+  authenticationResponse:AuthenticationResponse ;
 
   constructor(
      private router: Router,
      private utilisateurService: UtilisateurService,
-     private  notificationService:NotificationService
+     private  notificationService:NotificationService,
+
 
      ) { }
 
   ngOnInit(): void {
+
+
   }
 
   /**
@@ -33,18 +39,15 @@ export class LoginComponent implements OnInit {
   login(){
     this.utilisateurService.auth(this.authRequestDto).subscribe(
       (data) => {
-       // Stockage du jeton d'accès dans le stockage local (localStorage)
+        this.getUserByEmail(data.token);
         localStorage.setItem('accessToken' , JSON.stringify(data.token));
-       this.getUserByEmail();
-       this.notificationService.success('Bienvenue'+this.utilisateurService.getConnectedUser().nom)
-       this.router.navigate(['/dashboard']).then(()=>{
-        window.location.reload();
-       });
+        this.router.navigate(['/dashboard']).then(()=>(window.location.reload()));
+       this.notificationService.success('Bienvenue ' + this.utilisateurService.getConnectedUser().nom)
 
-
+        this.authenticationResponse.accessToken=data.token;
       },
       (error) => {
-        this.notificationService.error('Email ou mot de passe invalide');
+        this.notificationService.error(error.error.message);
         this.router.navigate(['login']);
 
       }
@@ -54,10 +57,10 @@ export class LoginComponent implements OnInit {
   /**
    * recupérer l'user connécté
    */
-  getUserByEmail():void{
-    this.utilisateurService.getUtilisateurByEmail(this.authRequestDto.email).subscribe((user)=>{
+  getUserByEmail(token:string):void{
+    this.utilisateurService.getUtilisateurByToken(token).subscribe((user)=>{
       this.utilisateurService.setConnectedUser(user);
-    });
+    },error => this.notificationService.error('Impossible de récupérer les informations de l’utilisateur'));
   }
 
 }

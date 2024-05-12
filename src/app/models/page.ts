@@ -1,7 +1,7 @@
 import {Utilisateur} from "./utilisateur";
 
 export interface Page {
-  content: Utilisateur[],
+  content: any[],
   pageable: {
     sort: {
       empty: boolean,

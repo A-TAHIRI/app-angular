@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {LoaderService} from "../../components/loader/service/loader.service";
+import {AuthenticationResponse} from "../../models/authenticationResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,19 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // N'intercepter pas les requêtes vers /login ou /register
+    if (req.url.includes('/register')) {
+      return next.handle(req); // Passez la requête au handler sans modifications
+    }
     this.loaderService.show();
-    let authenticationResponse: any = {};
+    let authenticationResponse: AuthenticationResponse = {};
     if (localStorage.getItem('accessToken')) {
       authenticationResponse = JSON.parse(
         localStorage.getItem('accessToken') as string
       );
-
       const authReq = req.clone({
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + authenticationResponse.accessToken
+          Authorization: 'Bearer ' + authenticationResponse
         })
       });
       return  this.handleRequest(authReq, next);

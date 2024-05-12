@@ -68,10 +68,15 @@ update(id : number , utilisateur: Utilisateur){
    */
   getUtilisateurByEmail( email  ?: string ):Observable<UtilisateurDto> {
     if (email !== undefined){
-      const  base = "http://localhost:8082/api/v1/utilisateurs/email"
-      const  url= `${base}/${email}`;
-      console.log(url)
+      const  base = "http://localhost:8082/email"
+      const  url= `${base}/?email=${email}`;
       return  this.http.get<UtilisateurDto>(url);
+    } return of();
+  }
+  getUtilisateurByToken( token  ?: string ):Observable<Utilisateur> {
+    if (token !== undefined){
+      const  base = `http://localhost:8082/token?token=${token}`
+      return  this.http.get<Utilisateur>(base);
     } return of();
   }
 
@@ -100,6 +105,7 @@ update(id : number , utilisateur: Utilisateur){
    */
   setConnectedUser( utilisateur : Utilisateur ):void{
     localStorage.setItem('connectedUser', JSON.stringify(utilisateur));
+
 
   }
 
