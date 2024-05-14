@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../../dto/utilisateur-dto";
 import { Router} from "@angular/router";
 import {MesServicesService} from "../../../services/mesServices/mes-services.service";
 import {ContactService} from "../../../services/contact/contact.service";
 import {Contact} from "../../../models/contact";
+import {Utilisateur} from "../../../models/utilisateur";
 
 
 
@@ -17,7 +17,7 @@ import {Contact} from "../../../models/contact";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  connectedUser: UtilisateurDto = {};
+  connectedUser: Utilisateur = {};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   isConnected: boolean = false;
   mesServices!: any[];

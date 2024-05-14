@@ -23,68 +23,69 @@ export class DetailComponent implements OnInit {
   countByThisMonth: any;
   countByYear: any;
   countByLastYear: any;
-  countCltByDay:any;
-  countCltByLastDay:any;
-  countCltByYear:any;
-  countCltByLastYear:any;
-  countCltByMonth:any;
-  countCltByLastMonth:any;
-  countFrsByDay:any;
-  countFrsByLastDay:any;
-  countFrsByYear:any;
-  countFrsByLastYear:any;
-  countFrsByMonth:any;
-  countFrsByLastMonth:any;
-  countCmdFrsByDay:any;
-  countCmdFrsByLastDay:any;
-  countCmdFrsByYear:any;
-  countCmdFrsByLastYear:any;
-  countCmdFrsByMonth:any;
-  countCmdFrsByLastMonth:any;
-  countCmdCltByDay:any;
-  countCmdCltByLastDay:any;
-  countCmdCltByYear:any;
-  countCmdCltByLastYear:any;
-  countCmdCltByMonth:any;
-  countCmdCltByLastMonth:any;
-  sumCmdFrsByDay:any;
-  sumCmdFrsByLastDay:any;
-  sumCmdFrsByYear:any;
-  sumCmdFrsByLastYear:any;
-  sumCmdFrsByMonth:any;
-  sumCmdFrsByLastMonth:any;
-  sumCmdCltByDay:any;
-  sumCmdCltByLastDay:any;
-  sumCmdCltByYear:any;
-  sumCmdCltByLastYear:any;
-  sumCmdCltByMonth:any;
-  sumCmdCltByLastMonth:any;
-  orderCmdCltByDay:any;
-  orderCmdCltByLastDay:Array<any>=[];
-  orderCmdCltByYear:Array<any>=[];
-  orderCmdCltByLastYear:Array<any>=[];
-  orderCmdCltByMonth:Array<any>=[];
-  orderCmdCltByLastMonth:Array<any>=[];
-  orderCmdFrsByDay:Array<any>=[];
-  orderCmdFrsByLastDay:Array<any>=[];
-  orderCmdFrsByYear:Array<any>=[];
-  orderCmdFrsByLastYear:Array<any>=[];
-  orderCmdFrsByMonth:Array<any>=[];
-  orderCmdFrsByLastMonth:Array<any>=[];
-  lignecommandeclt:Array<LigneCommandeClient>=[];
-  mapLignesCommande = new Map();
-  lignecommandefrs:Array<LigneCommandeFournisseur>=[];
-  toparticleToDays:Array<ArticleStats>=[];
-  toparticleToMonth:Array<ArticleStats>=[];
-  toparticleToYear:Array<ArticleStats>=[];
+  countCltByDay: any;
+  countCltByLastDay: any;
+  countCltByYear: any;
+  countCltByLastYear: any;
+  countCltByMonth: any;
+  countCltByLastMonth: any;
+  countFrsByDay: any;
+  countFrsByLastDay: any;
+  countFrsByYear: any;
+  countFrsByLastYear: any;
+  countFrsByMonth: any;
+  countFrsByLastMonth: any;
+  countCmdFrsByDay: any;
+  countCmdFrsByLastDay: any;
+  countCmdFrsByYear: any;
+  countCmdFrsByLastYear: any;
+  countCmdFrsByMonth: any;
+  countCmdFrsByLastMonth: any;
+  countCmdCltByDay: any;
+  countCmdCltByLastDay: any;
+  countCmdCltByYear: any;
+  countCmdCltByLastYear: any;
+  countCmdCltByMonth: any;
+  countCmdCltByLastMonth: any;
+  sumCmdFrsByDay: any;
+  sumCmdFrsByLastDay: any;
+  sumCmdFrsByYear: any;
+  sumCmdFrsByLastYear: any;
+  sumCmdFrsByMonth: any;
+  sumCmdFrsByLastMonth: any;
+  sumCmdCltByDay: any;
+  sumCmdCltByLastDay: any;
+  sumCmdCltByYear: any;
+  sumCmdCltByLastYear: any;
+  sumCmdCltByMonth: any;
+  sumCmdCltByLastMonth: any;
+  orderCmdCltByDay: any;
+  orderCmdCltByLastDay: Array<any> = [];
+  orderCmdCltByYear: Array<any> = [];
+  orderCmdCltByLastYear: Array<any> = [];
+  orderCmdCltByMonth: Array<any> = [];
+  orderCmdCltByLastMonth: Array<any> = [];
+  orderCmdFrsByDay: Array<any> = [];
+  orderCmdFrsByLastDay: Array<any> = [];
+  orderCmdFrsByYear: Array<any> = [];
+  orderCmdFrsByLastYear: Array<any> = [];
+  orderCmdFrsByMonth: Array<any> = [];
+  orderCmdFrsByLastMonth: Array<any> = [];
+  lignecommandeclt: Array<LigneCommandeClient> = [];
+  user: any;
+  role: any;
+  isAdmin:boolean=false;
+  toparticleToDays: Array<ArticleStats> = [];
+  toparticleToMonth: Array<ArticleStats> = [];
+  toparticleToYear: Array<ArticleStats> = [];
 
   constructor(
     private utilisateurService: UtilisateurService,
     private fournisseurService: FournisseurService,
     private clientService: ClientService,
     private notificationService: NotificationService,
-    private commandeClientService:CommandeclientService,
-    private commandeFournisseurService:CommandefournisseurService
+    private commandeClientService: CommandeclientService,
+    private commandeFournisseurService: CommandefournisseurService
   ) {
   }
 
@@ -146,31 +147,47 @@ export class DetailComponent implements OnInit {
     this.getTopArticlesByCommandesToDay();
     this.getTopArticlesByCommandesToMonth();
     this.getTopArticlesByCommandesToYear();
-
+   this.addparam();
   }
+
+
+  addparam() {
+    this.user = this.utilisateurService.getConnectedUser()
+    this.role = this.user.roles;
+    for (let i = 0; i <= this.role.length; i++) {
+      if (this.role[i].roleName === "ADMIN") {
+        this.isAdmin = true;
+        break;
+      }
+    }
+  }
+
+
+
 
   facteur(a: number, b: number) {
     if (a > b) {
       let def = a - b;
       const fact = (def * 100) / a;
-      return  parseFloat(fact.toFixed(2));
+      return parseFloat(fact.toFixed(2));
     } else if (a < b) {
       let def = b - a;
       const fact = (def * 100) / b;
-      return  parseFloat(fact.toFixed(2));
+      return parseFloat(fact.toFixed(2));
     }
     return null;
   }
 
-findLignCommande(id: number){
-    this.commandeClientService.findAllLigneCommandesClient().subscribe(data=>{
+  findLignCommande(id: number) {
+    this.commandeClientService.findAllLigneCommandesClient().subscribe(data => {
       this.lignecommandeclt = data;
-    },error=>{
+    }, error => {
       this.notificationService.error(error.error.errors);
     })
 
-}
-/************************************************************nombre de utilisateur***************************************************/
+  }
+
+  /************************************************************nombre de utilisateur***************************************************/
 
   /**
    * Methode qui récupére le nombre des utilisateur aujourd'huit
@@ -180,9 +197,12 @@ findLignCommande(id: number){
       this.countByDay = data;
 
     }, error => {
-      this.notificationService.error(error.error.error);
+      if(error.error.error != "Forbidden") {
+        this.notificationService.error(error.error.error);
+      }
     })
   }
+
   /**
    * Methode qui récupére le nombre des utilisateur d'hier
    */
@@ -192,7 +212,9 @@ findLignCommande(id: number){
       this.countByLastDay = data;
 
     }, error => {
-      this.notificationService.error(error.error.error);
+      if(error.error.error != "Forbidden") {
+        this.notificationService.error(error.error.error);
+      }
     })
   }
 
@@ -204,9 +226,12 @@ findLignCommande(id: number){
       this.countByMonth = data;
 
     }, error => {
+      if(error.error.error != "Forbidden") {
       this.notificationService.error(error.error.error);
+      }
     })
   }
+
   /**
    * Methode qui récupére le nombre des utilisateur dans le mois actuel
    */
@@ -215,7 +240,9 @@ findLignCommande(id: number){
       this.countByThisMonth = data;
 
     }, error => {
-      this.notificationService.error(error.error.error);
+      if(error.error.error != "Forbidden") {
+        this.notificationService.error(error.error.error);
+      }
     })
   }
 
@@ -228,7 +255,9 @@ findLignCommande(id: number){
       this.countByYear = data;
 
     }, error => {
-      this.notificationService.error(error.error.error);
+      if(error.error.error != "Forbidden") {
+        this.notificationService.error(error.error.error);
+      }
     })
   }
 
@@ -241,7 +270,9 @@ findLignCommande(id: number){
       this.countByLastYear = data;
 
     }, error => {
-      this.notificationService.error(error.error.error);
+      if(error.error.error != "Forbidden") {
+        this.notificationService.error(error.error.error);
+      }
     })
   }
 
@@ -259,6 +290,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des fournisseur d'hier
    */
@@ -283,6 +315,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des fournisseur dans le mois actuel
    */
@@ -334,6 +367,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des client d'hier
    */
@@ -358,6 +392,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des client dans le mois actuel
    */
@@ -409,6 +444,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des commandeClient d'hier
    */
@@ -433,6 +469,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des commandeClient dans le mois actuel
    */
@@ -472,7 +509,6 @@ findLignCommande(id: number){
   }
 
 
-
   /************************************************************nombre de commande fournisseur***************************************************/
 
   /**
@@ -486,6 +522,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des commadefournisseur d'hier
    */
@@ -510,6 +547,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le nombre des commadefournisseur dans le mois actuel
    */
@@ -562,6 +600,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le revenue des commadefournisseur d'hier
    */
@@ -586,6 +625,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le revenue des commadefournisseur dans le mois president
    */
@@ -637,6 +677,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le revenue des commandeClient d'hier
    */
@@ -661,6 +702,7 @@ findLignCommande(id: number){
       this.notificationService.error(error.error.error);
     })
   }
+
   /**
    * Methode qui récupére le revenue des commandeClient dans le mois actuel
    */
@@ -742,7 +784,6 @@ findLignCommande(id: number){
   }
 
 
-
   /**
    * Methode qui récupére les commandeClient par order desc totalprix dans le mois president
    */
@@ -782,7 +823,7 @@ findLignCommande(id: number){
     })
   }
 
-/******************************* COMMANDES FOURNISSEURS PAR ORDER DESC TOTLPRIX *****************************************************/
+  /******************************* COMMANDES FOURNISSEURS PAR ORDER DESC TOTLPRIX *****************************************************/
 
   /**
    * Methode qui récupére les commandeFournisseur par order desc totalprix aujourd'huit
@@ -823,7 +864,6 @@ findLignCommande(id: number){
   }
 
 
-
   /**
    * Methode qui récupére les commandeFournisseur par order desc totalprix dans le mois president
    */
@@ -854,7 +894,7 @@ findLignCommande(id: number){
    * Methode qui récupére les commandeFournisseur par order desc totalprix dans cette année passer
    */
 
-  getCmdFrsByLastYearByOrderByTotalPrixDesc(){
+  getCmdFrsByLastYearByOrderByTotalPrixDesc() {
     this.commandeFournisseurService.getCmdFrsByLastYearByOrderByTotalPrixDesc().subscribe(data => {
       this.orderCmdFrsByLastYear = data;
 
@@ -863,28 +903,27 @@ findLignCommande(id: number){
     })
   }
 
-/**********************************************************Top articles *****************************************************************/
-
+  /**********************************************************Top articles *****************************************************************/
 
 
   /**
    * Methode qui récupére top articles  to day
    */
-getTopArticlesByCommandesToDay(){
-  this.commandeClientService.getTopArticlesByCommandesToDay().subscribe(data => {
-    this.toparticleToDays = data;
+  getTopArticlesByCommandesToDay() {
+    this.commandeClientService.getTopArticlesByCommandesToDay().subscribe(data => {
+      this.toparticleToDays = data;
 
-  }, error => {
-    this.notificationService.error(error.error.error);
-  })
-}
+    }, error => {
+      this.notificationService.error(error.error.error);
+    })
+  }
 
 
   /**
    * Methode qui récupére top articles  to month
    */
 
-  getTopArticlesByCommandesToMonth(){
+  getTopArticlesByCommandesToMonth() {
     this.commandeClientService.getTopArticlesByCommandesToMonth().subscribe(data => {
       this.toparticleToMonth = data;
 
@@ -898,7 +937,7 @@ getTopArticlesByCommandesToDay(){
    * Methode qui récupére top articles  to year
    */
 
-  getTopArticlesByCommandesToYear(){
+  getTopArticlesByCommandesToYear() {
     this.commandeClientService.getTopArticlesByCommandesToYear().subscribe(data => {
       this.toparticleToYear = data;
 

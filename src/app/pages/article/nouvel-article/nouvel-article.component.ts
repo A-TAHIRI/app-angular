@@ -5,7 +5,6 @@ import { Categorie } from 'src/app/models/categirie';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
-import {ArticleDto} from "../../../dto/article-dto";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {NotificationService} from "../../../services/notification/notification.service";
 

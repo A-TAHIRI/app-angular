@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CategorieService} from "../../services/categorie/categorie.service";
-import {CategorieDto} from "../../dto/categorie-dto";
 import {Categorie} from "../../models/categirie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
@@ -13,7 +12,7 @@ import {DataService} from "../../services/dataService/data.service";
 })
 export class CategoriesComponent implements OnInit {
 
-  liste !: CategorieDto[];
+  liste !: Categorie[];
   cat: Categorie = {};
   errorsMsg: Array<string> = [];
   selectedCatIdToDelete? = -1;

@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import { AuthRequestDto } from 'src/app/dto/auth-request';
 import { Utilisateur } from 'src/app/models/utilisateur';
 import {Router} from "@angular/router";
-import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
-import {AuthReponse} from "../../dto/auth-reponse";
-import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {ApiResponse} from "../../models/api-response";
 import {Page} from "../../models/page";
+import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
+import {AuthRequest} from "../../models/auth-request";
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +39,11 @@ update(id : number , utilisateur: Utilisateur){
 
   /**
    * methode de l'etentifiant
-   * @param authRequestDto
+   * @param authRequest
    */
-  auth(authRequestDto: AuthRequestDto) {
+  auth(authRequest: AuthRequest) {
     const url = `${this.baseUrl}/login`;
-   return this.http.post<any>(url ,authRequestDto)
+   return this.http.post<any>(url ,authRequest)
 
   }
 
@@ -53,7 +51,7 @@ update(id : number , utilisateur: Utilisateur){
    * Service qui retourn un utilisateur par son id
    * @param id
    */
-  getUtilisateur(id?: number):Observable<UtilisateurDto>{
+  getUtilisateur(id?: number):Observable<any>{
     if (id){
       const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
       return  this.http.get(url);
@@ -66,11 +64,11 @@ update(id : number , utilisateur: Utilisateur){
    * retourne  l'utilisateur  récupiré par son email
    * @param email
    */
-  getUtilisateurByEmail( email  ?: string ):Observable<UtilisateurDto> {
+  getUtilisateurByEmail( email  ?: string ):Observable<any> {
     if (email !== undefined){
       const  base = "http://localhost:8082/email"
       const  url= `${base}/?email=${email}`;
-      return  this.http.get<UtilisateurDto>(url);
+      return  this.http.get<Utilisateur>(url);
     } return of();
   }
   getUtilisateurByToken( token  ?: string ):Observable<Utilisateur> {
@@ -88,10 +86,13 @@ update(id : number , utilisateur: Utilisateur){
     return this.http.get<Utilisateur[]>(url)
   }
 
-
-  changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto) {
+  /**
+   * Service pour modifier mot de passe
+   * @param changerMotDePasse
+   */
+  changerMotDePasse(changerMotDePasse: ChangerMotDePasseUtilisateur) {
     const url = ` ${this.baseUrl}/api/v1/utilisateurs/update/password`;
-   return  this.http.put<any>(url,changerMotDePasseDto )
+   return  this.http.put<any>(url,changerMotDePasse )
   }
 
 /*

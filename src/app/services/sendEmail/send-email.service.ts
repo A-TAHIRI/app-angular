@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Email} from "../../models/email";
-import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
-import {Utilisateur} from "../../models/utilisateur";
-import {Observable} from "rxjs";
+
+import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +29,7 @@ export class SendEmailService {
     const  url = this.baseUrl+`/userByToken`
     return this.http.get(url, token)
   }
-resetPassword(dto: ChangerMotDePasseUtilisateurDto, token :string){
+resetPassword(dto: ChangerMotDePasseUtilisateur, token :string){
     const url=`http://localhost:8082/reset-password?token=${token}`;
 
   return this.http.put(url,dto );

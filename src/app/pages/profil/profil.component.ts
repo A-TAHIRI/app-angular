@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../dto/utilisateur-dto";
-import {ChangerMotDePasseUtilisateurDto} from "../../dto/changer-mot-de-passe-utilisateur-dto";
 import {NotificationService} from "../../services/notification/notification.service";
+import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-profil',
@@ -11,9 +11,9 @@ import {NotificationService} from "../../services/notification/notification.serv
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
-  utilisateur: UtilisateurDto={};
+  utilisateur: Utilisateur={};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
-  changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
+  changerMotDePasseUtilisateur: ChangerMotDePasseUtilisateur = {};
   ancienMotDePasse = '';
    errorMsg='';
 
@@ -54,8 +54,8 @@ export class ProfilComponent implements OnInit {
 
 
   chagerMotDePasseUtilisateur() {
-    this.changerMotDePasseUtilisateurDto.id= this.utilsateurService.getConnectedUser().id;
-    this.utilsateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
+    this.changerMotDePasseUtilisateur.id= this.utilsateurService.getConnectedUser().id;
+    this.utilsateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe((data) => {
       this.utilsateurService.getConnectedUser();
       this.router.navigate([''])
     },error => {

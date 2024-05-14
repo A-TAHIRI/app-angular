@@ -1,27 +1,68 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Menu} from "./menu";
+import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent  implements OnInit{
+export class MenuComponent implements OnInit {
   activeIndex: number | null = null;
-  constructor( private router: Router) {
+  role: any;
+  user: any;
+  isAdmin :boolean=false;
+
+  constructor(
+    private router: Router,
+    private utilisateurService: UtilisateurService
+  ) {
   }
+
   ngOnInit(): void {
+    this.user = this.utilisateurService.getConnectedUser();
+    this.role = this.user.roles;
+    this.addparam();
+
   }
+
+
+  // Si l'utilisateur est ADMIN, ajoutez le dernier élément à la barre latérale
+  addparam() {
+    for (let i = 0; i <= this.role.length; i++) {
+      if (this.role[i].roleName === "ADMIN") {
+      this. isAdmin = true;
+      break;
+      }
+    }
+    if (this.isAdmin===true) {
+
+
+
+      this.sidebarLinks.push({
+        label: 'Parametrages',
+        icon: 'bi bi-gear',
+        collapse: 'parametrages',
+        expanded: true,
+        children: [
+          {label: 'Categories', route: '/dashboard/categories'},
+          {label: 'Utilisateurs', route: '/dashboard/utilisateurs'},
+        ]
+      });
+    }
+  }
+
   setActive(index: number) {
     this.activeIndex = index;
   }
+
   public menuProperties: Array<Menu> = [
     {
       id: '1',
       titre: 'Dashboard',
       icon: 'bi bi-grid',
-      souTitre:'dashboard-nav',
+      souTitre: 'dashboard-nav',
       url: '',
       sousMenu: [
         {
@@ -41,7 +82,7 @@ export class MenuComponent  implements OnInit{
     {
       id: '2',
       titre: 'Articles',
-      souTitre:'article-nav',
+      souTitre: 'article-nav',
       icon: 'bi bi-boxes',
       url: '',
       sousMenu: [
@@ -62,7 +103,7 @@ export class MenuComponent  implements OnInit{
     {
       id: '3',
       titre: 'Clients',
-      souTitre:'client-nav',
+      souTitre: 'client-nav',
       icon: 'bi bi-people',
       url: '',
       sousMenu: [
@@ -83,7 +124,7 @@ export class MenuComponent  implements OnInit{
     {
       id: '4',
       titre: 'Fournisseurs',
-      souTitre:'fournisseur-nav',
+      souTitre: 'fournisseur-nav',
       icon: 'bi bi-truck',
       url: '',
       sousMenu: [
@@ -104,7 +145,7 @@ export class MenuComponent  implements OnInit{
     {
       id: '5',
       titre: 'Parametrages',
-      souTitre:'parametre-nav',
+      souTitre: 'parametre-nav',
       icon: 'bi bi-gear',
       url: '',
       sousMenu: [
@@ -125,46 +166,39 @@ export class MenuComponent  implements OnInit{
   ];
 
 
-
-
-  navigate(url : string): void {
+  navigate(url: string): void {
 
     this.router.navigate([url]);
   }
 
   sidebarLinks = [
     {
-      label: 'Dashboard',  icon: 'bi bi-grid',     route: '/dashboard', collapse: '',
+      label: 'Dashboard', icon: 'bi bi-grid', route: '/dashboard', collapse: '',
       expanded: false
     },
     {
       label: 'Articles', icon: 'bi bi-boxes', collapse: 'articles', expanded: true,
       children: [
-        { label: 'Articles', route: '/dashboard/articles' },
-        { label: 'Mouvements Du Stock', route: '/dashboard/mvtstk' },
+        {label: 'Articles', route: '/dashboard/articles'},
+        {label: 'Mouvements Du Stock', route: '/dashboard/mvtstk'},
       ]
     },
     {
       label: 'Clients', icon: 'bi bi-people', collapse: 'clients', expanded: true,
       children: [
-        { label: 'Clients', route: '/dashboard/clients' },
-        { label: 'Commandes clients', route: '/dashboard/commandesclient' },
+        {label: 'Clients', route: '/dashboard/clients'},
+        {label: 'Commandes clients', route: '/dashboard/commandesclient'},
       ]
     },
     {
       label: 'Fournisseurs', icon: 'bi bi-truck', collapse: 'fournisseur', expanded: true,
       children: [
-        { label: 'Fournisseurs', route: '/dashboard/fournisseurs' },
-        { label: 'Commandes fournisseurs', route: '/dashboard/commandesfournisseur' },
-      ]
-    },
-    {
-      label: 'Parametrages', icon: 'bi bi-gear', collapse: 'parametrages', expanded: true,
-      children: [
-        { label: 'Categories', route: '/dashboard/categories' },
-        { label: 'Utilisateurs', route: '/dashboard/utilisateurs' },
+        {label: 'Fournisseurs', route: '/dashboard/fournisseurs'},
+        {label: 'Commandes fournisseurs', route: '/dashboard/commandesfournisseur'},
       ]
     }
+
   ];
+
 
 }

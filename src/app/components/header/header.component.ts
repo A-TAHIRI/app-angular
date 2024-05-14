@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/dataService/data.service";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import {DataService} from "../../services/dataService/data.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements  OnInit{
-  connectedUser: UtilisateurDto = {};
+  connectedUser: Utilisateur = {};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   name:any;
   constructor( private elementRef: ElementRef ,

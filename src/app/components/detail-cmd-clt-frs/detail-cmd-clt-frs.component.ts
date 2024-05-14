@@ -23,6 +23,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
   @Input()
   commande: any = {};
 
+
   imgUrl: string | ArrayBuffer = 'assets/image/user.png';
 
   cltFrs: any = {};
@@ -40,6 +41,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.extractClientFournisseur()
     this.imgUrl = this.cltFrs ? 'http://localhost:8082/file/image/' + this.cltFrs?.photo : 'assets/image/user.png';
   }
@@ -98,6 +100,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
       }else if(this.origin === 'fournisseur'){
         this.newcommande=this.commande;
         this.newcommande.etatCommande= this.etatCommande;
+
         this.commandeFournisseurService.add(this.newcommande).subscribe(data=>{
         this.notificationService.success("L'etat de la commande à été bien changer");
         this.router.navigate(['dashboard/commandesfournisseur']);

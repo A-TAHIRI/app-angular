@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SendEmailService} from "../../../services/sendEmail/send-email.service";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
-import {ChangerMotDePasseUtilisateurDto} from "../../../dto/changer-mot-de-passe-utilisateur-dto";
-import {Utilisateur} from "../../../models/utilisateur";
-import * as jwt_decode from 'jwt-decode';
 import {NotificationService} from "../../../services/notification/notification.service";
+import {ChangerMotDePasseUtilisateur} from "../../../models/changer-mot-de-passe-utilisateur";
 
 
 @Component({
@@ -14,7 +12,7 @@ import {NotificationService} from "../../../services/notification/notification.s
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit{
-  changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
+  changerMotDePasseUtilisateur: ChangerMotDePasseUtilisateur = {};
   errorMsg ='';
   extrerToken='';
   extraitEmail='';
@@ -44,11 +42,11 @@ export class ResetPasswordComponent implements OnInit{
 
 
   chagerMotDePasseUtilisateur( ) {
-    if (this.changerMotDePasseUtilisateurDto.motDePasse != this.changerMotDePasseUtilisateurDto.confirmMotDePasse) {
+    if (this.changerMotDePasseUtilisateur.motDePasse != this.changerMotDePasseUtilisateur.confirmMotDePasse) {
       this.notificationService.error("le mot passe n'est pas compatible  Veuillez essayé")
       this.router.navigate(['/reset-password']);
     }
-      this.sendEmailService.resetPassword(this.changerMotDePasseUtilisateurDto, this.extrerToken).subscribe(data => {
+      this.sendEmailService.resetPassword(this.changerMotDePasseUtilisateur, this.extrerToken).subscribe(data => {
         this.notificationService.success('Le mot de passe à été changer avec succès')
           this.router.navigate(['/login']).then(()=>{
             window.location.reload();
@@ -72,9 +70,9 @@ isValid(){
     if (this.valide==true){
      let  utilisateur  =this.utilisateurService.getUtilisateurByEmail(this.extraitEmail)
       utilisateur.subscribe(data=>{
-        if (this.changerMotDePasseUtilisateurDto.motDePasse===this.changerMotDePasseUtilisateurDto.confirmMotDePasse){
-          this.changerMotDePasseUtilisateurDto.id=data.id;
-          this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe(data=>{
+        if (this.changerMotDePasseUtilisateur.motDePasse===this.changerMotDePasseUtilisateur.confirmMotDePasse){
+          this.changerMotDePasseUtilisateur.id=data.id;
+          this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe(data=>{
             this.router.navigate(['/login'])
           },error => {
             this.errorMsg=error.error.errors

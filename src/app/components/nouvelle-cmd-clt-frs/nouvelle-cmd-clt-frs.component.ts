@@ -157,8 +157,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     if (this.url === '/dashboard/nouvellecommandefrs/' + this.id || this.url === '/dashboard/nouvellecommandeclt/' + this.id) {
       commande.id = this.oldeCommade.id;
       commande.reference = this.oldeCommade.reference;
-      commande.dateCommande = this.oldeCommade.dateCommande;
-      commande.lastModifiedDate = new Date();
     }
 
         if (this.origin == 'client') {
@@ -323,7 +321,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           client: this.selectedClientFournisseur,
           reference: 'cmdclt' + this.uniqueId,
           etatCommande: 'EN_PREPARATION',
-          dateCommande: new Date(),
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
           ligneCommandeClients: this.lignesCommande
         }
@@ -332,7 +329,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         fournisseur: this.selectedClientFournisseur,
         reference: 'cmdfrs' + this.uniqueId,
         etatCommande: 'EN_PREPARATION',
-        dateCommande: new Date(),
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
         ligneCommandeFournisseurs:this.lignesCommande
       };

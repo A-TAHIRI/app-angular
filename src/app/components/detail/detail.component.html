@@ -8,16 +8,16 @@
   </nav>
 </div><!-- End Page Title -->
 
-<section class="section dashboard">
-  <div class="row">
+<section class="section dashboard container">
+  <div class="row ">
 
     <!-- Left side columns -->
-    <div class="col-lg-8">
-      <div class="row">
+    <div class="col-lg-12">
+      <div class="row ">
 
 
         <!-- Utilisateurs Card -->
-        <div class="col-xxl-4 col-xl-12" data-aos="fade-down">
+        <div class="col-xxl-4 col-xl-12" data-aos="fade-down" *ngIf="isAdmin">
 
           <div class="card info-card customers-card">
 
@@ -837,8 +837,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdCltByYear">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdCltByYear let i= index">
+                    <th scope="row"><a href="#">{{ i+1}}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -866,8 +866,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdCltByMonth">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdCltByMonth let i=index">
+                    <th scope="row"><a href="#">{{ i+1 }}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -896,8 +896,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdCltByDay">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdCltByDay let i=index">
+                    <th scope="row"><a href="#">{{ i+1}}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -962,8 +962,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdFrsByDay">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdFrsByDay let i=index">
+                    <th scope="row"><a href="#">{{ i+1 }}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -991,8 +991,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdFrsByMonth">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdFrsByMonth let i=index">
+                    <th scope="row"><a href="#">{{ i+1 }}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -1020,8 +1020,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let cmd of orderCmdFrsByYear">
-                    <th scope="row"><a href="#">{{ cmd.id }}</a></th>
+                  <tr *ngFor="let cmd of orderCmdFrsByYear let i=index">
+                    <th scope="row"><a href="#">{{ i+1 }}</a></th>
                     <td>{{ cmd.nom }}&nbsp;{{ cmd.prenom }}</td>
                     <td><a href="#" class="text-primary">{{ cmd.designation }}</a></td>
                     <td>{{ cmd.total }}&nbsp;€</td>
@@ -1076,6 +1076,7 @@
                 <table class="table table-borderless">
                   <thead>
                   <tr>
+
                     <th scope="col">Apérçu</th>
                     <th scope="col">Produit</th>
                     <th scope="col">Total Cmds</th>
@@ -1084,10 +1085,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let top of toparticleToYear">
+                  <tr *ngFor="let top of toparticleToYear let i= index">
+
                     <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
                                          width="45" height="45"></th>
-                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>
                     <td class="fw-bold ">{{ top.sumQuantite }}</td>
                     <td>{{ top.total }}€</td>
@@ -1103,6 +1105,7 @@
                 <table class="table table-borderless">
                   <thead>
                   <tr>
+
                     <th scope="col">Apérçu</th>
                     <th scope="col">Produit</th>
                     <th scope="col">Total Cmds</th>
@@ -1111,10 +1114,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let top of toparticleToMonth">
+                  <tr *ngFor="let top of toparticleToMonth let i=index">
+
                     <th scope="row"><a href="#"><img [src]="'http://localhost:8082/file/image/'+top.image"
                                                      alt="{{top.designation}}" width="45" height="45"></a></th>
-                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>
                     <td class="fw-bold ">{{ top.sumQuantite }}</td>
                     <td>{{ top.total }}€</td>
@@ -1130,6 +1134,7 @@
                 <table class="table table-borderless">
                   <thead>
                   <tr>
+
                     <th scope="col">Apérçu</th>
                     <th scope="col">Produit</th>
                     <th scope="col">Total Cmds</th>
@@ -1138,10 +1143,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let top of toparticleToDays">
+                  <tr *ngFor="let top of toparticleToDays let i= index">
+
                     <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
                                          width="45" height="45"></th>
-                    <td><a href="#" class="text-primary fw-bold">{{ top.designation }}</a></td>
+                    <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>
                     <td class="fw-bold ">{{ top.sumQuantite }}</td>
                     <td>{{ top.total }}€</td>
@@ -1161,10 +1167,9 @@
     </div><!-- End Left side columns -->
 
     <!-- Right side columns -->
-
+<!--
     <div class="col-lg-4">
 
-      <!-- Recent Activity -->
       <div class="card">
         <div class="filter">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1190,7 +1195,7 @@
               <div class="activity-content">
                 Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
               </div>
-            </div><!-- End activity item-->
+            </div>
 
             <div class="activity-item d-flex">
               <div class="activite-label">56 min</div>
@@ -1198,7 +1203,7 @@
               <div class="activity-content">
                 Voluptatem blanditiis blanditiis eveniet
               </div>
-            </div><!-- End activity item-->
+            </div>
 
             <div class="activity-item d-flex">
               <div class="activite-label">2 hrs</div>
@@ -1206,7 +1211,7 @@
               <div class="activity-content">
                 Voluptates corrupti molestias voluptatem
               </div>
-            </div><!-- End activity item-->
+            </div>
 
             <div class="activity-item d-flex">
               <div class="activite-label">1 day</div>
@@ -1214,7 +1219,7 @@
               <div class="activity-content">
                 Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
               </div>
-            </div><!-- End activity item-->
+            </div>
 
             <div class="activity-item d-flex">
               <div class="activite-label">2 days</div>
@@ -1222,7 +1227,7 @@
               <div class="activity-content">
                 Est sit eum reiciendis exercitationem
               </div>
-            </div><!-- End activity item-->
+            </div>
 
             <div class="activity-item d-flex">
               <div class="activite-label">4 weeks</div>
@@ -1230,14 +1235,14 @@
               <div class="activity-content">
                 Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
               </div>
-            </div><!-- End activity item-->
+            </div>
 
           </div>
 
         </div>
-      </div><!-- End Recent Activity -->
+      </div>
 
-      <!-- Budget Report -->
+
       <div class="card">
         <div class="filter">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1309,10 +1314,10 @@
           </script>
 
         </div>
-      </div><!-- End Budget Report -->
+      </div>
 
-      <!-- Website Traffic -->
-      <!--
+
+
       <div class="card">
         <div class="filter">
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1448,11 +1453,11 @@
 
              </div>
            </div>
-          -->
-      <!-- End News & Updates -->
+
+
 
     </div>
-
+-->
     <!-- End Right side columns -->
 
   </div>

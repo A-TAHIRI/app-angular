@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {  ArticleDto } from 'src/app/dto/article-dto';
 import { Article } from 'src/app/models/article';
 
 
@@ -40,7 +39,7 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    * @param id
    * @param article
    */
-  update(id: number, article: Article): Observable<ArticleDto> {
+  update(id: number, article: Article): Observable<any> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.put(url, article);
   }

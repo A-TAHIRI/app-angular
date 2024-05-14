@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategorieService} from "../../../services/categorie/categorie.service";
 import {Categorie} from "../../../models/categirie";
-import {CategorieDto} from "../../../dto/categorie-dto";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {NotificationService} from "../../../services/notification/notification.service";

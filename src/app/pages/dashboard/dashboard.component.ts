@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../dto/utilisateur-dto";
+import {Utilisateur} from "../../models/utilisateur";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import {UtilisateurDto} from "../../dto/utilisateur-dto";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent  implements OnInit {
-  connectedUser: UtilisateurDto = {};
+  connectedUser: Utilisateur = {};
   constructor(private  utilisateurService: UtilisateurService) {
 
   }

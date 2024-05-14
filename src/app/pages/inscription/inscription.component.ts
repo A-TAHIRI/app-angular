@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Adresse } from 'src/app/models/adresse';
 import { Entreprise } from 'src/app/models/entreprise';
 import { EntrepriseService } from 'src/app/services/entreprise/entreprise.service';
-import {AuthRequestDto} from "../../dto/auth-request";
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 import {FileUploadService} from "../../services/upload/file-upload.service";
 import {NotificationService} from "../../services/notification/notification.service";
+import {AuthRequest} from "../../models/auth-request";
 
 @Component({
   selector: 'app-inscription',
@@ -55,12 +55,12 @@ export class InscriptionComponent implements OnInit {
    *au cour de l'inscription de l'entreprise en fait la conéction diret de user gnerer
    */
   conectEntreprise():void{
-    const authRequestDto: AuthRequestDto = {
+    const authRequest: AuthRequest = {
       email: this.entreprise.email,
       mdp: 'som3R@nd0mP@$$word'
     };
-    this.utilisateurService.auth(authRequestDto).subscribe((res)=>{
-    this.getUserByEmail(authRequestDto.email);
+    this.utilisateurService.auth(authRequest).subscribe((res)=>{
+    this.getUserByEmail(authRequest.email);
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
       this.notificationService.info(" Veuillez changer votre mot passe");

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../dto/utilisateur-dto";
 import {Router} from "@angular/router";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-header-home',
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header-home.component.css']
 })
 export class HeaderHomeComponent implements  OnInit{
-  connectedUser: UtilisateurDto = {};
+  connectedUser: Utilisateur = {};
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
   isConnected: boolean = false;
   constructor(private utilisateurService:UtilisateurService,
@@ -32,7 +32,8 @@ export class HeaderHomeComponent implements  OnInit{
   }
   deconexion(){
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('connectedUser')
+    localStorage.removeItem('connectedUser');
+
   }
 
 

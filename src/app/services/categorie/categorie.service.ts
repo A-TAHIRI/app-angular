@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import { CategorieDto } from 'src/app/dto/categorie-dto';
 import { Categorie } from 'src/app/models/categirie';
 
 @Injectable({
@@ -29,7 +28,7 @@ export class CategorieService {
    * service pour ajouter une categorie
    * @param categirie
    */
-  ajouterCategorie(categirie: Categorie): Observable<CategorieDto> {
+  ajouterCategorie(categirie: Categorie): Observable<any> {
     const url =  this.baseUrl;
     return this.http.post(url, categirie);
   }

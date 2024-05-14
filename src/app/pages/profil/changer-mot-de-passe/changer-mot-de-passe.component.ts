@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
-import {UtilisateurDto} from "../../../dto/utilisateur-dto";
-import {ChangerMotDePasseUtilisateurDto} from "../../../dto/changer-mot-de-passe-utilisateur-dto";
-import {of} from "rxjs";
+
 import {NotificationService} from "../../../services/notification/notification.service";
+import {Utilisateur} from "../../../models/utilisateur";
+import {ChangerMotDePasseUtilisateur} from "../../../models/changer-mot-de-passe-utilisateur";
 
 @Component({
   selector: 'app-changer-mot-de-passe',
@@ -12,8 +12,8 @@ import {NotificationService} from "../../../services/notification/notification.s
   styleUrls: ['./changer-mot-de-passe.component.css']
 })
 export class ChangerMotDePasseComponent implements OnInit {
-  utilisateur: UtilisateurDto = {};
-  changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
+  utilisateur: Utilisateur = {};
+  changerMotDePasseUtilisateur: ChangerMotDePasseUtilisateur = {};
   ancienMotDePasse = '';
   errorMsg ='';
   imgUrl : string | ArrayBuffer ='assets/image/user.png';
@@ -45,8 +45,8 @@ export class ChangerMotDePasseComponent implements OnInit {
   }
 
   chagerMotDePasseUtilisateur() {
-    this.changerMotDePasseUtilisateurDto.id= this.utilisateurService.getConnectedUser().id;
-    this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
+    this.changerMotDePasseUtilisateur.id= this.utilisateurService.getConnectedUser().id;
+    this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe((data) => {
       this.utilisateurService.getConnectedUser();
       this.notificationService.success('Le mot de passe à été changer avec succès')
       this.router.navigate(['']).then(()=>{
