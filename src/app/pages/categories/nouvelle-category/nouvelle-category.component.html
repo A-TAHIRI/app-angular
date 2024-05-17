@@ -20,24 +20,22 @@
 
           <div class="col mb-3">
             <div class="col-md-4">
-              <div class="col-md-12">
-
-              </div>
               <form>
-                <div class="row mb-3">
+                <div class="row mb-3 d-flex align-items-center">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Code category" name="code" [(ngModel)]="categorie.code" style="box-shadow: none" >
+                  <div class="col">Designation :</div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Designation" name="designation" [(ngModel)]="categorie.designation" style="box-shadow: none">
+                  </div>
                   </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3 d-flex align-items-center">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Description" name="designation" [(ngModel)]="categorie.designation" style="box-shadow: none">
-                  </div>
-                </div>
-                <div class="row mb-3">
+                  <div class="col">Image :</div>
                   <div class="col">
                     <input type="file"  name="image"  class="file-upload" (change)="onFileSelected($event)">
                     <input type="hidden" name="image"  [(ngModel)]="categorie.image" [value]="pathFile">
+                  </div>
                   </div>
                 </div>
               </form>

@@ -47,13 +47,11 @@ export class ChangerMotDePasseComponent implements OnInit {
   chagerMotDePasseUtilisateur() {
     this.changerMotDePasseUtilisateur.id= this.utilisateurService.getConnectedUser().id;
     this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe((data) => {
-      this.utilisateurService.getConnectedUser();
-      this.notificationService.success('Le mot de passe à été changer avec succès')
-      this.router.navigate(['']).then(()=>{
-        window.location.reload();
-        }
 
-      )
+      this.router.navigate(['/dashboard']).then(()=>{
+
+        location.reload();
+      })
     },error => {
       this.notificationService.error(error.error.message);
 

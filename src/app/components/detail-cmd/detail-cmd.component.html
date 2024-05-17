@@ -15,7 +15,7 @@
       </thead>
       <tbody>
       <tr data-aos="zoom-in"   >
-        <td  >{{ligneCommande.article?.codeArticle}}</td>
+        <td  >{{ligneCommande.article?.codeArticle.substring(0,5)}}</td>
         <td  > {{ligneCommande.article?.designation}}</td>
         <td  > {{ligneCommande.article?.categorie.designation}}</td>
         <td  > <button   type="button" class="border-0" (click)="moinsClick(i)"><i class="bi bi-dash-circle-fill text-danger"></i></button>  &nbsp;{{ligneCommande.quantite}}&nbsp; <button  class="border-0" type="button " (click)="plusClick(i)"><i class="bi bi-plus-circle-fill text-success"></i></button> </td>

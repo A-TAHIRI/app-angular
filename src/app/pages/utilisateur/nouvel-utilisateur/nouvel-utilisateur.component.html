@@ -27,53 +27,116 @@
               <div class="col-md-12 " >
                 <form>
                   <div class="row mb-3">
-                    <div class="col">
+                    <div class="col-md-6">
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Nom</label>
+                    <div class="col-sm-10">
                       <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="utilisateur.nom" name="nom" style="box-shadow: none">
                     </div>
-                    <div class="col">
+                      </div>
+                    </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 row ">
+                            <label  class="col-sm-2 col-form-label">Adresse 1</label>
+                    <div class="col-sm-10">
                       <input type="text" class="form-control" placeholder="Adresse 1" [(ngModel)]="adresse.adresse1" name="adresse1" style="box-shadow: none">
                     </div>
+                          </div>
+                        </div>
                   </div>
                   <div class="row mb-3">
-                    <div class="col">
+                    <div class="col-md-6">
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Prenom</label>
+                    <div class="col-sm-10">
                       <input type="text" class="form-control" placeholder="Prenom" [(ngModel)]="utilisateur.prenom" name="prenom" style="box-shadow: none">
                     </div>
-                    <div class="col">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Adresse 2</label>
+                    <div class="col-sm-10">
                       <input type="text" class="form-control" placeholder="Adresse 2" [(ngModel)]="adresse.adresse2" name="adresse2" style="box-shadow: none">
+                    </div>
+                      </div>
                     </div>
                   </div>
                   <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">E-mail</label>
                     <div class="col">
                       <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="utilisateur.email" name="email" style="box-shadow: none">
                     </div>
+                      </div>
+                    </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 row ">
+                            <label  class="col-sm-2 col-form-label">Ville</label>
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="adresse.ville" name="ville" style="box-shadow: none">
                     </div>
+                          </div>
+                        </div>
+
                   </div>
                   <div class="row mb-3">
+
+                    <div class="col-md-6" [hidden]="utilisateur.id !=null" >
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Dete de naissance</label>
                     <div class="col">
                       <input type="date" class="form-control" placeholder="Dete de naissance" [(ngModel)]="utilisateur.dateDeNaissance" name="dateDeNaissance" style="box-shadow: none">
                     </div>
+                      </div>
+                    </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 row ">
+                            <label  class="col-sm-2 col-form-label">Code postal</label>
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Code postal" [(ngModel)]="adresse.codePostale" name="codePostale" style="box-shadow: none">
                     </div>
+                          </div>
+                        </div>
+
                   </div>
                   <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Telephone</label>
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Telephone" [(ngModel)]="utilisateur.numTel" name="numTel" style="box-shadow: none">
                     </div>
+                      </div>
+                    </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 row ">
+                            <label  class="col-sm-2 col-form-label">Pays</label>
                     <div class="col">
                       <input type="text" class="form-control" placeholder="Pays" [(ngModel)]="adresse.pays" name="pays" style="box-shadow: none">
                     </div>
+                          </div>
+                          </div>
                   </div>
-                  <div class="row mb-3">
+                  <div class="row mb-3"  [hidden]="utilisateur.id !=null" >
+                    <div class="col-md-6" >
+                      <div class="mb-3 row ">
+                        <label  class="col-sm-2 col-form-label">Password</label>
                     <div class="col">
                       <input type="password" class="form-control" placeholder="Password" [(ngModel)]="utilisateur.mdp" name="mdp" style="box-shadow: none">
                     </div>
+                      </div>
+                    </div>
+                        <div class="col-md-6">
+                          <div class="mb-3 row ">
+                            <label  class="col-sm-2 col-form-label">Image</label>
                     <div class="col">
                       <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
                       <input type="hidden" name="photo"  [(ngModel)]="utilisateur.photo" [value]="pathFile">
                     </div>
+                          </div>
+                        </div>
                   </div>
                 </form>
               </div>

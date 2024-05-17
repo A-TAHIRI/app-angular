@@ -4,6 +4,7 @@ import {CategorieService} from "../../services/categorie/categorie.service";
 import {Categorie} from "../../models/categirie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import {v4 as uuidv4} from "uuid";
 
 @Component({
   selector: 'app-categories',

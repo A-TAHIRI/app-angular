@@ -321,6 +321,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           client: this.selectedClientFournisseur,
           reference: 'cmdclt' + this.uniqueId,
           etatCommande: 'EN_PREPARATION',
+          dateCommande:new Date(),
           idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
           ligneCommandeClients: this.lignesCommande
         }
@@ -328,6 +329,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       return {
         fournisseur: this.selectedClientFournisseur,
         reference: 'cmdfrs' + this.uniqueId,
+        dateCommande:new Date(),
         etatCommande: 'EN_PREPARATION',
         idEntreprise: this.utilisateurService.getConnectedUser().entreprise?.id,
         ligneCommandeFournisseurs:this.lignesCommande

@@ -5,6 +5,7 @@ import {Categorie} from "../../../models/categirie";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {NotificationService} from "../../../services/notification/notification.service";
+import {v4 as uuidv4} from "uuid";
 
 @Component({
   selector: 'app-nouvelle-category',
@@ -35,6 +36,11 @@ export class NouvelleCategoryComponent implements OnInit {
   }
 
   /**
+   * methode pour genirer un reference unique
+   */
+  uniqueId = uuidv4();
+
+  /**
    * Method pour retourner vers la pagr categories
    */
   cancel(): void {
@@ -46,6 +52,7 @@ export class NouvelleCategoryComponent implements OnInit {
    */
   save(){
     // @ts-ignore
+    this.categorie.code= "cat"+this.uniqueId;
     this.categorie.idEntreprise = this.utilisateurService.getConnectedUser().entreprise.id;
     this.categorieService.ajouterCategorie(this.categorie).subscribe((data)=>{
       this.notificationService.success('La categorie a été ajouté avec succès.')

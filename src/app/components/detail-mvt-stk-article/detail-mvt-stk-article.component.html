@@ -17,7 +17,7 @@
     <tbody>
     <tr data-aos="zoom-in">
       <td style="width: 10%; height:60px; ;text-align: center;" ><img [src]="imgUrl"  width="50" height="50"  alt="stock"></td>
-      <td style="width: 10%; text-align: center;"   class="fw-bold text-primary "  >{{mvtstk.article.codeArticle}}</td>
+      <td style="width: 10%; text-align: center;"   class="fw-bold text-primary "  >{{mvtstk.article.codeArticle.substring(0,10)}}</td>
       <td style="width: 10%;text-align: center;" class=" fw-bold text-primary  ">{{mvtstk.article.designation}}</td>
       <td style="width: 10%;text-align: center;" class="fw-bold text-primary " >{{mvtstk.article.prixUnitaireHt}}&nbsp;€</td>
       <td style="width: 10%;text-align: center;"  class="fw-bold text-primary " > {{mvtstk.article.prixUnitaireTtc}}&nbsp;€</td>

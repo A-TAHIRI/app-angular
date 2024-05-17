@@ -40,12 +40,12 @@ export class InscriptionComponent implements OnInit {
     this.entreprise.adresse = this.adresse;
     this.entrepriseService.add(this.entreprise).subscribe(
       (data) => {
-
         this.conectEntreprise()
       },
       (error) => {
-        this.errors=error.error.errors
-        this.notificationService.showErrors(this.errors)
+
+        this.notificationService.error(error.error.message);
+        this.notificationService.showErrors(error.error.errors);
       this.router.navigate(['inscrire']);
       }
     );
@@ -60,16 +60,19 @@ export class InscriptionComponent implements OnInit {
       mdp: 'som3R@nd0mP@$$word'
     };
     this.utilisateurService.auth(authRequest).subscribe((res)=>{
-    this.getUserByEmail(authRequest.email);
+      this.getUserByToken(res.token);
       localStorage.setItem('accessToken',  JSON.stringify(res.token) );
       localStorage.setItem('origin', 'inscription');
       this.notificationService.info(" Veuillez changer votre mot passe");
-      this.router.navigate(['changermotdepasse']).then(()=>{
-        window.location.reload();
-      }
-
-      );
+      setTimeout(() => {
+        this.router.navigate(['changermotdepasse']).then(() => {
+          location.reload();
+        });
+      }, 3000); // Attente de 3 secondes avant la redirection
+    },error => {
+      this.notificationService.error(error.error.message);
     });
+
   }
 
   /**
@@ -99,9 +102,16 @@ export class InscriptionComponent implements OnInit {
    */
   getUserByEmail( email ? : string):void{
     this.utilisateurService.getUtilisateurByEmail(email).subscribe((user)=>{
-      console.log(user)
       this.utilisateurService.setConnectedUser(user);
     });
+  }
+  /**
+   * recupérer l'user connécté
+   */
+  getUserByToken(token:string):void{
+    this.utilisateurService.getUtilisateurByToken(token).subscribe((user)=>{
+      this.utilisateurService.setConnectedUser(user);
+    },error => this.notificationService.error('Impossible de récupérer les informations de l’utilisateur'));
   }
 
   }

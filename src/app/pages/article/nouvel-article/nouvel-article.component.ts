@@ -7,6 +7,7 @@ import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {NotificationService} from "../../../services/notification/notification.service";
+import {v4 as uuidv4} from "uuid";
 
 @Component({
   selector: 'app-nouvel-article',
@@ -44,7 +45,10 @@ export class NouvelArticleComponent implements OnInit {
      })
    }
   }
-
+  /**
+   * methode pour genirer un reference unique
+   */
+  uniqueId = uuidv4();
   /**
    * récupérer tous les categories
    */
@@ -63,6 +67,7 @@ export class NouvelArticleComponent implements OnInit {
    * Method pou ejouter un article à la bdd
    */
   save(){
+    this.article.codeArticle="art"+this.uniqueId;
     this.article.categorie=this.categorie;
     this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise?.id
     this.articleService.add(this.article).subscribe(() => {

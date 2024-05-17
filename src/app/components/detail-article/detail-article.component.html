@@ -13,7 +13,7 @@
   <tbody>
   <tr data-aos="zoom-in"   >
     <td  ><img [src]="imgUrl " alt="article" width="50" height="50"></td>
-    <td class="text-primary fw-bold">{{ article.codeArticle }}</td>
+    <td class="text-primary fw-bold">{{ article.codeArticle.substring(0,10) }}</td>
     <td class="text-primary fw-bold">{{ article.designation }}</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireHt }}€</td>
     <td class=" text-primary  fw-bold">{{ article.prixUnitaireTtc }} €</td>

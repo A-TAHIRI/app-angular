@@ -57,7 +57,9 @@ export class ProfilComponent implements OnInit {
     this.changerMotDePasseUtilisateur.id= this.utilsateurService.getConnectedUser().id;
     this.utilsateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe((data) => {
       this.utilsateurService.getConnectedUser();
-      this.router.navigate([''])
+      this.router.navigate(['/dashboard']).then(()=>{
+        location.reload();
+      })
     },error => {
       this.notificationService.error(error.error.message);
     })

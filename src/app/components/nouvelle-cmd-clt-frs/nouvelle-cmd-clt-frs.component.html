@@ -57,7 +57,7 @@
                   <p class="p-1" *ngFor="let article of listArticle"
                      (click)="selectArticleClick(article)"
                   >
-                    {{ article.codeArticle }}&nbsp; {{ article.designation }}
+                    {{ article.codeArticle.substring(0,5) }}&nbsp; {{ article.designation }}
                   </p>
                 </div>
               </div>

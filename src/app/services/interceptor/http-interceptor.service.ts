@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // N'intercepter pas les requêtes vers /login ou /register
-    if (req.url.includes('/register')) {
+    if (req.url.includes('/register'),req.url.includes('/email/send/**'),req.url.includes('/reset-password')) {
       return next.handle(req); // Passez la requête au handler sans modifications
     }
     this.loaderService.show();

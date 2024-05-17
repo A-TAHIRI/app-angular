@@ -29,43 +29,54 @@
                 <form id="formArticle">
                   <div class="row mb-3">
                     <div class="col">
-                      <input type="text" class="form-control" name="codeArticle" placeholder="Code article"  [(ngModel)]="article.codeArticle" style="box-shadow: none">
-                    </div>
+                    <div class="col">Designation :</div>
                     <div class="col">
                       <input type="text" class="form-control" name="designation" placeholder="Designation" [(ngModel)]="article.designation" style="box-shadow: none">
                     </div>
-                  </div>
-                  <div class="row mb-3">
+                    </div>
+                    <div class="col">
+                      <div class="col">Prix Unitaire HT :</div>
                     <div class="col">
                       <input type="number" class="form-control" name="prixUnitaireHt" placeholder="Prix unitaire HT"
                              [(ngModel)]="article.prixUnitaireHt" (input)="calculetTTC()"  style="box-shadow: none">
                     </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <div class="col">Prix Unitaire TTC :</div>
+                    <div class="col">
+                      <input type="number" class="form-control" name="prixUnitaireTtc" placeholder="Prix unitaire TTC" [(ngModel)]="article.prixUnitaireTtc" style="box-shadow: none">
+                    </div>
+                    </div>
+                    <div class="col">
+                      <div class="col">TauxTVA :</div>
                     <div class="col">
                       <input type="number" class="form-control" name="tauxtva" placeholder="Taux TVA"
                              [(ngModel)]="article.tauxTva" (input)="calculetTTC()" style="box-shadow: none" >
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col">
-                      <input type="number" class="form-control" name="prixUnitaireTtc" placeholder="Prix unitaire TTC" [(ngModel)]="article.prixUnitaireTtc" style="box-shadow: none">
-                    </div>
-                    <div class="col">
-                      <select class="form-control" name="cat" [(ngModel)]="categorie.id"   style="box-shadow: none">
-                        <option [value]="null" selected >Selectionner une categorie</option>
-                        <option *ngFor="let cat of liste" [value]="cat.id">{{ cat.code }} - {{ cat.designation }}</option>
-
-                      </select>
                     </div>
                   </div>
                   <div class="row mb-3">
+                    <div class="col">
+                      <div class="col">Image :</div>
                     <div class="col">
                       <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
                       <input type="hidden" name="image"  [(ngModel)]="article.image" [value]="pathFile"  >
                     </div>
+                    </div>
                     <div class="col">
-                      <img class="custom-border" [src]="playImage" style="max-width: 100px"  *ngIf="playImage">
+                      <div class="col">Categorie :</div>
+                    <div class="col">
+                      <select class="form-control" name="cat" [(ngModel)]="categorie.id"   style="box-shadow: none">
+                        <option [value]="null" selected >Selectionner une categorie</option>
+                        <option *ngFor="let cat of liste" [value]="cat.id">{{ cat.code.substring(0,10) }} - {{ cat.designation }}</option>
+
+                      </select>
+                    </div>
                     </div>
                   </div>
+
                 </form>
               </div>
             </div>

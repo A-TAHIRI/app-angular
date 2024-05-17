@@ -18,6 +18,7 @@ export class NouvelUtilisateurComponent implements OnInit {
   pathFile = '';
   protected readonly event = event;
 
+
   constructor(
     private router: Router,
     private utilisateurService: UtilisateurService,
@@ -34,6 +35,7 @@ export class NouvelUtilisateurComponent implements OnInit {
    this.utilisateurService.getUtilisateur(idUser).
       subscribe((data)=>{
         this.utilisateur=data;
+
         this.adresse= this.utilisateur.adresse ? this.utilisateur.adresse :{};
       })
     }
@@ -51,12 +53,14 @@ export class NouvelUtilisateurComponent implements OnInit {
    * Method pur ajouter utilisateur à la bdd
    */
   ajouter( ) {
+
       this.utilisateur.adresse = this.adresse;
       this.utilisateur.entreprise = this.utilisateurService.getConnectedUser().entreprise;
       this.utilisateurService.add(this.utilisateur).subscribe((data) => {
         this.notificationService.success('L\'utilisateur à été ajouter avec succès');
           this.router.navigate(['dashboard/utilisateurs']);
         }, (err) => {
+        this.notificationService.error(err.error.message)
         this.notificationService.showErrors(err.error.errors);
         this.reload();
         }
