@@ -4,6 +4,7 @@ import {Route, Router} from "@angular/router";
 import {CommandeclientService} from "../../services/commandeclient/commandeclient.service";
 import {CommandefournisseurService} from "../../services/commandefournisseur/commandefournisseur.service";
 import {NotificationService} from "../../services/notification/notification.service";
+import { environment } from '../../../environments/environment';
 import * as bootstrap from 'bootstrap';
 
 
@@ -24,7 +25,7 @@ export class DetailCmdCltFrsComponent implements OnInit {
   commande: any = {};
 
 
-  imgUrl: string | ArrayBuffer = 'assets/image/user.png';
+  imgUrl: string | ArrayBuffer = './assets/image/user.png';
 
   cltFrs: any = {};
    etatCommande: any;
@@ -41,14 +42,13 @@ export class DetailCmdCltFrsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.extractClientFournisseur()
-    this.imgUrl = this.cltFrs ? 'http://localhost:8082/file/image/' + this.cltFrs?.photo : 'assets/image/user.png';
+    this.imgUrl = this.cltFrs.photo ? (( environment.production) ? 'https://ws.gestostock.fr/file/image/'+ this.cltFrs?.photo   : 'http://localhost:8082/file/image/' + this.cltFrs?.photo )
+    : './assets/image/user.png';
   }
 
 
   extractClientFournisseur(): void {
-
     if (this.origin === 'fournisseur') {
       this.cltFrs = this.commande?.fournisseur;
     } else if (this.origin === 'client') {
@@ -117,5 +117,39 @@ export class DetailCmdCltFrsComponent implements OnInit {
 
   }
 
+
+  /**
+  methode pour supprimer la commande
+   */
+confirmerEtSupprimerCmd(){
+ if (this.commande?.id ) {
+      if(this.origin === 'client'){
+
+         this.commandeClientService.deletCmd(this.commande.id).subscribe(data=>{
+           this.notificationService.success("L'etat de la commande à été bien supprimer");
+           this.router.navigate(['dashboard/commandesclient']);
+
+         },error => {
+           this.notificationService.error(error.error.message);
+
+         });
+
+      }else if(this.origin === 'fournisseur'){
+
+        this.commandeFournisseurService.deletCmd(this.commande.id).subscribe(data=>{
+        this.notificationService.success("L'etat de la commande à été bien supprimer");
+        this.router.navigate(['dashboard/commandesfournisseur']);
+
+
+      },error => {
+        this.notificationService.error(error.error.message);
+
+      });
+
+      }
+
+    }
+
+}
 
 }

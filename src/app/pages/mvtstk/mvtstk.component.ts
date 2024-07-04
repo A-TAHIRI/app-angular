@@ -3,6 +3,7 @@ import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
 import {MvtStk} from "../../models/mvt-stk";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-mvtstk',

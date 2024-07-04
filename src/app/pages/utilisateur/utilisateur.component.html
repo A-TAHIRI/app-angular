@@ -37,7 +37,7 @@
             [utilisateur]="user"
             (suppressionResult)="handleSuppression($event)"
             [i]="i"
-            [imgUrl]="user.photo ?  'http://localhost:8082/file/image/'+this.user.photo : 'assets/image/user.png'"
+            [imgUrl]="user.photo ?  ( (environment.production) ? 'https://ws.gestostock.fr/file/image/'+this.user.photo :  'http://localhost:8082/file/image/'+this.user.photo ): './assets/image/user.png'"
           >
           </app-detail-utilisateur>
         </div>

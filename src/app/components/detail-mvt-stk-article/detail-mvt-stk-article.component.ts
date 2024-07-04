@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-detail-mvt-stk-article',
@@ -20,9 +22,9 @@ export class DetailMvtStkArticleComponent implements OnInit{
   ngOnInit(): void {
     this.stockReel(this.mvtstk.article.id);
     if (this.mvtstk.article.image !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+this.mvtstk.article.image;
+      this.imgUrl= (environment.production) ? 'https://ws.gestostock.fr/file/image/'+this.mvtstk.article.image : 'http://localhost:8082/file/image/'+this.mvtstk.article.image;
     }else{
-      this.imgUrl= 'assets/image/produit.png';
+      this.imgUrl= './assets/image/produit.png';
     }
   }
 

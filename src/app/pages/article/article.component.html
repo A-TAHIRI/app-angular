@@ -11,8 +11,7 @@
 
 <section class="section dashboard "  data-aos="fade-down" >
   <div class="row" >
-
-    <!-- Top Selling -->
+    <!-- Top article -->
     <div class="col-12" >
       <div class="card top-selling overflow-auto" >
         <app-boutton-action
@@ -28,19 +27,17 @@
         </div>
         <div class="card-body pb-0">
           <h5 class="card-title">Listes des articles</h5>
-
               <app-detail-article  *ngFor="let article of allpages.content let i = index "
                 [article]="article"
                 [i]="i"
                 (suppressionResult)="handleSuppression($event)"
               >
               </app-detail-article>
-
         </div>
-
       </div>
-    </div><!-- End Top Selling -->
+    </div><!-- End Top article -->
   </div>
+  <!-- Top pagination -->
   <div class="row mb-3">
     <div class=" col-md-12 text-center" data-aos="fade-up">
       <app-pagination
@@ -51,4 +48,5 @@
       ></app-pagination>
     </div>
   </div>
+  <!-- End pagination -->
 </section>

@@ -1087,7 +1087,7 @@
                   <tbody>
                   <tr *ngFor="let top of toparticleToYear let i= index">
 
-                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
+                    <th scope="row"><img [src]="(environment.production) ? 'https://ws.gestostock.fr/file/image/'+top.image :'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
                                          width="45" height="45"></th>
                     <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>
@@ -1116,8 +1116,8 @@
                   <tbody>
                   <tr *ngFor="let top of toparticleToMonth let i=index">
 
-                    <th scope="row"><a href="#"><img [src]="'http://localhost:8082/file/image/'+top.image"
-                                                     alt="{{top.designation}}" width="45" height="45"></a></th>
+                    <th scope="row"><img [src]="(environment.production) ? 'https://ws.gestostock.fr/file/image/'+top.image :'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
+                                         width="45" height="45"></th>
                     <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>
                     <td class="fw-bold ">{{ top.sumQuantite }}</td>
@@ -1145,7 +1145,7 @@
                   <tbody>
                   <tr *ngFor="let top of toparticleToDays let i= index">
 
-                    <th scope="row"><img [src]="'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
+                    <th scope="row"><img [src]="(environment.production) ? 'https://ws.gestostock.fr/file/image/'+top.image :'http://localhost:8082/file/image/'+top.image" alt="{{top.designation}}"
                                          width="45" height="45"></th>
                     <td><a href="#" class="text-primary ">{{ top.designation }}</a></td>
                     <td>{{ top.nbLigne }}</td>

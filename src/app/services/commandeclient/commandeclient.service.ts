@@ -3,12 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {CommandeClient} from "../../models/commande-client";
 import {Observable, of} from "rxjs";
 import {CommandeClientStats} from "../../models/CommandeClientStats";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeclientService {
-  readonly baseUrl = 'http://localhost:8082/api/v1/commadeClients';
+  readonly baseUrl =(environment.production)
+                      ? 'https://ws.gestostock.fr/api/v1/commadeClients'
+                      : 'http://localhost:8082/api/v1/commadeClients';
 
   constructor(private http: HttpClient) {
   }
@@ -71,6 +74,16 @@ export class CommandeclientService {
     const url= this.baseUrl+`/commandes?nom=${nom}&page=${page}&size=${size}`
     return this.http.get(url);
   }
+
+   /**
+       * Service pour supprimer une  commande
+       * @param id
+       */
+      deletCmd(id ?:number){
+        const  url = this.baseUrl+`/${id}`;
+        return  this.http.delete(url);
+      }
+
 
   /**
    * Service pour supprimer une ligne de commande

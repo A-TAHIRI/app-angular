@@ -9,6 +9,7 @@ import {ApiResponse} from "../../models/api-response";
 import {HttpErrorResponse} from "@angular/common/http";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {DataService} from "../../services/dataService/data.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-utilisateur',
@@ -18,9 +19,10 @@ import {DataService} from "../../services/dataService/data.service";
 export class UtilisateurComponent implements OnInit {
   liste !: Utilisateur[];
   errorMsg = '';
-  imgUrl: string | ArrayBuffer = 'assets/image/user.png';
+  imgUrl: string | ArrayBuffer = './assets/image/user.png';
   messageSucces = '';
   pages: any;
+  environment:any;
 // pagination
 
   private pagesSubject = new BehaviorSubject<any>(null);
@@ -50,8 +52,7 @@ export class UtilisateurComponent implements OnInit {
   ngOnInit(): void {
     this.tousUtilisateurs();
     this.users();
-
-
+    this.environment=environment;
   }
 
 

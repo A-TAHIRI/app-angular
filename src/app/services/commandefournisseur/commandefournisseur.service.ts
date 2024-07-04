@@ -4,13 +4,16 @@ import {CommandeClient} from "../../models/commande-client";
 import {Observable, of} from "rxjs";
 import {CommandeFournisseur} from "../../models/commande-fournisseur";
 import {CommandeClientStats} from "../../models/CommandeClientStats";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandefournisseurService {
 
-  readonly baseUrl = 'http://localhost:8082/api/v1/commandFournisseurs';
+  readonly baseUrl =(environment.production)
+                                          ? 'https://ws.gestostock.fr/api/v1/commandFournisseurs'
+                                          : 'http://localhost:8082/api/v1/commandFournisseurs';
   constructor( private http: HttpClient) { }
 
   /**
@@ -70,6 +73,15 @@ export class CommandefournisseurService {
     console.log(url);
     return this.http.get(url);
   }
+   /**
+     * Service pour supprimer une  commande
+     * @param id
+     */
+    deletCmd(id ?:number){
+      const  url = this.baseUrl+`/${id}`;
+      return  this.http.delete(url);
+    }
+
 
   /**
    * Service pour supprimer une ligne de commande

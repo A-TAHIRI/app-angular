@@ -4,6 +4,7 @@ import {ClientService} from "../../services/client/client.service";
 import {Client} from "../../models/client";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-client',
@@ -19,6 +20,7 @@ export class ClientComponent implements OnInit {
   pageActuel: number;
   receivedData: any;
   allpages: any;
+  environment :any;
 
   constructor(
     private router: Router,
@@ -38,6 +40,7 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.environment= environment;
   this.clients();
   this.allclients();
 

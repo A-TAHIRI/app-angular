@@ -4,6 +4,7 @@ import {Fournisseur} from "../../models/fournisseur";
 import {FournisseurService} from "../../services/fournisseur/fournisseur.service";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-fournisseur',
@@ -18,6 +19,7 @@ export class FournisseurComponent implements OnInit {
   pageActuel: number;
   receivedData: any;
   allpages: any;
+  environment:any;
 
   constructor(
     private router: Router,
@@ -40,6 +42,7 @@ export class FournisseurComponent implements OnInit {
   ngOnInit(): void {
   this.fournisseurs();
   this.allfournisseur();
+  this.environment=environment;
 
   }
 

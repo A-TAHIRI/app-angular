@@ -9,7 +9,7 @@
   </nav>
 </div><!-- End Page Title -->
 
-<section class="section dashboard position-relative" data-aos="fade-down"  >
+<section class="section dashboard " data-aos="fade-down"  >
   <div class="row">
 
     <!-- Top Selling -->
@@ -32,8 +32,7 @@
                       aria-expanded="true"
                       aria-controls="collapseOne" style="width: 100%;box-shadow: none; border: none;  padding-top: 0; ">
 
-                <app-detail-cmd-clt-frs style="position: relative ; z-index: 2"
-
+                <app-detail-cmd-clt-frs style="position: relative; "
                   [commande]="cmd"
                   [i]="i"
                   [origin]="origin"
@@ -43,15 +42,13 @@
               <div [attr.id]="'collapse'+cmd.id" class="collapse" data-bs-parent="#accordionExample"
                    style="max-height: 300px;
                           overflow-y: scroll">
-                <div class="card-body container position-relative z-1">
+                <div class="card-body container ">
 
-                  <app-detail-cmd
+                  <app-detail-cmd style=" position: relative;"
                     *ngFor="let ligne of mapLignesCommande.get(cmd.id) let i=index"
                     [ligneCommande]="ligne"
                     [i]="i"
                     [origin]="origin"
-
-
                   ></app-detail-cmd>
                 </div>
               </div>

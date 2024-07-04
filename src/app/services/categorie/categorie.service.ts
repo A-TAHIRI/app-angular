@@ -2,13 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import { Categorie } from 'src/app/models/categirie';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
 
-  readonly baseUrl = 'http://localhost:8082/api/v1/categories';
+  readonly baseUrl = (environment.production)
+                       ? 'https://ws.gestostock.fr/api/v1/categories'
+                       : 'http://localhost:8082/api/v1/categories';
 
   constructor(private http: HttpClient) { }
 

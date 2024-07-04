@@ -3,13 +3,16 @@ import {HttpClient} from "@angular/common/http";
 import {Client} from "../../models/client";
 import {Observable, of} from "rxjs";
 import {CommandeFournisseur} from "../../models/commande-fournisseur";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService  {
 
-  readonly baseUrl = 'http://localhost:8082/api/v1/clients';
+  readonly baseUrl = (environment.production)
+                       ? 'https://ws.gestostock.fr/api/v1/clients'
+                       : 'http://localhost:8082/api/v1/clients';
   constructor( private http: HttpClient) { }
 
   /**

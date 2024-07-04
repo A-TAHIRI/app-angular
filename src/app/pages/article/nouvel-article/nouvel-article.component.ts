@@ -7,6 +7,7 @@ import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {NotificationService} from "../../../services/notification/notification.service";
+import { environment } from '../../../../environments/environment';
 import {v4 as uuidv4} from "uuid";
 
 @Component({
@@ -90,7 +91,7 @@ export class NouvelArticleComponent implements OnInit {
    this.fileUploadService.uploadFile(file).subscribe(
      (res : any) => {
        this.pathFile=res.pathFile;
-       this.playImage = 'http://localhost:8082/file/image/' + res.pathFile;
+       this.playImage = (environment.production) ? 'https://ws.gestostock.fr/file/image/'+res.pathFile :   'http://localhost:8082/file/image/' + res.pathFile;
        this.article.image = res.pathFile;
        this.notificationService.success('File uploaded success');
        console.log('File uploaded success');

@@ -7,31 +7,39 @@ import {ApiResponse} from "../../models/api-response";
 import {Page} from "../../models/page";
 import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
 import {AuthRequest} from "../../models/auth-request";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
-  readonly baseUrl = 'http://localhost:8082';
+  readonly baseUrl =  (environment.production)
+                       ? 'https://ws.gestostock.fr'
+                       : 'http://localhost:8082';
 
   constructor(
     private http: HttpClient,
     private  router:Router
   ) { }
 
+
   /**
    * service pour ajouter un user à la bdd
    * @param utilisateur
    * @constructor
    */
-  add(utilisateur: Utilisateur): Observable<Object> {
-    const url = `${this.baseUrl}/register`;
+  add(utilisateur: Utilisateur):Observable<Object>{
+    const url = this.baseUrl+`/register`;
     return this.http.post(url, utilisateur);
   }
+
+
 save(utilisateur : Utilisateur){
     const url = this.baseUrl+`/api/v1/utilisateurs`;
   return this.http.post(url, utilisateur);
 }
+
+
 update(id : number , utilisateur: Utilisateur){
   const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
   return this.http.put(url, utilisateur);
@@ -66,14 +74,14 @@ update(id : number , utilisateur: Utilisateur){
    */
   getUtilisateurByEmail( email  ?: string ):Observable<any> {
     if (email !== undefined){
-      const  base = "http://localhost:8082/email"
+      const  base = this.baseUrl+'/email'
       const  url= `${base}/?email=${email}`;
       return  this.http.get<Utilisateur>(url);
     } return of();
   }
   getUtilisateurByToken( token  ?: string ):Observable<Utilisateur> {
     if (token !== undefined){
-      const  base = `http://localhost:8082/token?token=${token}`
+      const  base = this.baseUrl+`/token?token=${token}`
       return  this.http.get<Utilisateur>(base);
     } return of();
   }
@@ -91,7 +99,7 @@ update(id : number , utilisateur: Utilisateur){
    * @param changerMotDePasse
    */
   changerMotDePasse(changerMotDePasse: ChangerMotDePasseUtilisateur) {
-    const url = ` ${this.baseUrl}/api/v1/utilisateurs/update/password`;
+    const url = ` ${this.baseUrl}/update/password`;
    return  this.http.put<any>(url,changerMotDePasse )
   }
 
@@ -108,6 +116,16 @@ update(id : number , utilisateur: Utilisateur){
     localStorage.setItem('connectedUser', JSON.stringify(utilisateur));
 
 
+  }
+  setIdUser( id : number):void{
+  localStorage.setItem('idUser',id.toString());
+
+  }
+  getIdUser():number{
+if(localStorage.getItem('idUser')){
+return parseInt(localStorage.getItem('idUser'),10)
+}
+return null
   }
 
   /**

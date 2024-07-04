@@ -24,9 +24,9 @@
       <td style="width: 10%;text-align: center;" >{{ commande.etatCommande }}</td>
       <td style="width: 10%;text-align: center;" >
 
-        <div class="action">
+        <div class="action" >
           <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow " >
             <li class="dropdown-header text-start">
               <h6>Actions</h6>
             </li>
@@ -35,7 +35,7 @@
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="modifiercmd(commande.id)">
               <i class="bi bi-pencil-square"></i>&nbsp;Modifier</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                   data-bs-target="#modalDeleteCmd" >
+                   [attr.data-bs-target]="'#modalDeleteCmd'+commande.id" >
               <i class="bi bi-trash3"></i>Supprimer</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="facture(commande.id)"><i class="bi bi-ticket-detailed"></i>Facture</a></li>
           </ul>
@@ -46,7 +46,7 @@
   </table>
 </div>
 
-<div class="offcanvas offcanvas-end "   tabindex="-1" [attr.id]="'offcanvasExample'+commande.id" aria-labelledby="offcanvasExampleLabel"  >
+<div class="offcanvas offcanvas-end "  [attr.id]="'offcanvasExample'+commande.id" aria-labelledby="offcanvasExampleLabel"  >
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
     <button type="button" class="btn-close text-reset text-bg-light  text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -69,3 +69,28 @@
 
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade"    [attr.id]="'modalDeleteCmd'+commande.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Etes vous-sur de vouloir supprimer cet commande?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ><i
+          class="fas fa-ban"></i> Annuler
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="confirmerEtSupprimerCmd()"><i
+          class="fas fa-trash-alt"></i> Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

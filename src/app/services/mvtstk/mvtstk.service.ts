@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {MvtStk} from "../../models/mvt-stk";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MvtstkService {
-  readonly baseUrl = 'http://localhost:8082/api/v1/mvtstk';
+  readonly baseUrl = (environment.production)
+                      ? 'https://ws.gestostock.fr/api/v1/mvtstk'
+                      : 'http://localhost:8082/api/v1/mvtstk';
   constructor(private  http: HttpClient) { }
 
   /**

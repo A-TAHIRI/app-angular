@@ -8,15 +8,13 @@ import {AuthenticationResponse} from "../../models/authenticationResponse";
   providedIn: 'root'
 })
 export class HttpInterceptorService implements HttpInterceptor {
-
   constructor(
     private loaderService: LoaderService,
   ) {
   }
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // N'intercepter pas les requêtes vers /login ou /register
-    if (req.url.includes('/register'),req.url.includes('/email/send/**'),req.url.includes('/reset-password')) {
+    if (req.url.includes('/login')||req.url.includes('/email/send/**')||req.url.includes('/reset-password')||req.url.includes('/update/password')) {
       return next.handle(req); // Passez la requête au handler sans modifications
     }
     this.loaderService.show();

@@ -4,6 +4,7 @@ import {CategorieService} from "../../services/categorie/categorie.service";
 import {Categorie} from "../../models/categirie";
 import {NotificationService} from "../../services/notification/notification.service";
 import {DataService} from "../../services/dataService/data.service";
+import { environment } from '../../../environments/environment';
 import {v4 as uuidv4} from "uuid";
 
 @Component({
@@ -17,8 +18,8 @@ export class CategoriesComponent implements OnInit {
   cat: Categorie = {};
   errorsMsg: Array<string> = [];
   selectedCatIdToDelete? = -1;
-  basImgUrl: string = 'assets/image/category.jpg';
-  imgUrl: string = 'http://localhost:8082/file/image/'
+  basImgUrl: string = './assets/image/category.jpg';
+  imgUrl: string =  (environment.production) ? 'https://ws.gestostock.fr/file/image/' :  'http://localhost:8082/file/image/';
   messageSucces = '';
   pageActuel: number;
   receivedData: any;

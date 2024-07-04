@@ -14,6 +14,7 @@ import {CommandefournisseurService} from "../../services/commandefournisseur/com
 import {NotificationService} from "../../services/notification/notification.service";
 import {v4 as uuidv4} from 'uuid';
 import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -23,7 +24,7 @@ import {MvtstkService} from "../../services/mvtstk/mvtstk.service";
 })
 export class NouvelleCmdCltFrsComponent implements OnInit {
   origin = '';
-  imgUrl: string = 'http://localhost:8082/file/image/';
+  imgUrl: string = (environment.production) ? 'https://ws.gestostock.fr/file/image/' : 'http://localhost:8082/file/image/';
   selectedClientFournisseur: any = {};
   listClientFournisseur: Array<any> = [];
   errorMsg: Array<string> = [];
@@ -146,9 +147,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     })
   }
 
-
-
-
   /**
    * Method pour ajouter une commade client/fournisseur a la bdd
    */
@@ -158,7 +156,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       commande.id = this.oldeCommade.id;
       commande.reference = this.oldeCommade.reference;
     }
-
         if (this.origin == 'client') {
           if (commande.ligneCommandeClients.length != 0) {
             this.calculerTotalCommande();
@@ -239,10 +236,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour verifier l'article si il existe il incremet la quontité sion  il  crée ligne de commade
    * @private
    */
-
-
  private checkLigneCommande():void{
-
     const ligneCmdAlreadyExists = this.lignesCommande.find(lig => lig.article?.codeArticle === this.searchedArticle.codeArticle);
     if (ligneCmdAlreadyExists) {
       this.lignesCommande.forEach(lig => {
@@ -255,11 +249,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
           }
         })
         }
-
       });
     } else {
-
-
       if (this.origin === 'fournisseur'
       ) {
             const ligneCmd: LigneCommandeFournisseur = {
@@ -274,9 +265,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
               this.lignesCommande.push(ligneCmd);
             }
       } else if (this.origin === 'client') {
-
         const ligneCmd: LigneCommandeClient = {
-
           article: this.searchedArticle,
           prixUnitaire: this.searchedArticle.prixUnitaireTtc,
           quantite: +this.quantite,
@@ -284,13 +273,11 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         }
         this.mvtstkService.getStock(ligneCmd.article.id).subscribe(data=> {
           this.stock = data;
-
         if (ligneCmd.article === null || ligneCmd.quantite === 0) {
           this.notificationService.error("Veuillez rensigner les données de l'article");
         }else if(  ligneCmd.quantite > this.stock ){
             this.notificationService.error("L'article "+ligneCmd.article.designation +"n'est plus disponible");
         } else {
-
           this.lignesCommande.push(ligneCmd);
         }
         });

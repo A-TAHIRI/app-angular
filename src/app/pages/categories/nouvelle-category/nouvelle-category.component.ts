@@ -7,6 +7,7 @@ import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {NotificationService} from "../../../services/notification/notification.service";
 import {v4 as uuidv4} from "uuid";
 
+
 @Component({
   selector: 'app-nouvelle-category',
   templateUrl: './nouvelle-category.component.html',

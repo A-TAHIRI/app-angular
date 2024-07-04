@@ -6,13 +6,14 @@ import { UtilisateurService } from 'src/app/services/utilisateur/utilisateur.ser
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {NotificationService} from "../../../services/notification/notification.service";
 
+
 @Component({
   selector: 'app-nouvel-utilisateur',
   templateUrl: './nouvel-utilisateur.component.html',
   styleUrls: ['./nouvel-utilisateur.component.css'],
 })
 export class NouvelUtilisateurComponent implements OnInit {
-  utilisateur: Utilisateur = new Utilisateur();
+  utilisateur :Utilisateur={};
   adresse: Adresse = {};
   errorsMsg: Array<string> = [];
   pathFile = '';
@@ -30,6 +31,7 @@ export class NouvelUtilisateurComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     const idUser = this.activatedRouter.snapshot.params['idUtilisateur'];
     if(idUser){
    this.utilisateurService.getUtilisateur(idUser).
@@ -52,8 +54,8 @@ export class NouvelUtilisateurComponent implements OnInit {
   /**
    * Method pur ajouter utilisateur à la bdd
    */
-  ajouter( ) {
-
+  ajouter() {
+  console.log(this.utilisateur.mdp)
       this.utilisateur.adresse = this.adresse;
       this.utilisateur.entreprise = this.utilisateurService.getConnectedUser().entreprise;
       this.utilisateurService.add(this.utilisateur).subscribe((data) => {
@@ -62,7 +64,7 @@ export class NouvelUtilisateurComponent implements OnInit {
         }, (err) => {
         this.notificationService.error(err.error.message)
         this.notificationService.showErrors(err.error.errors);
-        this.reload();
+
         }
       );
 

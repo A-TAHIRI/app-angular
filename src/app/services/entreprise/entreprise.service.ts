@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entreprise } from 'src/app/models/entreprise';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntrepriseService {
-  readonly baseUrl = 'http://localhost:8082';
-
+  readonly baseUrl =  (environment.production)
+                       ? 'https://ws.gestostock.fr'
+                       : 'http://localhost:8082';
   constructor(private http: HttpClient) { }
 
 

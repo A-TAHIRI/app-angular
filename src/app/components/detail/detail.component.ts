@@ -10,6 +10,7 @@ import {LigneCommandeClient} from "../../models/ligne-commande-client";
 import {LigneCommandeFournisseur} from "../../models/ligne-commande-fournisseur";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {ArticleStats} from "../../models/articleStats";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-detail',
@@ -17,6 +18,7 @@ import {ArticleStats} from "../../models/articleStats";
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+environment: any;
   countByDay: any;
   countByLastDay: any;
   countByMonth: any;
@@ -90,6 +92,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.environment=environment;
     this.getByDay();
     this.getByMonth();
     this.getByYear();

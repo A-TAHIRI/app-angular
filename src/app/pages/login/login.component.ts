@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
    this.user= this.utilisateurService.getConnectedUser();
-    console.log(this.user);
-    console.log(this.user.nom);
 
   }
 
@@ -39,6 +37,8 @@ export class LoginComponent implements OnInit {
    */
 
   login(){
+if(this.authRequest.email == null ||this.authRequest.mdp == null){ this.notificationService.error("Le champs Email ou et Passowrd est null")}else{
+
     this.utilisateurService.auth(this.authRequest).subscribe(
       (data) => {
         this.getUserByEmail(data.token);
@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
 
       }
     );
+    }
   }
 
   /**
@@ -61,6 +62,8 @@ export class LoginComponent implements OnInit {
   getUserByEmail(token:string):void{
     this.utilisateurService.getUtilisateurByToken(token).subscribe((user)=>{
       this.utilisateurService.setConnectedUser(user);
+      this.utilisateurService.setIdUser(user.id);
+
     },error => this.notificationService.error('Impossible de récupérer les informations de l’utilisateur'));
   }
 

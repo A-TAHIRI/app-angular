@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article/article.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-detail-article',
@@ -32,7 +33,7 @@ i : number=0;
 
   ngOnInit(): void {
     if (this.article.image !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+this.article.image;
+      this.imgUrl=  (environment.production) ? 'https://ws.gestostock.fr/file/image/'+this.article.image :  'http://localhost:8082/file/image/'+this.article.image;
     }else{
       this.imgUrl= 'assets/image/produit.png';
     }

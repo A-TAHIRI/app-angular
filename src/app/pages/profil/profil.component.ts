@@ -4,6 +4,7 @@ import {UtilisateurService} from "../../services/utilisateur/utilisateur.service
 import {NotificationService} from "../../services/notification/notification.service";
 import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
 import {Utilisateur} from "../../models/utilisateur";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profil',
@@ -32,9 +33,9 @@ export class ProfilComponent implements OnInit {
 
     this.utilisateur = this.utilsateurService.getConnectedUser();
     if (this.utilisateur.photo !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+this.utilisateur.photo;
+      this.imgUrl= (environment.production) ? 'https://ws.gestostock.fr/file/image/'+this.utilisateur.photo :'http://localhost:8082/file/image/'+this.utilisateur.photo;
     }else{
-      this.imgUrl= 'assets/image/user.png';
+      this.imgUrl= './assets/image/user.png';
     }
   }
 

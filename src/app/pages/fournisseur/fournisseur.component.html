@@ -35,7 +35,7 @@
                               [clientFournisseur]="fournisseur"
                               [origin]="'fournisseur'"
                               [i]="i"
-                              [imgUrl]=" fournisseur.photo ? 'http://localhost:8082/file/image/'+this.fournisseur.photo : 'assets/image/user.png'"
+                              [imgUrl]=" fournisseur.photo ? ( environment.production ? 'https://ws.gestostock.fr/file/image/'+this.fournisseur.photo :'http://localhost:8082/file/image/'+this.fournisseur.photo ): './assets/image/user.png'"
                               (suppritionResult)="handleSuppression($event)"
 
 

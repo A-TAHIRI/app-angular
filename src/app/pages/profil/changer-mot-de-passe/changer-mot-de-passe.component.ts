@@ -5,6 +5,7 @@ import {UtilisateurService} from "../../../services/utilisateur/utilisateur.serv
 import {NotificationService} from "../../../services/notification/notification.service";
 import {Utilisateur} from "../../../models/utilisateur";
 import {ChangerMotDePasseUtilisateur} from "../../../models/changer-mot-de-passe-utilisateur";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-changer-mot-de-passe',
@@ -34,9 +35,9 @@ export class ChangerMotDePasseComponent implements OnInit {
 
 
     if (this.utilisateur.photo !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+this.utilisateur.photo;
+      this.imgUrl= (environment.production) ? 'https://ws.gestostock.fr/file/image/'+this.utilisateur.photo :  'http://localhost:8082/file/image/'+this.utilisateur.photo;
     }else{
-      this.imgUrl= 'assets/image/user.png';
+      this.imgUrl= './assets/image/user.png';
     }
   }
 
@@ -44,8 +45,15 @@ export class ChangerMotDePasseComponent implements OnInit {
     this.router.navigate(['dashboard/profil']);
   }
 
-  chagerMotDePasseUtilisateur() {
-    this.changerMotDePasseUtilisateur.id= this.utilisateurService.getConnectedUser().id;
+   chagerMotDePasseUtilisateur() {
+   const idUser = this.utilisateurService.getIdUser();
+   if(idUser){
+     this.changerMotDePasseUtilisateur.id=idUser
+   }
+/*
+  this.changerMotDePasseUtilisateur.id= this.utilisateurService.getConnectedUser().id ;
+*/
+
     this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateur).subscribe((data) => {
 
       this.router.navigate(['/dashboard']).then(()=>{

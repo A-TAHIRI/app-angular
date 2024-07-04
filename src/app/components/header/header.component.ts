@@ -3,6 +3,7 @@ import {UtilisateurService} from "../../services/utilisateur/utilisateur.service
 import {Router} from "@angular/router";
 import {DataService} from "../../services/dataService/data.service";
 import {Utilisateur} from "../../models/utilisateur";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -36,7 +37,7 @@ export class HeaderComponent implements  OnInit{
     this.initSearchBarToggle();
     this.connectedUser = this.utilisateurService.getConnectedUser()
     if (this.connectedUser.photo !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+this.connectedUser.photo;
+      this.imgUrl= (environment.production) ? 'https://ws.gestostock.fr/file/image/' +this.connectedUser.photo : 'http://localhost:8082/file/image/'+this.connectedUser.photo;
     }else{
       this.imgUrl= 'assets/image/user.png';
     }

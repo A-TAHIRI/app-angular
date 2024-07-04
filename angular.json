@@ -16,7 +16,7 @@
             "outputPath": "dist/myapp",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "allowedCommonJsDependencies": ["canvg", "html2canvas", "raf", "rgbcolor"],
+            "allowedCommonJsDependencies": ["canvg", "html2canvas", "raf", "rgbcolor","lodash"],
             "polyfills": [
               "zone.js"
             ],
@@ -29,15 +29,34 @@
               "src/styles.css"
 
             ],
-            "scripts": []
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "10kb",
+                "maximumError": "20kb"
+              }
+            ]
           },
+
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -76,6 +95,7 @@
             "browserTarget": "myapp:build"
           }
         },
+
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {

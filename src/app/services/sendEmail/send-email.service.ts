@@ -3,12 +3,15 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Email} from "../../models/email";
 
 import {ChangerMotDePasseUtilisateur} from "../../models/changer-mot-de-passe-utilisateur";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SendEmailService {
-  readonly baseUrl = 'http://localhost:8082/email/send';
+  readonly baseUrl = (environment.production)
+                      ? 'https://ws.gestostock.fr'
+                      : 'http://localhost:8082';
   constructor(private  http: HttpClient) { }
 
   /**
@@ -16,21 +19,21 @@ export class SendEmailService {
    * @param email
    */
   sendEmail( email :Email){
-    const  url = this.baseUrl;
+    const  url = this.baseUrl+`/email/send`;
    return  this.http.post(url, email);
   }
 
   validateToken(token :any ){
-    const url =this.baseUrl+`/validToken`
+    const url =this.baseUrl+`/email/send/validToken`
     return   this.http.get(url, token);
   }
 
   readToken(token : any){
-    const  url = this.baseUrl+`/userByToken`
+    const  url = this.baseUrl+`/email/send/userByToken`
     return this.http.get(url, token)
   }
 resetPassword(dto: ChangerMotDePasseUtilisateur, token :string){
-    const url=`http://localhost:8082/reset-password?token=${token}`;
+    const url= this.baseUrl+`/reset-password?token=${token}`;
 
   return this.http.put(url,dto );
 }

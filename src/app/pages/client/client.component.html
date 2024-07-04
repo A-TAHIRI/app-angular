@@ -33,7 +33,7 @@
           <app-detail-clt-frs *ngFor=" let client of allpages.content let i =index"
                               [clientFournisseur]="client"
                                [i]="i"
-                              [imgUrl]=" client.photo ? 'http://localhost:8082/file/image/'+this.client.photo : 'assets/image/user.png'"
+                              [imgUrl]=" client.photo ?(environment.production ? 'https://ws.gestostock.fr/file/image/'+this.client.photo :  'http://localhost:8082/file/image/'+this.client.photo ): './assets/image/user.png'"
                               [origin]="'client'"
                               (suppritionResult)="handleSuppression($event)"
           ></app-detail-clt-frs>

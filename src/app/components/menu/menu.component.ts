@@ -37,9 +37,6 @@ export class MenuComponent implements OnInit {
       }
     }
     if (this.isAdmin===true) {
-
-
-
       this.sidebarLinks.push({
         label: 'Parametrages',
         icon: 'bi bi-gear',
